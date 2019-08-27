@@ -6,14 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>LoL Stats using Rito API</title>
+    <link href="https://fonts.googleapis.com/css?family=Hepta+Slab&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <button class="button">Pokaz</button>
-    <h2 class="nickname"></h1>
-    <h2 class="lvl"></h2>
+    <main class="main">
+        <h1 class="main__title">League of Legends stats checker website</h1>
+        <form class="main__form form">
+            <label class="form__label">Insert nickname of player: (example TheWanh3da)</label>
+            <input type="text" class="form__input" value="TheWanh3da">
+        </form>
+        <button class="main__button">Search</button>
+        <section class="main__info info">
+            <div class="info__wrapper">
+            </div>
+            <div class="info__rankedStats ranked"></div>
+        </section>
+    </main>
     <script src="js/script.js"></script>
 </body>
 
