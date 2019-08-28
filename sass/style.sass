@@ -81,28 +81,29 @@ body
             display: block
             min-height: 500px
             width: 900px 
-            background-color: pink
+            //background-color: pink
             margin: 0 auto
             position: relative
-        .info__wrapper
+        .info__accStats
             position: absolute
             top: 10px
             left: 10px
-            height: 150px
-            width: 150px
+            height: 250px
+            width: 200px
             border: 1px solid black
             display: none
+            
             &--active
                 display: block
             .info__profilIcon
-                width: 80px
-                height: 80px
+                width: 140px
+                height: 160px
                 margin-top: 10px
             .info__nickname
                 font-size: 18px
                 font-family: 'Lato', sans-serif
-                font-weight: normal
-                margin-top: 10px
+                font-weight: bold
+                margin-top: 15px
             .info__level-container
                 height: 28px
                 width: 70px
@@ -118,23 +119,93 @@ body
                     line-height: 28px
                     font-size: 18px
         .info__rankedStats     
-            width: 700px
-            height: 150px
+            width: 660px
+            height: 100px
             position: absolute      
-            background-color: red
+            font-family: 'Lato', sans-serif
             overflow: hidden
             top: 10px
             right: 10px
             display: flex
             flex-direction: row
             flex-wrap: nowrap
+            border: 1px solid black
             .ranked__single-item
                 flex-basis: 33.33%
+                position: relative
+                .ranked__title
+                    font-size: 18px
                 .ranked__tier-image
+                    width: 80px
+                    height: 80px
+                    position: absolute
+                    top: 20px
+                    left: 10px
+                .ranked__tier
+                    font-size: 16px
+                    position: absolute
+                    top: 30px
+                    left: 100px
+                    color: 	#1E90FF
+                .ranked__stats
+                    position: absolute
+                    font-size: 14px
+                    font-weight: normal
+                    top: 60px
+                    right: 10px
+                    &--bold
+                        font-weight: bold
+                .ranked__win-ratio
+                    font-size: 14px
+                    font-weight: normal
+                    position: absolute
+                    top: 80px
+                    left: 100px
+        .info__masteryStats
+            display: none
+            &--active
+                display: block
+                width: 660px
+                height: 140px
+                position: absolute      
+                font-family: 'Lato', sans-serif
+                overflow: hidden
+                top: 120px
+                right: 10px
+                display: flex
+                flex-direction: row
+                flex-wrap: nowrap
+            .mastery__single
+                flex-basis: 25%
+                border: 1px solid black
+                position: relative
+                .mastery__champion-image
+                    width: 60px
+                    height: 60px
+                    position: absolute
+                    top: 10px
+                    left: 50%
+                    transform: translateX(-50%)
+                    border-radius: 50%
+                    border: 2px solid gold
+                    box-shadow: 0 0 0 2px black
+                .mastery__level-image
                     width: 50px
                     height: 50px
-                    
-                &:nth-of-type(1)
-                    background-color: green
+                    position: absolute
+                    top: 50px
+                    left: 50%
+                    transform: translateX(-50%)
+                .mastery__points
+                    position: absolute
+                    bottom: 10px
+                    left: 50%
+                    transform: translateX(-50%)
+                    font-size: 16px
+                    width: 100%
+                    &--normal
+                        font-weight: normal
+
+                
 
 

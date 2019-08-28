@@ -1,12 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    const apiKey = 'RGAPI-d681167a-3df4-47bb-8cb4-0278f71c2799';
 
     const btn = document.querySelector('.main__button');
     const mainInfo = document.querySelector('.main__info');
     const inputValueNickname = document.querySelector('.form__input');
-    const infoWrapper = document.querySelector('.info__wrapper');
-    const apiKey = 'RGAPI-be750fa8-4742-4ad5-b5b4-fc6859d62128'
+    const infoAccStats = document.querySelector('.info__accStats');
+    const infoMasteryStats = document.querySelector('.info__masteryStats');
 
+
+    const championsNameById = [];
     const matchesId = [];
     const draftIdQueue = 400;
     const rankedSoloDuoIdQueue = 420;
@@ -15,6 +18,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const aramIdQueue = 450;
     const twistedRankedIdQueue = 470;
     const ttfIdQueue = 1100;
+
+
+
+
 
     main = (nickname) => {
         if (nickname != null) {
@@ -28,34 +35,31 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                 .then((json) => {
                     if (json != null) {
-                        infoWrapper.innerHTML = `
-                                <img src="http://ddragon.leagueoflegends.com/cdn/9.3.1/img/profileicon/${json.profileIconId}.png" alt="Profil Icon" class="info__profilIcon">
+                        //console.log(json)
+                        infoAccStats.innerHTML = `
+                                <img src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/profileicon/${json.profileIconId}.png" alt="Profil Icon" class="info__profilIcon">
                                 <h2 class="info__nickname">${json.name}</h2>
                                 <div class="info__level-container">
                                     <h3 class="info__summLevel">${json.summonerLevel}</h3>
                                 </div>`
                         mainInfo.classList.add('main__info--active');
-                        infoWrapper.classList.add('info__wrapper--active');
-                        console.log(json)
+                        infoAccStats.classList.add('info__accStats--active');
+                        //document.querySelector(".info__accStats--active").style.backgroundImage = `url("image/borders/silver.png")'`;
+
                         getRank(json.id);
-
-
-
-
-
-
-
+                        getChampions();
+                        getMastery(json.id);
                     }
                 })
-                .catch(err => console.log("error     " + err))
+                .catch(err => console.log("Error:" + err))
         } else {
             console.log("Insert nickname")
         }
     }
 
 
+
     getRank = (id) => {
-        console.log(id)
         fetch(`https://eun1.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${apiKey}`)
             .then((data) => {
                 if (data.status == 200) {
@@ -66,58 +70,68 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then((json) => {
                 if (json != null) {
-                    console.log(json)
-                    const ttfRankedTier = json[0].tier;
-                    const ttfRankedDiv = json[0].rank;
-                    const ttfRankedPoinst = json[0].leaguePoints;
-                    const ttfRankedWins = json[0].wins;
-                    const ttfRankedLosses = json[0].losses;
-
-                    const flexRankedTier = json[1].tier;
-                    const flexRankedDiv = json[1].rank;
-                    const flexRankedPoinst = json[1].leaguePoints;
-                    const flexRankedWins = json[1].wins;
-                    const flexRankedLosses = json[1].losses;
-
-                    const SoloDuoRankedTier = json[2].tier;
-                    const SoloDuoRankedDiv = json[2].rank;
-                    const SoloDuoRankedPoinst = json[2].leaguePoints;
-                    const SoloDuoRankedWins = json[2].wins;
-                    const SoloDuoRankedLosses = json[2].losses;
 
 
-                    
+                    let ttfRankedTier = "UNRANKED",
+                        ttfRankedDiv = "",
+                        ttfRankedPoinst = 0,
+                        ttfRankedWins = 0,
+                        ttfRankedLosses = 0;
+                    let flexRankedTier = "UNRANKED",
+                        flexRankedDiv = "",
+                        flexRankedPoinst = 0,
+                        flexRankedWins = 0,
+                        flexRankedLosses = 0;
+                    let SoloDuoRankedTier = "UNRANKED",
+                        SoloDuoRankedDiv = "",
+                        SoloDuoRankedPoinst = 0,
+                        SoloDuoRankedWins = 0,
+                        SoloDuoRankedLosses = 0;
+
+
+                    [].forEach.call(json, (ele, index) => {
+                        if (ele.queueType == "RANKED_SOLO_5x5") {
+                            SoloDuoRankedTier = json[index].tier;
+                            SoloDuoRankedDiv = json[index].rank;
+                            SoloDuoRankedPoinst = json[index].leaguePoints;
+                            SoloDuoRankedWins = json[index].wins;
+                            SoloDuoRankedLosses = json[index].losses;
+                        } else if (ele.queueType == "RANKED_FLEX_SR") {
+                            flexRankedTier = json[index].tier;
+                            flexRankedDiv = json[index].rank;
+                            flexRankedPoinst = json[index].leaguePoints;
+                            flexRankedWins = json[index].wins;
+                            flexRankedLosses = json[index].losses;
+                        } else if (ele.queueType == "RANKED_TFT") {
+                            ttfRankedTier = json[index].tier;
+                            ttfRankedDiv = json[index].rank;
+                            ttfRankedPoinst = json[index].leaguePoints;
+                            ttfRankedWins = json[index].wins;
+                            ttfRankedLosses = json[index].losses;
+                        }
+                    })
 
                     document.querySelector('.info__rankedStats').innerHTML = `
                             <div class="ranked__single-item" data-ranked="solo/duo">
                                 <h2 class="ranked__title">Ranked Solo/Duo</h2>
-                                <img class="ranked__tier-image" alt="Tier ${SoloDuoRankedTier} image" src="images/emblems/Emblem_${SoloDuoRankedTier}.png"
-                                <h3 class="ranked__tier">Tier: ${SoloDuoRankedTier}</h3>
-                                <h3 class="ranked__division">Division: ${SoloDuoRankedDiv}</h3>
-                                <h3 class="ranked__points">Points: ${SoloDuoRankedPoinst}</h3>
-                                <h3 class="ranked__wins">Number of wins: ${SoloDuoRankedWins}</h3>
-                                <h3 class="ranked__looses">Number of looses: ${SoloDuoRankedLosses}</h3>
-                                <h3 class="ranked__total-games"> Total amount of games: ${SoloDuoRankedWins + SoloDuoRankedLosses}</h3>
+                                <img class="ranked__tier-image" alt="Tier ${SoloDuoRankedTier} image" src="images/emblems/Emblem_${SoloDuoRankedTier}.png">
+                                <h3 class="ranked__tier"> ${SoloDuoRankedTier} ${SoloDuoRankedDiv}</h3>
+                                <h3 class="ranked__stats"><span class="ranked__stats--bold">${SoloDuoRankedPoinst} LP</span> / ${SoloDuoRankedWins}W  / ${SoloDuoRankedLosses}L</h3>
+                                <h3 class="ranked__win-ratio"> Win ratio:  ${(SoloDuoRankedWins != 0)?((SoloDuoRankedWins/(SoloDuoRankedWins + SoloDuoRankedLosses)) * 100).toFixed(0) : 0}%</h3>
                             </div>
                             <div class="ranked__single-item" data-ranked="flex">
                                 <h2 class="ranked__title">Ranked Flex 5x5 </h2>
-                                <img class="ranked__tier-image" alt="Tier ${flexRankedTier} image" src="images/emblems/Emblem_${flexRankedTier}.png"
-                                <h3 class="ranked__tier">Tier: ${flexRankedTier}</h3>
-                                <h3 class="ranked__division">Division:${flexRankedDiv}</h3>
-                                <h3 class="ranked__points">Points: ${flexRankedPoinst}</h3>
-                                <h3 class="ranked__wins">Number of wins: ${flexRankedWins}</h3>
-                                <h3 class="ranked__looses">Number of looses: ${flexRankedLosses}</h3>
-                                <h3 class="ranked__total-games"> Total amount of games: ${flexRankedWins + flexRankedLosses}</h3>
+                                <img class="ranked__tier-image" alt="Tier ${flexRankedTier} image" src="images/emblems/Emblem_${flexRankedTier}.png">
+                                <h3 class="ranked__tier"> ${flexRankedTier} ${flexRankedDiv}</h3>
+                                <h3 class="ranked__stats"><span class="ranked__stats--bold">${flexRankedPoinst} LP</span> / ${flexRankedWins}W  / ${flexRankedLosses}L</h3>
+                                <h3 class="ranked__win-ratio"> Win ratio:  ${(flexRankedWins != 0)?((flexRankedWins/(flexRankedWins + flexRankedLosses)) * 100).toFixed(0) : 0}%</h3>
                             </div>
                             <div class="ranked__single-item" data-ranked="ttf">
-                                <h2 class="ranked__title">Ranked Teamfights Tactics</h2>
-                                <img class="ranked__tier-image" alt="Tier ${ttfRankedTier} image" src="images/emblems/Emblem_${ttfRankedTier}.png"
-                                <h3 class="ranked__tier">Tier: ${ttfRankedTier}</h3>
-                                <h3 class="ranked__division">Division: ${ttfRankedDiv}</h3>
-                                <h3 class="ranked__points">Points: ${ttfRankedPoinst}</h3>
-                                <h3 class="ranked__wins">Number of wins: ${ttfRankedWins}</h3>
-                                <h3 class="ranked__looses">Number of looses: ${ttfRankedLosses}</h3>
-                                <h3 class="ranked__total-games"> Total amount of games: ${ttfRankedWins + ttfRankedLosses}</h3>
+                                <h2 class="ranked__title">Ranked TTF</h2>
+                                <img class="ranked__tier-image" alt="Tier ${ttfRankedTier} image" src="images/emblems/Emblem_${ttfRankedTier}.png">
+                                <h3 class="ranked__tier"> ${ttfRankedTier} ${ttfRankedDiv}</h3>
+                                <h3 class="ranked__stats"><span class="ranked__stats--bold">${ttfRankedPoinst} LP</span> / ${ttfRankedWins}W  / ${ttfRankedLosses}L</h3>
+                                <h3 class="ranked__win-ratio"> Win ratio:  ${(ttfRankedWins != 0)?((ttfRankedWins/(ttfRankedWins + ttfRankedLosses)) * 100).toFixed(0) : 0}%</h3>
                             </div>       
                     `
 
@@ -134,15 +148,80 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(err => console.log("error     " + err))
     }
 
-    /*mastery = (id) => {
-        fetch(`https://eun1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${json.id}?api_key=RGAPI-7354b08a-efb2-47ec-a787-4c145067d709`)
+    getChampions = () => {
+        fetch('http://ddragon.leagueoflegends.com/cdn/9.17.1/data/en_US/champion.json')
+            .then((data) => {
+                return data.json();
+            })
+            .then((json) => {
+                [].forEach.call(Object.values(json.data), (ele, index) => {
+                    championsNameById.push({
+                        name: ele.id,
+                        key: parseInt(ele.key, 10),
+                    })
+                });
+            })
+            .catch((error) => console.log(error))
+    }
+
+    getMastery = (id) => {
+        fetch(`https://eun1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${id}?api_key=${apiKey}`)
             .then((data) => {
                 return data.json()
             })
             .then((mastery) => {
-                console.log(mastery[0])
+                console.log(mastery)
+                const firstMainChampion = mastery[0];
+                const secondMainChampion = mastery[1];
+                const thirdMainChampion = mastery[2];
+                const fourthMainChampion = mastery[3];
+
+                let firstMainChampionName = "";
+                let secondMainChampionName = "";
+                let thirdMainChampionName = "";
+                let fourthMainChampionName = "";
+
+                championsNameById.forEach((Element) => {
+                    if (Element.key == firstMainChampion.championId) {
+                        firstMainChampionName = Element.name
+                    } else if (Element.key == secondMainChampion.championId) {
+                        secondMainChampionName = Element.name
+                    } else if (Element.key == thirdMainChampion.championId) {
+                        thirdMainChampionName = Element.name
+                    } else if (Element.key == fourthMainChampion.championId) {
+                        fourthMainChampionName = Element.name
+                    }
+                })
+
+
+
+
+                infoMasteryStats.innerHTML = `
+                    <div class="mastery__single">
+                        <img class="mastery__champion-image" alt="Champion image" src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${firstMainChampionName}.png">
+                        <img class="mastery__level-image" alt="Mastery level  image" src="images/mastery/lvl${firstMainChampion.championLevel}.png">
+                        <h3 class="mastery__points">${firstMainChampion.championPoints} <span class="mastery__points--normal">pts</span></h3>
+                    </div>
+                    <div class="mastery__single">
+                        <img class="mastery__champion-image" alt="Champion image" src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${secondMainChampionName}.png">
+                        <img class="mastery__level-image" alt="Mastery level  image" src="images/mastery/lvl${secondMainChampion.championLevel}.png">
+                        <h3 class="mastery__points">${secondMainChampion.championPoints} <span class="mastery__points--normal">pts</span></h3>
+                    </div>
+                    <div class="mastery__single">
+                        <img class="mastery__champion-image" alt="Champion image" src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${thirdMainChampionName}.png">
+                        <img class="mastery__level-image" alt="Mastery level  image" src="images/mastery/lvl${thirdMainChampion.championLevel}.png">
+                        <h3 class="mastery__points">${thirdMainChampion.championPoints} <span class="mastery__points--normal">pts</span></h3>
+                    </div>
+                    <div class="mastery__single">
+                        <img class="mastery__champion-image" alt="Champion image" src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${fourthMainChampionName}.png">
+                        <img class="mastery__level-image" alt="Mastery level  image" src="images/mastery/lvl${fourthMainChampion.championLevel}.png">
+                        <h3 class="mastery__points">${fourthMainChampion.championPoints} <span class="mastery__points--normal">pts</span></h3>
+                    </div>
+                `
+                infoMasteryStats.classList.add('info__masteryStats--active')
+
             })
-    }*/
+    }
 
 
 
