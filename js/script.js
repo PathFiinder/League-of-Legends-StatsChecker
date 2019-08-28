@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 </div>`
                         mainInfo.classList.add('main__info--active');
                         infoAccStats.classList.add('info__accStats--active');
-                        //document.querySelector(".info__accStats--active").style.backgroundImage = `url("image/borders/silver.png")'`;
+
 
                         getRank(json.id);
                         getChampions();
@@ -135,7 +135,20 @@ document.addEventListener('DOMContentLoaded', function () {
                             </div>       
                     `
 
-
+                    const unrankedColorBorder = "white"
+                    const ironColorBorder = '#434b4d';
+                    const silverColorBorder = '#9ca0a1';
+                    const goldColorBorder = 'gold';
+                    const platinumColorBorder = '#44AB44';
+                    const diamondColorBorder = '#b9f2ff';
+                    const masterColorBorder = '#740BFD';
+                    const grandmasterColorBorder = '#7A0707';
+                    const challengerColorBorder = '#CBD111';
+ 
+                    
+                    
+                    infoAccStats.style.borderColor = eval(SoloDuoRankedTier.toLowerCase() + 'ColorBorder');
+                    
 
 
 
