@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     if (json != null) {
                         infoAccStats.innerHTML = `
-                                <img src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/profileicon/${json.profileIconId}.png" alt="Profil Icon" class="info__profilIcon">
+                                <img src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/profileicon/${json.profileIconId}.png" alt="Profil Icon" class="info__profilIcon">
                                 <h2 class="info__nickname">${json.name}</h2>
                                 <div class="info__level-container">
                                     <h3 class="info__summLevel">${json.summonerLevel}</h3>
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     getChampions = () => {
-        fetch('http://ddragon.leagueoflegends.com/cdn/9.17.1/data/en_US/champion.json')
+        fetch('https://ddragon.leagueoflegends.com/cdn/9.17.1/data/en_US/champion.json')
             .then((data) => {
                 return data.json();
             })
@@ -225,22 +225,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 infoMasteryStats.innerHTML = `
                     <div class="mastery__single">
-                        <img class="mastery__champion-image" alt="Champion image" src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${firstMainChampionName}.png">
+                        <img class="mastery__champion-image" alt="Champion image" src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${firstMainChampionName}.png">
                         <img class="mastery__level-image" alt="Mastery level  image" src="images/mastery/lvl${firstMainChampion.championLevel}.png">
                         <h3 class="mastery__points">${firstMainChampion.championPoints} <span class="mastery__points--normal">pts</span></h3>
                     </div>
                     <div class="mastery__single">
-                        <img class="mastery__champion-image" alt="Champion image" src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${secondMainChampionName}.png">
+                        <img class="mastery__champion-image" alt="Champion image" src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${secondMainChampionName}.png">
                         <img class="mastery__level-image" alt="Mastery level  image" src="images/mastery/lvl${secondMainChampion.championLevel}.png">
                         <h3 class="mastery__points">${secondMainChampion.championPoints} <span class="mastery__points--normal">pts</span></h3>
                     </div>
                     <div class="mastery__single">
-                        <img class="mastery__champion-image" alt="Champion image" src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${thirdMainChampionName}.png">
+                        <img class="mastery__champion-image" alt="Champion image" src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${thirdMainChampionName}.png">
                         <img class="mastery__level-image" alt="Mastery level  image" src="images/mastery/lvl${thirdMainChampion.championLevel}.png">
                         <h3 class="mastery__points">${thirdMainChampion.championPoints} <span class="mastery__points--normal">pts</span></h3>
                     </div>
                     <div class="mastery__single">
-                        <img class="mastery__champion-image" alt="Champion image" src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${fourthMainChampionName}.png">
+                        <img class="mastery__champion-image" alt="Champion image" src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${fourthMainChampionName}.png">
                         <img class="mastery__level-image" alt="Mastery level  image" src="images/mastery/lvl${fourthMainChampion.championLevel}.png">
                         <h3 class="mastery__points">${fourthMainChampion.championPoints} <span class="mastery__points--normal">pts</span></h3>
                     </div>
@@ -315,7 +315,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 historyGames.innerHTML += `
                     <div class="historyGame__single">
                         <h2 class="historyGames__type-of-game">${json.gameMode}</h2>
-                        <img class="historyGames__player-champion-image" alt="Champion player image: ${championName}" src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${championName}.png"> 
+                        <img class="historyGames__player-champion-image" alt="Champion player image: ${championName}" src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${championName}.png"> 
                         <h3 class="historyGames__result">${win}</h3>
                         <h3 class="historyGames__stats">${statsKill} / ${statsDeaths} / ${statsAssists}</h3>
                     </div>
