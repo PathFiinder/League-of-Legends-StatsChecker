@@ -294,4 +294,38 @@ body {
 .main__info .info__masteryStats .mastery__single .mastery__points--normal {
   font-weight: normal;
 }
+
+.main__info .info__historyGames {
+  display: none;
+}
+
+.main__info .info__historyGames--active {
+  min-height: 100px;
+  width: 100%;
+  background-color: pink;
+  position: absolute;
+  top: 270px;
+  left: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.main__info .info__historyGames .historyGame__single {
+  -ms-flex-preferred-size: 100px;
+      flex-basis: 100px;
+  border: 1px solid black;
+  margin: 5px;
+}
+
+.main__info .info__historyGames .historyGame__single .historyGames__player-champion-image {
+  height: 50px;
+  width: 50px;
+}
 /*# sourceMappingURL=style.css.map */

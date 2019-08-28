@@ -7,10 +7,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const inputValueNickname = document.querySelector('.form__input');
     const infoAccStats = document.querySelector('.info__accStats');
     const infoMasteryStats = document.querySelector('.info__masteryStats');
+    const historyGames = document.querySelector('.info__historyGames');
 
 
     const championsNameById = [];
-    const matchesId = [];
+    const historyGamesInfo = [];
     const draftIdQueue = 400;
     const rankedSoloDuoIdQueue = 420;
     const blindDraftIdQueue = 430;
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     main = (nickname) => {
         if (nickname != null) {
+
             fetch( /*'https://cors-anywhere.herokuapp.com/*/ `https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nickname}?api_key=${apiKey}`)
                 .then((data) => {
                     if (data.status == 200) {
@@ -34,8 +36,21 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 })
                 .then((json) => {
+
+
+                    /*console.log(mainInfo)
+                    if (mainInfo != null) {
+                        var child = mainInfo.lastElementChild;
+                        while (child) {
+                            mainInfo.removeChild(child);
+                            child = mainInfo.lastElementChild;
+                        }
+
+                    }
+                    console.log(mainInfo)*/
+
+
                     if (json != null) {
-                        //console.log(json)
                         infoAccStats.innerHTML = `
                                 <img src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/profileicon/${json.profileIconId}.png" alt="Profil Icon" class="info__profilIcon">
                                 <h2 class="info__nickname">${json.name}</h2>
@@ -45,10 +60,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         mainInfo.classList.add('main__info--active');
                         infoAccStats.classList.add('info__accStats--active');
 
-
                         getRank(json.id);
                         getChampions();
                         getMastery(json.id);
+                        getHistoryGames(json.accountId)
                     }
                 })
                 .catch(err => console.log("Error:" + err))
@@ -144,11 +159,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     const masterColorBorder = '#740BFD';
                     const grandmasterColorBorder = '#7A0707';
                     const challengerColorBorder = '#CBD111';
- 
-                    
-                    
+
+
+
                     infoAccStats.style.borderColor = eval(SoloDuoRankedTier.toLowerCase() + 'ColorBorder');
-                    
+
 
 
 
@@ -183,7 +198,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 return data.json()
             })
             .then((mastery) => {
-                console.log(mastery)
                 const firstMainChampion = mastery[0];
                 const secondMainChampion = mastery[1];
                 const thirdMainChampion = mastery[2];
@@ -236,15 +250,89 @@ document.addEventListener('DOMContentLoaded', function () {
             })
     }
 
+    getHistoryGames = (id) => {
+        fetch(`https://eun1.api.riotgames.com/lol/match/v4/matchlists/by-account/${id}?api_key=${apiKey}`)
+            .then((data) => {
+                return data.json();
+            })
+            .then((json) => {
+                [].forEach.call(json.matches, (element, index) => {
+                    if (index >= 0 && index <= 9) {
+                        historyGamesInfo.push(element);
+                    }
+                });
+
+                historyGamesInfo.forEach((element) => {
+                    getSingleGameHistory(element.gameId)
+                });
+                //getSingleGameHistory(historyGamesInfo[0].gameId)
+
+            })
+            .catch((error) => console.log(error))
+    }
+
+    getSingleGameHistory = (matchID) => {
+        fetch(`https://eun1.api.riotgames.com/lol/match/v4/matches/${matchID}?api_key=${apiKey}`)
+            .then((data) => {
+                return data.json()
+            })
+            .then((json) => {
+                //console.log(json);
+
+                let idTab = "";
+                let win = false;
+                let statsKill = 0;
+                let statsDeaths = 0;
+                let statsAssists = 0;
+                let championId = 0;
+                let championName = "";
+
+                [].forEach.call(json.participantIdentities, (element) => {
+                    if (element.player.summonerName == inputValueNickname.value) {
+                        idTab = element.participantId;
+                    }
+                });
+
+                [].forEach.call(json.participants, (element) => {
+
+                    if (element.participantId == idTab) {
+                        //console.log(element)
+                        win = element.stats.win;
+                        statsKill = element.stats.kills;
+                        statsDeaths = element.stats.deaths;
+                        statsAssists = element.stats.assists;
+                        championId = element.championId;
+
+                    }
+                })
+
+                championsNameById.forEach(element => {
+                    if (element.key == championId) {
+                        championName = element.name
+                    }
+                })
+
+                historyGames.innerHTML += `
+                    <div class="historyGame__single">
+                        <h2 class="historyGames__type-of-game">${json.gameMode}</h2>
+                        <img class="historyGames__player-champion-image" alt="Champion player image: ${championName}" src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${championName}.png"> 
+                        <h3 class="historyGames__result">${win}</h3>
+                        <h3 class="historyGames__stats">${statsKill} / ${statsDeaths} / ${statsAssists}</h3>
+                    </div>
+                `
+
+                historyGames.classList.add('info__historyGames--active');
+            })
+    }
 
 
     btn.addEventListener('click', (event) => {
         event.preventDefault();
+
+
         main(inputValueNickname.value);
 
 
-
-
-        inputValueNickname.value = "";
+        //inputValueNickname.value = "";
     });
 })
