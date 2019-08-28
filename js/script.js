@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
     main = (nickname) => {
         if (nickname != null) {
 
-            fetch( /*'https://cors-anywhere.herokuapp.com/*/ `https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nickname}?api_key=${apiKey}`)
+            fetch(`https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nickname}?api_key=${apiKey}`)
                 .then((data) => {
                     if (data.status == 200) {
                         return data.json();
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     getRank = (id) => {
-        fetch(`https://eun1.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${apiKey}`)
+        fetch(`https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${apiKey}`)
             .then((data) => {
                 if (data.status == 200) {
                     return data.json();
@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     getMastery = (id) => {
-        fetch(`https://eun1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${id}?api_key=${apiKey}`)
+        fetch(`https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${id}?api_key=${apiKey}`)
             .then((data) => {
                 return data.json()
             })
@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     getHistoryGames = (id) => {
-        fetch(`https://eun1.api.riotgames.com/lol/match/v4/matchlists/by-account/${id}?api_key=${apiKey}`)
+        fetch(`https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/match/v4/matchlists/by-account/${id}?api_key=${apiKey}`)
             .then((data) => {
                 return data.json();
             })
@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     getSingleGameHistory = (matchID) => {
-        fetch(`https://eun1.api.riotgames.com/lol/match/v4/matches/${matchID}?api_key=${apiKey}`)
+        fetch(`https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/match/v4/matches/${matchID}?api_key=${apiKey}`)
             .then((data) => {
                 return data.json()
             })
