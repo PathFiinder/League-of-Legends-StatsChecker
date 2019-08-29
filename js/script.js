@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    const apiKey = 'RGAPI-d681167a-3df4-47bb-8cb4-0278f71c2799';
+    const apiKey = 'RGAPI-cdfd4c47-a4cc-46f2-9cc9-dbed62540811';
 
-    const btn = document.querySelector('.main__button');
-    const mainInfo = document.querySelector('.main__info');
+    const btn = document.querySelector('.statsChecker__button');
+    const mainInfo = document.querySelector('.statsChecker__info');
     const inputValueNickname = document.querySelector('.form__input');
     const infoAccStats = document.querySelector('.info__accStats');
     const infoMasteryStats = document.querySelector('.info__masteryStats');
@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', function () {
                             mainInfo.removeChild(child);
                             child = mainInfo.lastElementChild;
                         }
-
                     }
                     console.log(mainInfo)*/
 
@@ -57,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <div class="info__level-container">
                                     <h3 class="info__summLevel">${json.summonerLevel}</h3>
                                 </div>`
-                        mainInfo.classList.add('main__info--active');
+                        mainInfo.classList.add('statsChecker__info--active');
                         infoAccStats.classList.add('info__accStats--active');
 
                         getRank(json.id);
@@ -239,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <img class="mastery__level-image" alt="Mastery level  image" src="images/mastery/lvl${thirdMainChampion.championLevel}.png">
                         <h3 class="mastery__points">${thirdMainChampion.championPoints} <span class="mastery__points--normal">pts</span></h3>
                     </div>
-                    <div class="mastery__single">
+                    <div class="mastery__single mastery__single--last">
                         <img class="mastery__champion-image" alt="Champion image" src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${fourthMainChampionName}.png">
                         <img class="mastery__level-image" alt="Mastery level  image" src="images/mastery/lvl${fourthMainChampion.championLevel}.png">
                         <h3 class="mastery__points">${fourthMainChampion.championPoints} <span class="mastery__points--normal">pts</span></h3>

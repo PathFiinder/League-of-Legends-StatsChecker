@@ -1,4 +1,4 @@
-
+@import "_mixins.sass"
 $color1: black   
     
 *
@@ -11,217 +11,28 @@ body
 
 .main
     max-width: 1200px
+    min-width: 320px
     min-height: 100vh
+    width: 100%
     margin: 0 auto
     font-family: 'Hepta Slab', serif
     text-align: center
-    &__title
-        font-size: 30px
-    &__form
-        height: 80px
-        overflow: hidden
-        width: 80vw
-        margin: 20px auto 10px auto
+    &__buttons
+        background-color: red
+        height: 40px
+        width: 100%
         display: flex
-        flex-direction: column
-        .form__label
-            font-size: 16px
-            line-height: 48px
-            flex-basis: 60%
-        .form__input
-            flex-grow: 1
-            width: 80%
-            align-self: center
-            padding-left: 10px
-            font-size: 16px
-            border: 
-    &__button
-        height: 50px
-        width: 100px
-        position: relative
-        border: none
-        background-color: transparent
-        cursor: pointer
-        outline: none
-        font-size: 22px
-        margin: 1em 0.8em
-        color: $color1
-        &::after,
-        &::before
-            content: ''
-            display: block
-            position: absolute
-            width: 20%
-            height: 20%
-            border: 2px solid
-            transition: all 0.6s ease
-            border-radius: 2px
-        &::after
-            bottom: 0
-            right: 0
-            border-top-color: transparent
-            border-left-color: transparent
-            border-bottom-color: $color1
-            border-right-color: $color1
-        &::before
-            top: 0
-            left: 0
-            border-bottom-color: transparent
-            border-right-color: transparent
-            border-top-color: $color1
-            border-left-color: $color1
-
-        &:hover:after,
-        &:hover:before
-            width: 100%
-            height: 100%
-    &__info
-        display: none
-        &--active
-            display: block
-            min-height: 500px
-            width: 900px 
-            //background-color: pink
-            margin: 0 auto
-            position: relative
-        .info__accStats
-            display: none
-            position: absolute
-            top: 10px
-            left: 10px
-            height: 250px
-            width: 200px
-            border: 3px solid black
-            &--active
-                display: block
-            .info__profilIcon
-                width: 140px
-                height: 160px
-                margin-top: 10px
-            .info__nickname
-                font-size: 18px
-                font-family: 'Lato', sans-serif
-                font-weight: bold
-                margin-top: 15px
-            .info__level-container
-                height: 28px
-                width: 70px
-                border: 2px solid gold
-                border-radius: 50px
-                position: absolute
-                bottom: -14px
-                left: 50%
-                transform: translateX(-50%)
-                background-color: rgba(16, 18, 2, 1)
-                color: gold
-                .info__summLevel
-                    line-height: 28px
-                    font-size: 18px
-        .info__rankedStats     
-            width: 660px
-            height: 100px
-            position: absolute      
-            font-family: 'Lato', sans-serif
-            overflow: hidden
-            top: 10px
-            right: 10px
-            display: flex
-            flex-direction: row
-            flex-wrap: nowrap
+        flex-direction: row
+        .button
+            flex-basis: 33.33%
             border: 1px solid black
-            .ranked__single-item
-                flex-basis: 33.33%
-                position: relative
-                .ranked__title
-                    font-size: 18px
-                .ranked__tier-image
-                    width: 80px
-                    height: 80px
-                    position: absolute
-                    top: 20px
-                    left: 10px
-                .ranked__tier
-                    font-size: 16px
-                    position: absolute
-                    top: 30px
-                    left: 100px
-                    color: 	#1E90FF
-                .ranked__stats
-                    position: absolute
-                    font-size: 14px
-                    font-weight: normal
-                    top: 60px
-                    right: 10px
-                    &--bold
-                        font-weight: bold
-                .ranked__win-ratio
-                    font-size: 14px
-                    font-weight: normal
-                    position: absolute
-                    top: 80px
-                    left: 100px
-        .info__masteryStats
-            display: none
-            &--active
-                display: block
-                width: 660px
-                height: 140px
-                position: absolute      
-                font-family: 'Lato', sans-serif
-                overflow: hidden
-                top: 120px
-                right: 10px
-                display: flex
-                flex-direction: row
-                flex-wrap: nowrap
-            .mastery__single
-                flex-basis: 25%
-                border: 1px solid black
-                position: relative
-                .mastery__champion-image
-                    width: 60px
-                    height: 60px
-                    position: absolute
-                    top: 10px
-                    left: 50%
-                    transform: translateX(-50%)
-                    border-radius: 50%
-                    border: 2px solid gold
-                    box-shadow: 0 0 0 2px black
-                .mastery__level-image
-                    width: 50px
-                    height: 50px
-                    position: absolute
-                    top: 50px
-                    left: 50%
-                    transform: translateX(-50%)
-                .mastery__points
-                    position: absolute
-                    bottom: 10px
-                    left: 50%
-                    transform: translateX(-50%)
-                    font-size: 16px
-                    width: 100%
-                    &--normal
-                        font-weight: normal
-        .info__historyGames
-            display: none
-            &--active
-                min-height: 100px
-                width: 100%
-                background-color: pink
-                position: absolute
-                top: 270px
-                left: 0px
-                display: flex
-                flex-direction: column
-                flex-wrap: wrap
-            .historyGame__single
-                flex-basis: 100px
-                border: 1px solid black
-                margin: 5px
-                .historyGames__player-champion-image
-                    height: 50px
-                    width: 50px
-
-
+            text-transform: uppercase
+            font-size: 16px
+            background-color: #a7a7a7
+        .main__buttons--champions,.main__buttons--items
+            border-left: none
+        .main__buttons--active
+            background-color: #3d2b1f
+            color: white
+    
+@import "_main__statsChecker.sass"

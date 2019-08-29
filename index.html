@@ -14,19 +14,28 @@
 
 <body>
     <main class="main">
-        <h1 class="main__title">League of Legends stats checker website</h1>
-        <form class="main__form form">
-            <label class="form__label">Insert nickname of player: (example TheWanh3da)</label>
-            <input type="text" class="form__input" value="TheWanh3da">
-        </form>
-        <button class="main__button">Search</button>
-        <section class="main__info info">
-            <div class="info__accStats">
-            </div>
-            <div class="info__rankedStats ranked"></div>
-            <div class="info__masteryStats mastery"></div>
-            <div class="info__historyGames historyGame"></div>
-        </section>
+        <div class="main__buttons">
+            <button class="button main__buttons--stats main__buttons--active">Stats Checker</button>
+            <button class="button main__buttons--champions">Champions</button>
+            <button class="button main__buttons--items">Items</button>
+        </div>
+        <article class="main__statsChecker statsChecker">
+            <h1 class="statsChecker__title">League of Legends stats checker website</h1>
+            <form class="statsChecker__form form">
+                <label class="form__label">Insert nickname of player: (example TheWanh3da)</label>
+                <input type="text" class="form__input" value="TheWanh3da">
+            </form>
+            <button class="statsChecker__button">Search</button>
+            <section class="statsChecker__info info">
+                <div class="info__accStats">
+                </div>
+                <div class="info__rankedStats ranked"></div>
+                <div class="info__masteryStats mastery"></div>
+                <div class="info__historyGames historyGame"></div>
+            </section>
+        </article>
+        <article class="main__champions champions"></article>
+        <article class="main__items items"></article>
     </main>
     <script src="js/script.js"></script>
 </body>
