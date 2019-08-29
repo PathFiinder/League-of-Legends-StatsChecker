@@ -284,21 +284,74 @@
             display: none
             &--active
                 min-height: 100px
-                width: 100%
-                background-color: pink
+                width: 95%
                 position: absolute
                 top: 290px
-                left: 0px
+                left: 50%
+                transform: translateX(-50%)
                 display: flex
                 flex-direction: column
                 flex-wrap: wrap
+                font-family: 'Lato', sans-serif
             .historyGame__single
                 flex-basis: 100px
                 border: 1px solid black
                 margin: 5px
+                position: relative
+                &--win
+                    border-color: dodgerblue
+                    background-color: lightskyblue
+                &--defeat
+                    border-color: crimson
+                    background-color: lightsalmon	
+                .historyGame__info
+                    position: absolute
+                    top: 10px
+                    left: 10px
+                    height: 80px
+                    width: 60px
+                    .historyGames__info-type
+                        font-size: 14px
+                        margin-top: 5px
+                    .historyGames__info-result
+                        font-size: 12px
+                        font-weight: normal
+                        margin-top: 5px
+                        &--win
+                            color: blue
+                        &--defeat
+                            color: red
+                    .historyGames__info-game-duration
+                        font-size: 12px
+                        font-weight: normal
+                        margin-top: 5px
                 .historyGames__player-champion-image
                     height: 50px
                     width: 50px
-
+                    position: absolute
+                    top: 15px
+                    left: 80px
+                    border-radius: 50%
+                    border: 2px solid black
+                .historyGames__stats
+                    font-size: 14px
+                    position: absolute
+                    top: 70px
+                    left: 75px
+                .historyGame__spells
+                    position: absolute
+                    top: 15px
+                    left: 135px 
+                    height: 50px
+                    width: 25px
+                    display: flex
+                    flex-direction: column
+                    overflow: hidden
+                    .historyGame__spells--primary,.historyGame__spells--secondary
+                        height: 22.5px
+                        width: 100%
+                    .historyGame__spells--primary
+                        margin-bottom: 5px
+                    
 
   

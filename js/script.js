@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    const apiKey = 'RGAPI-cdfd4c47-a4cc-46f2-9cc9-dbed62540811';
+    const apiKey = 'RGAPI-fb1a756d-3392-4fa7-89de-2be2e808c217';
 
     const btn = document.querySelector('.statsChecker__button');
     const mainInfo = document.querySelector('.statsChecker__info');
@@ -9,7 +9,46 @@ document.addEventListener('DOMContentLoaded', function () {
     const infoMasteryStats = document.querySelector('.info__masteryStats');
     const historyGames = document.querySelector('.info__historyGames');
 
-
+    const spellsIdWithName = [{
+        name: "Barrier",
+        id: 21
+    }, {
+        name: "Clarity",
+        id: 13
+    }, {
+        name: "Cleanse",
+        id: 1
+    }, {
+        name: "Exhaust",
+        id: 3
+    }, {
+        name: "Flash",
+        id: 4
+    }, {
+        name: "Ghost",
+        id: 6
+    }, {
+        name: "Heal",
+        id: 7
+    }, {
+        name: "Ignite",
+        id: 14
+    }, {
+        name: "Smite",
+        id: 11
+    }, {
+        name: "Teleport",
+        id: 12
+    }, {
+        name: "Snowball",
+        id: 32
+    }, {
+        name: "PoroToss",
+        id: 31
+    }, {
+        name: "PoroRecall",
+        id: 30
+    }]
     const championsNameById = [];
     const historyGamesInfo = [];
     const draftIdQueue = 400;
@@ -70,8 +109,6 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log("Insert nickname")
         }
     }
-
-
 
     getRank = (id) => {
         fetch(`https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${apiKey}`)
@@ -261,10 +298,19 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 });
 
+                historyGamesInfo.sort((a, b) => {
+                    if (a.timestamp < b.timestamp) {
+                        return 1;
+                    } else {
+                        return -1;
+                    }
+                })
+
                 historyGamesInfo.forEach((element) => {
                     getSingleGameHistory(element.gameId)
                 });
                 //getSingleGameHistory(historyGamesInfo[0].gameId)
+
 
             })
             .catch((error) => console.log(error))
@@ -276,47 +322,61 @@ document.addEventListener('DOMContentLoaded', function () {
                 return data.json()
             })
             .then((json) => {
-                //console.log(json);
+                console.log(json);
 
-                let idTab = "";
-                let win = false;
-                let statsKill = 0;
-                let statsDeaths = 0;
-                let statsAssists = 0;
-                let championId = 0;
-                let championName = "";
+                let mainIdTab = "";
+                let mainWin = false;
+                let mainStatsKill = 0;
+                let mainStatsDeaths = 0;
+                let mainStatsAssists = 0;
+                let mainChampionId = 0;
+                let mainChampionName = "";
+                let mainSpellPrimary = 0;
+                let mainSpellSecondary = 0;
+                const gameType = checkGameType(json.queueId);
+                let gameDuration = json.gameDuration;
 
                 [].forEach.call(json.participantIdentities, (element) => {
                     if (element.player.summonerName == inputValueNickname.value) {
-                        idTab = element.participantId;
+                        mainIdTab = element.participantId;
                     }
                 });
 
                 [].forEach.call(json.participants, (element) => {
 
-                    if (element.participantId == idTab) {
+                    if (element.participantId == mainIdTab) {
                         //console.log(element)
-                        win = element.stats.win;
-                        statsKill = element.stats.kills;
-                        statsDeaths = element.stats.deaths;
-                        statsAssists = element.stats.assists;
-                        championId = element.championId;
+                        mainWin = element.stats.win;
+                        mainStatsKill = element.stats.kills;
+                        mainStatsDeaths = element.stats.deaths;
+                        mainStatsAssists = element.stats.assists;
+                        mainChampionId = element.championId;
+                        mainSpellPrimary = element.spell1Id;
+                        mainSpellSecondary = element.spell2Id;
 
                     }
                 })
 
                 championsNameById.forEach(element => {
-                    if (element.key == championId) {
-                        championName = element.name
+                    if (element.key == mainChampionId) {
+                        mainChampionName = element.name
                     }
                 })
 
+
                 historyGames.innerHTML += `
-                    <div class="historyGame__single">
-                        <h2 class="historyGames__type-of-game">${json.gameMode}</h2>
-                        <img class="historyGames__player-champion-image" alt="Champion player image: ${championName}" src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${championName}.png"> 
-                        <h3 class="historyGames__result">${win}</h3>
-                        <h3 class="historyGames__stats">${statsKill} / ${statsDeaths} / ${statsAssists}</h3>
+                    <div class="historyGame__single ${mainWin ? "historyGame__single--win" : "historyGame__single--defeat"}">
+                        <div class="historyGame__info">
+                            <h2 class="historyGames__info-type">${gameType}</h2>
+                            <h3 class="historyGames__info-result ${mainWin ? "historyGames__info-result--win" : "historyGames__info-result--defeat"}">${mainWin ? "Win" : "Defeat"}</h3>
+                            <h3 class="historyGames__info-game-duration">${getGameDuration(gameDuration)}</h3>
+                        </div>
+                        <img class="historyGames__player-champion-image" alt="Champion player image: ${mainChampionName}" src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${mainChampionName}.png"> 
+                        <h3 class="historyGames__stats">${mainStatsKill} / ${mainStatsDeaths} / ${mainStatsAssists}</h3>
+                        <div class="historyGame__spells">
+                            <img class="historyGame__spells--primary" alt="Spells image" src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/spell/Summoner${getSpellName(mainSpellPrimary)}.png">
+                            <img class="historyGame__spells--secondary" alt="Spells image" src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/spell/Summoner${getSpellName(mainSpellSecondary)}.png">
+                        </div>
                     </div>
                 `
 
@@ -324,6 +384,54 @@ document.addEventListener('DOMContentLoaded', function () {
             })
     }
 
+    getSpellName = (idSpell) => {
+
+        let spellName = ""
+        spellsIdWithName.forEach((element) => {
+            if (element.id == idSpell) {
+                spellName = element.name
+            }
+        })
+
+        return spellName;
+    }
+
+
+    getGameDuration = (nrOfSecond) => {
+        const pad = function (num, size) {
+            return ('000' + num).slice(size * -1);
+        };
+        const time = parseFloat(nrOfSecond).toFixed(3);
+        const hours = Math.floor(time / 60 / 60);
+        const minutes = Math.floor(time / 60) % 60;
+        const seconds = Math.floor(time - minutes * 60);
+
+        if (hours != "00") {
+            return pad(hours, 2) + 'h ' + pad(minutes, 2) + 'm ' + pad(seconds, 2) + 's';
+        } else {
+            return pad(minutes, 2) + 'm ' + pad(seconds, 2) + 's';
+        }
+
+    }
+
+
+    checkGameType = (queueId) => {
+        if (queueId == draftIdQueue) {
+            return "Draft Pick";
+        } else if (queueId == rankedSoloDuoIdQueue) {
+            return "Ranked Solo/Duo";
+        } else if (queueId == blindDraftIdQueue) {
+            return "Blind pick";
+        } else if (queueId == flexIdQueue) {
+            return "Ranked Flex";
+        } else if (queueId == aramIdQueue) {
+            return "Aram";
+        } else if (queueId == twistedRankedIdQueue) {
+            return "Ranked Flex";
+        } else if (queueId == ttfIdQueue) {
+            return "Teamfight Tacticts";
+        }
+    }
 
     btn.addEventListener('click', (event) => {
         event.preventDefault();
