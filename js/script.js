@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
     main = (nickname) => {
         if (nickname != null) {
 
-            fetch( `https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nickname}?api_key=${apiKey}`)
+            fetch( /*`https://cors-anywhere.herokuapp.com/*/ `https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nickname}?api_key=${apiKey}`)
                 .then((data) => {
                     if (data.status == 200) {
                         return data.json();
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     getRank = (id) => {
-        fetch( `https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${apiKey}`)
+        fetch( /*`https://cors-anywhere.herokuapp.com/*/ `https://eun1.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${apiKey}`)
             .then((data) => {
                 if (data.status == 200) {
                     return data.json();
@@ -166,21 +166,21 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.querySelector('.info__rankedStats').innerHTML = `
                             <div class="ranked__single-item" data-ranked="solo/duo">
                                 <h2 class="ranked__title">Ranked Solo/Duo</h2>
-                                <img class="ranked__tier-image" alt="Tier ${SoloDuoRankedTier} image" src="../images/emblems/Emblem_${SoloDuoRankedTier}.png">
+                                <img class="ranked__tier-image" alt="Tier ${SoloDuoRankedTier} image" src="https://pathfiinder.github.io/Rito-API/images/emblems/Emblem_${SoloDuoRankedTier}.png">
                                 <h3 class="ranked__tier"> ${SoloDuoRankedTier} ${SoloDuoRankedDiv}</h3>
                                 <h3 class="ranked__stats"><span class="ranked__stats--bold">${SoloDuoRankedPoinst} LP</span> / ${SoloDuoRankedWins}W  / ${SoloDuoRankedLosses}L</h3>
                                 <h3 class="ranked__win-ratio"> Win ratio:  ${(SoloDuoRankedWins != 0)?((SoloDuoRankedWins/(SoloDuoRankedWins + SoloDuoRankedLosses)) * 100).toFixed(0) : 0}%</h3>
                             </div>
                             <div class="ranked__single-item" data-ranked="flex">
                                 <h2 class="ranked__title">Ranked Flex 5x5 </h2>
-                                <img class="ranked__tier-image" alt="Tier ${flexRankedTier} image" src="../images/emblems/Emblem_${flexRankedTier}.png">
+                                <img class="ranked__tier-image" alt="Tier ${flexRankedTier} image" src="https://pathfiinder.github.io/Rito-API/images/emblems/Emblem_${flexRankedTier}.png">
                                 <h3 class="ranked__tier"> ${flexRankedTier} ${flexRankedDiv}</h3>
                                 <h3 class="ranked__stats"><span class="ranked__stats--bold">${flexRankedPoinst} LP</span> / ${flexRankedWins}W  / ${flexRankedLosses}L</h3>
                                 <h3 class="ranked__win-ratio"> Win ratio:  ${(flexRankedWins != 0)?((flexRankedWins/(flexRankedWins + flexRankedLosses)) * 100).toFixed(0) : 0}%</h3>
                             </div>
                             <div class="ranked__single-item" data-ranked="ttf">
                                 <h2 class="ranked__title">Ranked TTF</h2>
-                                <img class="ranked__tier-image" alt="Tier ${ttfRankedTier} image" src="../images/emblems/Emblem_${ttfRankedTier}.png">
+                                <img class="ranked__tier-image" alt="Tier ${ttfRankedTier} image" src="https://pathfiinder.github.io/Rito-API/images/emblems/Emblem_${ttfRankedTier}.png">
                                 <h3 class="ranked__tier"> ${ttfRankedTier} ${ttfRankedDiv}</h3>
                                 <h3 class="ranked__stats"><span class="ranked__stats--bold">${ttfRankedPoinst} LP</span> / ${ttfRankedWins}W  / ${ttfRankedLosses}L</h3>
                                 <h3 class="ranked__win-ratio"> Win ratio:  ${(ttfRankedWins != 0)?((ttfRankedWins/(ttfRankedWins + ttfRankedLosses)) * 100).toFixed(0) : 0}%</h3>
@@ -230,7 +230,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     getMastery = (id) => {
-        fetch( `https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${id}?api_key=${apiKey}`)
+        fetch( /*`https://cors-anywhere.herokuapp.com/*/ `https://eun1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${id}?api_key=${apiKey}`)
             .then((data) => {
                 return data.json()
             })
@@ -263,22 +263,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 infoMasteryStats.innerHTML = `
                     <div class="mastery__single">
                         <img class="mastery__champion-image" alt="Champion image" src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${firstMainChampionName}.png">
-                        <img class="mastery__level-image" alt="Mastery level  image" src="../images/mastery/lvl${firstMainChampion.championLevel}.png">
+                        <img class="mastery__level-image" alt="Mastery level  image" src="https://pathfiinder.github.io/Rito-API/images/mastery/lvl${firstMainChampion.championLevel}.png">
                         <h3 class="mastery__points">${firstMainChampion.championPoints} <span class="mastery__points--normal">pts</span></h3>
                     </div>
                     <div class="mastery__single">
                         <img class="mastery__champion-image" alt="Champion image" src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${secondMainChampionName}.png">
-                        <img class="mastery__level-image" alt="Mastery level  image" src="../images/mastery/lvl${secondMainChampion.championLevel}.png">
+                        <img class="mastery__level-image" alt="Mastery level  image" src="https://pathfiinder.github.io/Rito-API/images/mastery/lvl${secondMainChampion.championLevel}.png">
                         <h3 class="mastery__points">${secondMainChampion.championPoints} <span class="mastery__points--normal">pts</span></h3>
                     </div>
                     <div class="mastery__single">
                         <img class="mastery__champion-image" alt="Champion image" src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${thirdMainChampionName}.png">
-                        <img class="mastery__level-image" alt="Mastery level  image" src="../images/mastery/lvl${thirdMainChampion.championLevel}.png">
+                        <img class="mastery__level-image" alt="Mastery level  image" src="https://pathfiinder.github.io/Rito-API/images/mastery/lvl${thirdMainChampion.championLevel}.png">
                         <h3 class="mastery__points">${thirdMainChampion.championPoints} <span class="mastery__points--normal">pts</span></h3>
                     </div>
                     <div class="mastery__single mastery__single--last">
                         <img class="mastery__champion-image" alt="Champion image" src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${fourthMainChampionName}.png">
-                        <img class="mastery__level-image" alt="Mastery level  image" src="../images/mastery/lvl${fourthMainChampion.championLevel}.png">
+                        <img class="mastery__level-image" alt="Mastery level  image" src="https://pathfiinder.github.io/Rito-API/images/mastery/lvl${fourthMainChampion.championLevel}.png">
                         <h3 class="mastery__points">${fourthMainChampion.championPoints} <span class="mastery__points--normal">pts</span></h3>
                     </div>
                 `
@@ -288,7 +288,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     getHistoryGames = (id) => {
-        fetch( `https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/match/v4/matchlists/by-account/${id}?api_key=${apiKey}`)
+        fetch( /*`https://cors-anywhere.herokuapp.com/*/ `https://eun1.api.riotgames.com/lol/match/v4/matchlists/by-account/${id}?api_key=${apiKey}`)
             .then((data) => {
                 return data.json();
             })
@@ -318,94 +318,117 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     getSingleGameHistory = (matchID) => {
-        fetch( `https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/match/v4/matches/${matchID}?api_key=${apiKey}`)
+        fetch( /*`https://cors-anywhere.herokuapp.com/*/ `https://eun1.api.riotgames.com/lol/match/v4/matches/${matchID}?api_key=${apiKey}`)
             .then((data) => {
                 return data.json()
             })
             .then((json) => {
                 console.log(json);
 
-                let mainIdTab = "";
-                let mainWin = false;
-                let mainStatsKill = 0;
-                let mainStatsDeaths = 0;
-                let mainStatsAssists = 0;
-                let mainChampionId = 0;
-                let mainChampionName = "";
-                let mainSpellPrimary = 0;
-                let mainSpellSecondary = 0;
-                let mainItems0 = 0;
-                let mainItems1 = 0;
-                let mainItems2 = 0;
-                let mainItems3 = 0;
-                let mainItems4 = 0;
-                let mainItems5 = 0;
-                const gameType = checkGameType(json.queueId);
-                let gameDuration = json.gameDuration;
+                getMainPlayerStatsSingleGameHistory(json);
 
-                [].forEach.call(json.participantIdentities, (element) => {
-                    if (element.player.summonerName == inputValueNickname.value) {
-                        mainIdTab = element.participantId;
-                    }
-                });
-
-                [].forEach.call(json.participants, (element) => {
-
-                    if (element.participantId == mainIdTab) {
-                        //console.log(element)
-                        mainWin = element.stats.win;
-                        mainStatsKill = element.stats.kills;
-                        mainStatsDeaths = element.stats.deaths;
-                        mainStatsAssists = element.stats.assists;
-                        mainChampionId = element.championId;
-                        mainSpellPrimary = element.spell1Id;
-                        mainSpellSecondary = element.spell2Id;
-                        mainItems0 = element.stats.item0
-                        mainItems1 = element.stats.item1
-                        mainItems2 = element.stats.item2
-                        mainItems3 = element.stats.item3
-                        mainItems4 = element.stats.item4
-                        mainItems5 = element.stats.item5
-
-
-                    }
-                })
-
-                championsNameById.forEach(element => {
-                    if (element.key == mainChampionId) {
-                        mainChampionName = element.name
-                    }
-                })
-                
-                
-
-                historyGames.innerHTML += `
-                    <div class="historyGame__single ${mainWin ? "historyGame__single--win" : "historyGame__single--defeat"}">
-                        <div class="historyGame__info">
-                            <h2 class="historyGames__info-type">${gameType}</h2>
-                            <h3 class="historyGames__info-result ${mainWin ? "historyGames__info-result--win" : "historyGames__info-result--defeat"}">${mainWin ? "Win" : "Defeat"}</h3>
-                            <h3 class="historyGames__info-game-duration">${getGameDuration(gameDuration)}</h3>
-                        </div>
-                        <img class="historyGames__player-champion-image" alt="Champion player image: ${mainChampionName}" src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${mainChampionName}.png"> 
-                        <h3 class="historyGames__stats">${mainStatsKill} / ${mainStatsDeaths} / ${mainStatsAssists}</h3>
-                        <div class="historyGame__spells">
-                            <img class="historyGame__spells--primary" alt="Spells image" src="../images/spells/Summoner${getSpellName(mainSpellPrimary)}.png">
-                            <img class="historyGame__spells--secondary" alt="Spells image" src="../images/spells/Summoner${getSpellName(mainSpellSecondary)}.png">
-                        </div>
-                        <div class="historyGame__mainItems mainItems">
-                            <img class="mainItems__single" alt="Item ${mainItems0} image" src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/item/${mainItems0}.png">
-                            <img class="mainItems__single" alt="Item ${mainItems1} image" src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/item/${mainItems1}.png">
-                            <img class="mainItems__single" alt="Item ${mainItems2} image" src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/item/${mainItems2}.png">
-                            <img class="mainItems__single" alt="Item ${mainItems3} image" src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/item/${mainItems3}.png">
-                            <img class="mainItems__single" alt="Item ${mainItems4} image" src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/item/${mainItems4}.png">
-                            <img class="mainItems__single" alt="Item ${mainItems5} image" src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/item/${mainItems5}.png">
-                         </div>
-                    </div>
-                `
-
-                historyGames.classList.add('info__historyGames--active');
             })
     }
+
+    getMainPlayerStatsSingleGameHistory = (json) => {
+        let mainIdTab = "";
+        let mainWin = false;
+        let mainStatsKill = 0;
+        let mainStatsDeaths = 0;
+        let mainStatsAssists = 0;
+        let mainChampionId = 0;
+        let mainChampionName = "";
+        let mainSpellPrimary = 0;
+        let mainSpellSecondary = 0;
+        const gameType = checkGameType(json.queueId);
+        let gameDuration = json.gameDuration;
+
+        const mainItems = [];
+
+        [].forEach.call(json.participantIdentities, (element) => {
+            if (element.player.summonerName == inputValueNickname.value) {
+                mainIdTab = element.participantId;
+            }
+        });
+
+        [].forEach.call(json.participants, (element, index) => {
+
+            if (element.participantId == mainIdTab) {
+                mainWin = element.stats.win;
+                mainStatsKill = element.stats.kills;
+                mainStatsDeaths = element.stats.deaths;
+                mainStatsAssists = element.stats.assists;
+                mainChampionId = element.championId;
+                mainSpellPrimary = element.spell1Id;
+                mainSpellSecondary = element.spell2Id;
+
+                for (let i = 0; i < 7; i++) {
+                    const idItem = eval("element.stats.item" + i);
+                    if (idItem != 0) {
+                        mainItems.push({
+                            name: "item" + i,
+                            id: idItem
+                        });
+                    }
+                }
+
+
+            }
+        })
+
+        console.log(mainItems)
+
+        championsNameById.forEach(element => {
+            if (element.key == mainChampionId) {
+                mainChampionName = element.name
+            }
+        })
+
+
+
+
+        historyGames.innerHTML += `
+            <div class="historyGame__single ${mainWin ? "historyGame__single--win" : "historyGame__single--defeat"}">
+                <div class="historyGame__info">
+                    <h2 class="historyGames__info-type">${gameType}</h2>
+                    <h3 class="historyGames__info-result ${mainWin ? "historyGames__info-result--win" : "historyGames__info-result--defeat"}">${mainWin ? "Win" : "Defeat"}</h3>
+                    <h3 class="historyGames__info-game-duration">${getGameDuration(gameDuration)}</h3>
+                </div>
+                <img class="historyGames__player-champion-image" alt="Champion player image: ${mainChampionName}" src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${mainChampionName}.png"> 
+                <h3 class="historyGames__stats">${mainStatsKill} / ${mainStatsDeaths} / ${mainStatsAssists}</h3>
+                <div class="historyGame__spells">
+                    <img class="historyGame__spells--primary" alt="Spells image" src="../images/spells/Summoner${getSpellName(mainSpellPrimary)}.png">
+                    <img class="historyGame__spells--secondary" alt="Spells image" src="../images/spells/Summoner${getSpellName(mainSpellSecondary)}.png">
+                </div>
+                <div class="historyGame__mainItems mainItems">
+                    ${countItems(mainItems)}
+                 </div>
+            </div>
+        `;
+
+
+
+        historyGames.classList.add('info__historyGames--active');
+
+    }
+
+    countItems = (items) => {
+        let html = ``
+        items.forEach((element, index) => {
+            let order = index;
+            if (order == 3) {
+                order++;
+            }
+            if (element.name == "item6") {
+                html += `<img class="mainItems__single mainItems__single--item6" style="order: 3" alt="Item ${element.id} image" src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/item/${element.id}.png">`;
+            } else {
+                html += `<img class="mainItems__single" style="order: ${order == 3 ? order++ : order}" alt="Item ${element.id} image" src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/item/${element.id}.png">`;
+            }
+        })
+        return html;
+    }
+
+
 
     getSpellName = (idSpell) => {
 
@@ -453,7 +476,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return "Ranked Flex";
         } else if (queueId == ttfIdQueue) {
             return "Teamfight Tacticts";
-        } else if (queueId == botsIdQueue){
+        } else if (queueId == botsIdQueue) {
             return "Bots"
         }
     }

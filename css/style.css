@@ -549,8 +549,8 @@ body {
 }
 
 .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single {
-  -ms-flex-preferred-size: 100px;
-      flex-basis: 100px;
+  -ms-flex-preferred-size: 120px;
+      flex-basis: 120px;
   border: 1px solid black;
   margin: 5px;
   position: relative;
@@ -568,10 +568,10 @@ body {
 
 .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__info {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 20px;
+  left: 5px;
   height: 80px;
-  width: 60px;
+  width: 50px;
 }
 
 .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__info .historyGames__info-type {
@@ -603,8 +603,8 @@ body {
   height: 50px;
   width: 50px;
   position: absolute;
-  top: 15px;
-  left: 80px;
+  top: 24px;
+  left: 70px;
   border-radius: 50%;
   border: 2px solid black;
 }
@@ -612,15 +612,16 @@ body {
 .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGames__stats {
   font-size: 14px;
   position: absolute;
-  top: 70px;
-  left: 75px;
+  top: 79px;
+  left: 55px;
+  width: 73px;
 }
 
 .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__spells {
   position: absolute;
   top: 15px;
-  left: 135px;
-  height: 50px;
+  left: 125px;
+  height: 60px;
   width: 25px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -633,7 +634,7 @@ body {
 }
 
 .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__spells .historyGame__spells--primary, .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__spells .historyGame__spells--secondary {
-  height: 22.5px;
+  height: 27.5px;
   width: 100%;
 }
 
@@ -642,11 +643,11 @@ body {
 }
 
 .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__mainItems {
-  width: 120px;
-  height: 30px;
+  width: 100px;
+  height: 70px;
   position: absolute;
   top: 25px;
-  left: 165px;
+  left: 160px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -654,6 +655,8 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   overflow: hidden;
   background-color: red;
 }
@@ -661,5 +664,6 @@ body {
 .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__mainItems .mainItems__single {
   width: 20px;
   height: 30px;
+  margin: 2.5px;
 }
 /*# sourceMappingURL=style.css.map */
