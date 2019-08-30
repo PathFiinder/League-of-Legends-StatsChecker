@@ -298,8 +298,10 @@
                 border: 1px solid black
                 margin: 5px
                 position: relative
+                &--normal
+                    flex-basis: 140px
                 &--active
-                    flex-basis: 200px
+                    flex-basis: 350px
                 &--win
                     border-color: dodgerblue
                     background-color: lightskyblue
@@ -312,13 +314,21 @@
                     left: 5px
                     height: 80px
                     width: 50px
+                    @include mediaQ(1024px)
+                        left: 15px
+                    @include mediaQ(1200px)
+                        left: 25px
                     .historyGames__info-type
                         font-size: 14px
                         margin-top: 5px
+                        @include mediaQ(1024px)
+                            font-size: 15px
                     .historyGames__info-result
                         font-size: 12px
                         font-weight: normal
                         margin-top: 5px
+                        @include mediaQ(1024px)
+                            font-size: 13px
                         &--win
                             color: blue
                         &--defeat
@@ -327,6 +337,8 @@
                         font-size: 12px
                         font-weight: normal
                         margin-top: 5px
+                        @include mediaQ(1024px)
+                            font-size: 13px
                 .historyGames__champion-name
                     font-size: 12px
                     position: absolute
@@ -335,6 +347,14 @@
                     font-weight: normal
                     width: 60px
                     text-align: center
+                    @include mediaQ(375px)
+                        font-size: 14px
+                    @include mediaQ(1024px)
+                        font-size: 15px
+                        left: 75px
+                    @include mediaQ(1200px)
+                        left: 85px
+                        font-size: 16px
                 .historyGames__player-champion-image
                     height: 50px
                     width: 50px
@@ -343,24 +363,36 @@
                     left: 65px
                     border-radius: 50%
                     border: 2px solid black
+                    @include mediaQ(1024px)
+                        left: 80px
+                    @include mediaQ(1200px)
+                        left: 90px
                 .historyGames__stats
                     font-size: 14px
                     position: absolute
                     top: 79px
                     left: 55px
                     width: 73px
+                    @include mediaQ(1024px)
+                        left: 70px
+                    @include mediaQ(1200px)
+                        left: 80px
                 .historyGames__largest-multi-kill
-                    font-size: 14px
+                    font-size: 12px
                     position: absolute
                     top: 101px
-                    left: 45px
+                    left: 55px
                     color: white
                     border: 1px solid black
-                    height: 24px
+                    height: 20px
                     background-color: crimson
-                    width: 90px
+                    width: 75px
                     border-radius: 25px
-                    line-height: 20px
+                    line-height: 16px
+                    @include mediaQ(1024px)
+                        left: 70px
+                    @include mediaQ(1200px)
+                        left: 80px
                 .historyGame__spells
                     position: absolute
                     top: 15px
@@ -370,6 +402,10 @@
                     display: flex
                     flex-direction: column
                     overflow: hidden
+                    @include mediaQ(1024px)
+                        left: 150px
+                    @include mediaQ(1200px)
+                        left: 160px
                     .historyGame__spells--primary,.historyGame__spells--secondary
                         height: 27.5px
                         width: 100%
@@ -385,10 +421,26 @@
                     flex-direction: row
                     flex-wrap: wrap
                     overflow: hidden
+                    @include mediaQ(375px)
+                        width: 160px
+                        height: 80px
+                    @include mediaQ(411px)
+                        left: 180px
+                    @include mediaQ(731px)
+                        left: 280px
+                        top: 20px
+                    @include mediaQ(1024px)
+                        left: 320px
+                    @include mediaQ(1200px)
+                        left: 345px
                     .mainItems__single
                         width: 20px
                         height: 30px
                         margin: 2.5px
+                        @include mediaQ(375px)
+                            width: 30px
+                            height: 30px
+                            margin: 5px
                 .historyGame__mainData
                     width: 100px
                     height: 50px
@@ -397,13 +449,94 @@
                     top: 80px
                     left: 160px
                     font-size: 12px
+                    @include mediaQ(375px)
+                        top: 85px
+                        width: 120px
+                    @include mediaQ(411px)
+                        left: 180px
+                    @include mediaQ(731px)
+                        top: 30px
+                        left: 150px
+                    @include mediaQ(1024px)
+                        left: 165px
+                        font-size: 14px
+                        height: 60px
+                    @include mediaQ(1200px)
+                        left: 190px
                     .mainData__champLevel,.mainData__minions,.mainData__gold
                         font-weight: normal
                     .mainData__gold
                         font-size: 10.5px
+                        @include mediaQ(375px)
+                            font-size: 12px
+                        @include mediaQ(1024px)
+                            font-size: 13px
+                .historyGame__players-list
+                    display: none
+                    width: 150px
+                    height: 110px
+                    position: absolute
+                    top: 15px
+                    right: 15px
+                    @include mediaQ(568px)
+                        display: flex
+                        flex-direction: row
+                    @include mediaQ(640px)
+                        width: 200px
+                        right: 20px
+                    @include mediaQ(812px)
+                        width: 250px
+                        right: 25px
+                    @include mediaQ(1024px)
+                        right: 30px
+                        width: 300px
+                    @include mediaQ(1200px)
+                        right: 40px
+                        width: 350px
+                    .playersList__team
+                        width: 75px
+                        height: 100%
+                        display: flex
+                        flex-direction: column
+                        @include mediaQ(640px)
+                            width: 90px
+                            margin-right: 10px
+                        @include mediaQ(812px)
+                            width: 115px
+                        @include mediaQ(1024px)
+                            width: 135px
+                            margin-right: 15px
+                        @include mediaQ(1200px)
+                            margin-right: 20px
+                            width: 155px
+                        .playerList__single
+                            height: 20px
+                            position: relative
+                            overflow: hidden
+                            margin: 1px
+                            .playerList__iconImage
+                                width: 20px
+                                height: 100%
+                                position: absolute
+                                top: 0
+                                left: 0
+                                border: 0.5px solid black
+                            .playerList__nickName
+                                font-size: 10px  
+                                position: absolute
+                                top: 0
+                                left: 25px 
+                                font-weight: normal
+                                min-width: 50px
+                                white-space: pre
+                                text-align: start
+                                @include mediaQ(731px)
+                                    font-size: 12px
+                                @include mediaQ(1024px)
+                                    font-size: 14px
                 .historyGame__arrow
                     position: absolute
-                    bottom: 5px
+                    bottom: 0px
                     right: 5px
                     width: 25px
                     height: 25px
@@ -411,6 +544,10 @@
                     font-size: 20px
                     color: black
                     cursor: pointer
+                    @include mediaQ(1024px)
+                        height: 30px
+                        width: 30px
+                        font-size: 24px
                         
                     
                     

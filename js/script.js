@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    const apiKey = 'RGAPI-fb1a756d-3392-4fa7-89de-2be2e808c217';
+    const apiKey = 'RGAPI-6994d40e-e81a-4889-aa72-fc3991731aa2';
 
     const btn = document.querySelector('.statsChecker__button');
     const mainInfo = document.querySelector('.statsChecker__info');
@@ -64,10 +64,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+
     main = (nickname) => {
         if (nickname != null) {
 
-            fetch( /*`https://cors-anywhere.herokuapp.com/*/ `https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nickname}?api_key=${apiKey}`)
+            fetch(`https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nickname}?api_key=${apiKey}`)
                 .then((data) => {
                     if (data.status == 200) {
                         return data.json();
@@ -76,6 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 })
                 .then((json) => {
+
 
 
                     /*console.log(mainInfo)
@@ -112,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     getRank = (id) => {
-        fetch( /*`https://cors-anywhere.herokuapp.com/*/ `https://eun1.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${apiKey}`)
+        fetch(`https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${apiKey}`)
             .then((data) => {
                 if (data.status == 200) {
                     return data.json();
@@ -230,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     getMastery = (id) => {
-        fetch( /*`https://cors-anywhere.herokuapp.com/*/ `https://eun1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${id}?api_key=${apiKey}`)
+        fetch(`https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${id}?api_key=${apiKey}`)
             .then((data) => {
                 return data.json()
             })
@@ -288,7 +290,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     getHistoryGames = (id) => {
-        fetch( /*`https://cors-anywhere.herokuapp.com/*/ `https://eun1.api.riotgames.com/lol/match/v4/matchlists/by-account/${id}?api_key=${apiKey}`)
+        fetch(`https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/match/v4/matchlists/by-account/${id}?api_key=${apiKey}`)
             .then((data) => {
                 return data.json();
             })
@@ -307,8 +309,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 })
 
-                historyGamesInfo.forEach((element,index) => {
-                    getSingleGameHistory(element.gameId,index)
+                historyGamesInfo.forEach((element, index) => {
+                    getSingleGameHistory(element.gameId, index)
                 });
                 //getSingleGameHistory(historyGamesInfo[0].gameId)
 
@@ -317,21 +319,21 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch((error) => console.log(error))
     }
 
-    getSingleGameHistory = (matchID,singleId) => {
-        fetch( /*`https://cors-anywhere.herokuapp.com/*/ `https://eun1.api.riotgames.com/lol/match/v4/matches/${matchID}?api_key=${apiKey}`)
+    getSingleGameHistory = (matchID, singleId) => {
+        fetch(`https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/match/v4/matches/${matchID}?api_key=${apiKey}`)
             .then((data) => {
                 return data.json()
             })
             .then((json) => {
-                console.log(json);
-                getMainPlayerStatsSingleGameHistory(json,singleId);
+                //console.log(json);
+                getMainPlayerStatsSingleGameHistory(json, singleId);
 
 
 
             })
     }
 
-    getMainPlayerStatsSingleGameHistory = (json,singleId) => {
+    getMainPlayerStatsSingleGameHistory = (json, singleId) => {
         let mainIdTab = "";
         let mainWin = false;
         let mainStatsKill = 0;
@@ -393,10 +395,8 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
 
-
-
         historyGames.innerHTML += `
-            <div class="historyGame__single ${mainWin ? "historyGame__single--win" : "historyGame__single--defeat"}" data-singleId ="${singleId}">
+            <div class="historyGame__single ${mainWin ? "historyGame__single--win" : "historyGame__single--defeat"} historyGame__single--normal" data-singleId ="${singleId}">
                 <div class="historyGame__info">
                     <h2 class="historyGames__info-type">${gameType}</h2>
                     <h3 class="historyGames__info-result ${mainWin ? "historyGames__info-result--win" : "historyGames__info-result--defeat"}">${mainWin ? "Win" : "Defeat"}</h3>
@@ -418,24 +418,113 @@ document.addEventListener('DOMContentLoaded', function () {
                     <h3 class="mainData__minions">${mainTotalMinionsKileld} CS</h3>
                     <h3 class="mainData__gold">Gold: ${mainGoldSpent} / ${mainGoldEarned} </h3>
                 </div>
+                <div class="historyGame__players-list playersList">
+                </div>
                 <i class="historyGame__arrow fas fa-arrow-circle-down" data-singleArrowId="${singleId}"></i>
             </div>
         `;
 
-
-
         historyGames.classList.add('info__historyGames--active');
+        getHistoryGamePlayersList(json, singleId);
+    }
+
+    getHistoryGamePlayersList = (json, singleId) => {
+        const playerList = [];
+
+        [].forEach.call(json.participantIdentities, (element) => {
+            playerList.push({
+                participantId: element.participantId,
+                playerNick: element.player.summonerName,
+                playerIcon: element.player.profileIcon
+            })
+        });
+
+        //console.log(playerList)
+
+
+        previousData = (index) => {
+            const temp = [];
+            playerList.forEach((element, indexIn) => {
+                if (indexIn == index) {
+                    temp.push(element)
+                }
+            })
+            return temp;
+        }
+
+        playerList.forEach((elementOut, indexOut) => {
+            [].forEach.call(json.participants, (elementIn) => {
+                if (elementOut.participantId == elementIn.participantId) {
+                    const data = previousData(indexOut)
+                    playerList[indexOut] = [...data, {
+                        championId: elementIn.championId,
+                        spell1Id: elementIn.spell1Id,
+                        spell2Id: elementIn.spell2Id,
+                        teamId: elementIn.teamId,
+                        assists: elementIn.stats.assists,
+                        champLevel: elementIn.stats.champLevel,
+                        deaths: elementIn.stats.deaths,
+                        goldEarned: elementIn.stats.goldEarned,
+                        goldSpent: elementIn.stats.goldSpent,
+                        item0: elementIn.stats.item0,
+                        item1: elementIn.stats.item1,
+                        item2: elementIn.stats.item2,
+                        item3: elementIn.stats.item3,
+                        item4: elementIn.stats.item4,
+                        item5: elementIn.stats.item5,
+                        item6: elementIn.stats.item6,
+                        kills: elementIn.stats.kills,
+                        largestMultiKill: elementIn.stats.largestMultiKill,
+                        magicDamageDealtToChampions: elementIn.stats.magicDamageDealtToChampions,
+                        physicalDamageDealtToChampions: elementIn.stats.physicalDamageDealtToChampions,
+                        trueDamageDealtToChampions: elementIn.stats.trueDamageDealtToChampions,
+                        totalDamageDealtToChampions: elementIn.stats.totalDamageDealtToChampions,
+                        totalMinionsKilled: elementIn.stats.totalMinionsKilled,
+                        win: elementIn.stats.win
+                    }]
+                }
+            })
+        })
+
+        document.querySelector(`[data-singleId ="${singleId}"] .historyGame__players-list`).innerHTML = `
+            <div class="playersList__team" data-team=100>
+            ${getPlayersListShort(playerList,100)}
+            </div>
+            <div class="playersList__team" data-team=200>
+            ${getPlayersListShort(playerList,200)}
+            </div>
+        `
+
+
+        //console.log(playerList)
+
+    }
+
+    getPlayersListShort = (playerList, idTeam) => {
+        let playerListShort = "";
+        playerList.forEach((element, index) => {
+            if (element[1].teamId == idTeam) {
+                playerListShort += `
+                <div class="playerList__single">
+                    <img class="playerList__iconImage" alt="Icon image" src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/profileicon/${element[0].playerIcon}.png">
+                    <h3 class="playerList__nickName">${element[0].playerNick}</h3>
+                </div>
+                `
+            }
+        })
+
+        return playerListShort
 
     }
 
     countLargestMultiKill = (multiKill) => {
-        if(multiKill == 2){
+        if (multiKill == 2) {
             return "Double Kill";
         } else if (multiKill == 3) {
             return "Triple Kill";
         } else if (multiKill == 4) {
             return "Quadra Kill";
-        } else if (multiKill == 5){
+        } else if (multiKill == 5) {
             return "Penta Kill"
         }
     }
@@ -514,10 +603,21 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-    mainInfo.addEventListener('click',(event) => {
-        if(event.target.dataset.singlearrowid){
+    mainInfo.addEventListener('click', (event) => {
+
+        if (event.target.dataset.singlearrowid) {
             const singleId = event.target.dataset.singlearrowid;
-            document.querySelector(`[data-singleId = "${singleId}"]`).classList.toggle('historyGame__single--active');
+            if (document.querySelector(`[data-singleArrowId = "${singleId}"]`).classList.contains('fa-arrow-circle-down')) {
+                document.querySelector(`[data-singleId = "${singleId}"]`).classList.remove('historyGame__single--normal');
+                document.querySelector(`[data-singleId = "${singleId}"]`).classList.add('historyGame__single--active');
+                document.querySelector(`[data-singleArrowId = "${singleId}"]`).classList.remove('fa-arrow-circle-down');
+                document.querySelector(`[data-singleArrowId = "${singleId}"]`).classList.add('fa-arrow-circle-up');
+            } else if (document.querySelector(`[data-singleArrowId = "${singleId}"]`).classList.contains('fa-arrow-circle-up')) {
+                document.querySelector(`[data-singleId = "${singleId}"]`).classList.remove('historyGame__single--active');
+                document.querySelector(`[data-singleId = "${singleId}"]`).classList.add('historyGame__single--normal');
+                document.querySelector(`[data-singleArrowId = "${singleId}"]`).classList.remove('fa-arrow-circle-up');
+                document.querySelector(`[data-singleArrowId = "${singleId}"]`).classList.add('fa-arrow-circle-down');
+            }
         }
     })
 

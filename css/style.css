@@ -556,9 +556,14 @@ body {
   position: relative;
 }
 
+.main__statsChecker .statsChecker__info .info__historyGames .historyGame__single--normal {
+  -ms-flex-preferred-size: 140px;
+      flex-basis: 140px;
+}
+
 .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single--active {
-  -ms-flex-preferred-size: 200px;
-      flex-basis: 200px;
+  -ms-flex-preferred-size: 350px;
+      flex-basis: 350px;
 }
 
 .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single--win {
@@ -579,15 +584,39 @@ body {
   width: 50px;
 }
 
+@media (min-width: 1024px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__info {
+    left: 15px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__info {
+    left: 25px;
+  }
+}
+
 .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__info .historyGames__info-type {
   font-size: 14px;
   margin-top: 5px;
+}
+
+@media (min-width: 1024px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__info .historyGames__info-type {
+    font-size: 15px;
+  }
 }
 
 .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__info .historyGames__info-result {
   font-size: 12px;
   font-weight: normal;
   margin-top: 5px;
+}
+
+@media (min-width: 1024px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__info .historyGames__info-result {
+    font-size: 13px;
+  }
 }
 
 .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__info .historyGames__info-result--win {
@@ -604,6 +633,12 @@ body {
   margin-top: 5px;
 }
 
+@media (min-width: 1024px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__info .historyGames__info-game-duration {
+    font-size: 13px;
+  }
+}
+
 .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGames__champion-name {
   font-size: 12px;
   position: absolute;
@@ -612,6 +647,26 @@ body {
   font-weight: normal;
   width: 60px;
   text-align: center;
+}
+
+@media (min-width: 375px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGames__champion-name {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGames__champion-name {
+    font-size: 15px;
+    left: 75px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGames__champion-name {
+    left: 85px;
+    font-size: 16px;
+  }
 }
 
 .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGames__player-champion-image {
@@ -624,6 +679,18 @@ body {
   border: 2px solid black;
 }
 
+@media (min-width: 1024px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGames__player-champion-image {
+    left: 80px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGames__player-champion-image {
+    left: 90px;
+  }
+}
+
 .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGames__stats {
   font-size: 14px;
   position: absolute;
@@ -632,18 +699,42 @@ body {
   width: 73px;
 }
 
+@media (min-width: 1024px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGames__stats {
+    left: 70px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGames__stats {
+    left: 80px;
+  }
+}
+
 .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGames__largest-multi-kill {
-  font-size: 14px;
+  font-size: 12px;
   position: absolute;
   top: 101px;
-  left: 45px;
+  left: 55px;
   color: white;
   border: 1px solid black;
-  height: 24px;
+  height: 20px;
   background-color: crimson;
-  width: 90px;
+  width: 75px;
   border-radius: 25px;
-  line-height: 20px;
+  line-height: 16px;
+}
+
+@media (min-width: 1024px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGames__largest-multi-kill {
+    left: 70px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGames__largest-multi-kill {
+    left: 80px;
+  }
 }
 
 .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__spells {
@@ -660,6 +751,18 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__spells {
+    left: 150px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__spells {
+    left: 160px;
+  }
 }
 
 .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__spells .historyGame__spells--primary, .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__spells .historyGame__spells--secondary {
@@ -689,10 +792,50 @@ body {
   overflow: hidden;
 }
 
+@media (min-width: 375px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__mainItems {
+    width: 160px;
+    height: 80px;
+  }
+}
+
+@media (min-width: 411px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__mainItems {
+    left: 180px;
+  }
+}
+
+@media (min-width: 731px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__mainItems {
+    left: 280px;
+    top: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__mainItems {
+    left: 320px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__mainItems {
+    left: 345px;
+  }
+}
+
 .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__mainItems .mainItems__single {
   width: 20px;
   height: 30px;
   margin: 2.5px;
+}
+
+@media (min-width: 375px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__mainItems .mainItems__single {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+  }
 }
 
 .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__mainData {
@@ -705,6 +848,40 @@ body {
   font-size: 12px;
 }
 
+@media (min-width: 375px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__mainData {
+    top: 85px;
+    width: 120px;
+  }
+}
+
+@media (min-width: 411px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__mainData {
+    left: 180px;
+  }
+}
+
+@media (min-width: 731px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__mainData {
+    top: 30px;
+    left: 150px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__mainData {
+    left: 165px;
+    font-size: 14px;
+    height: 60px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__mainData {
+    left: 190px;
+  }
+}
+
 .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__mainData .mainData__champLevel, .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__mainData .mainData__minions, .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__mainData .mainData__gold {
   font-weight: normal;
 }
@@ -713,9 +890,148 @@ body {
   font-size: 10.5px;
 }
 
+@media (min-width: 375px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__mainData .mainData__gold {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__mainData .mainData__gold {
+    font-size: 13px;
+  }
+}
+
+.main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-list {
+  display: none;
+  width: 150px;
+  height: 110px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+@media (min-width: 568px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+}
+
+@media (min-width: 640px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-list {
+    width: 200px;
+    right: 20px;
+  }
+}
+
+@media (min-width: 812px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-list {
+    width: 250px;
+    right: 25px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-list {
+    right: 30px;
+    width: 300px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-list {
+    right: 40px;
+    width: 350px;
+  }
+}
+
+.main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-list .playersList__team {
+  width: 75px;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+@media (min-width: 640px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-list .playersList__team {
+    width: 90px;
+    margin-right: 10px;
+  }
+}
+
+@media (min-width: 812px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-list .playersList__team {
+    width: 115px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-list .playersList__team {
+    width: 135px;
+    margin-right: 15px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-list .playersList__team {
+    margin-right: 20px;
+    width: 155px;
+  }
+}
+
+.main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-list .playersList__team .playerList__single {
+  height: 20px;
+  position: relative;
+  overflow: hidden;
+  margin: 1px;
+}
+
+.main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-list .playersList__team .playerList__single .playerList__iconImage {
+  width: 20px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0.5px solid black;
+}
+
+.main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-list .playersList__team .playerList__single .playerList__nickName {
+  font-size: 10px;
+  position: absolute;
+  top: 0;
+  left: 25px;
+  font-weight: normal;
+  min-width: 50px;
+  white-space: pre;
+  text-align: start;
+}
+
+@media (min-width: 731px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-list .playersList__team .playerList__single .playerList__nickName {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-list .playersList__team .playerList__single .playerList__nickName {
+    font-size: 14px;
+  }
+}
+
 .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__arrow {
   position: absolute;
-  bottom: 5px;
+  bottom: 0px;
   right: 5px;
   width: 25px;
   height: 25px;
@@ -723,5 +1039,13 @@ body {
   font-size: 20px;
   color: black;
   cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__arrow {
+    height: 30px;
+    width: 30px;
+    font-size: 24px;
+  }
 }
 /*# sourceMappingURL=style.css.map */
