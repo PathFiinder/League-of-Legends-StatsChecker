@@ -307,8 +307,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 })
 
-                historyGamesInfo.forEach((element) => {
-                    getSingleGameHistory(element.gameId)
+                historyGamesInfo.forEach((element,index) => {
+                    getSingleGameHistory(element.gameId,index)
                 });
                 //getSingleGameHistory(historyGamesInfo[0].gameId)
 
@@ -317,20 +317,21 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch((error) => console.log(error))
     }
 
-    getSingleGameHistory = (matchID) => {
+    getSingleGameHistory = (matchID,singleId) => {
         fetch( /*`https://cors-anywhere.herokuapp.com/*/ `https://eun1.api.riotgames.com/lol/match/v4/matches/${matchID}?api_key=${apiKey}`)
             .then((data) => {
                 return data.json()
             })
             .then((json) => {
                 console.log(json);
+                getMainPlayerStatsSingleGameHistory(json,singleId);
 
-                getMainPlayerStatsSingleGameHistory(json);
+
 
             })
     }
 
-    getMainPlayerStatsSingleGameHistory = (json) => {
+    getMainPlayerStatsSingleGameHistory = (json,singleId) => {
         let mainIdTab = "";
         let mainWin = false;
         let mainStatsKill = 0;
@@ -340,6 +341,11 @@ document.addEventListener('DOMContentLoaded', function () {
         let mainChampionName = "";
         let mainSpellPrimary = 0;
         let mainSpellSecondary = 0;
+        let mainChampLevel = 0;
+        let mainGoldEarned = 0;
+        let mainGoldSpent = 0;
+        let mainLargestMultiKill = 0;
+        let mainTotalMinionsKileld = 0;
         const gameType = checkGameType(json.queueId);
         let gameDuration = json.gameDuration;
 
@@ -361,6 +367,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 mainChampionId = element.championId;
                 mainSpellPrimary = element.spell1Id;
                 mainSpellSecondary = element.spell2Id;
+                mainChampLevel = element.stats.champLevel;
+                mainGoldEarned = element.stats.goldEarned;
+                mainGoldSpent = element.stats.goldSpent;
+                mainTotalMinionsKileld = element.stats.totalMinionsKilled;
+                mainLargestMultiKill = element.stats.largestMultiKill;
 
                 for (let i = 0; i < 7; i++) {
                     const idItem = eval("element.stats.item" + i);
@@ -376,8 +387,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
 
-        console.log(mainItems)
-
         championsNameById.forEach(element => {
             if (element.key == mainChampionId) {
                 mainChampionName = element.name
@@ -386,23 +395,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
         historyGames.innerHTML += `
-            <div class="historyGame__single ${mainWin ? "historyGame__single--win" : "historyGame__single--defeat"}">
+            <div class="historyGame__single ${mainWin ? "historyGame__single--win" : "historyGame__single--defeat"}" data-singleId ="${singleId}">
                 <div class="historyGame__info">
                     <h2 class="historyGames__info-type">${gameType}</h2>
                     <h3 class="historyGames__info-result ${mainWin ? "historyGames__info-result--win" : "historyGames__info-result--defeat"}">${mainWin ? "Win" : "Defeat"}</h3>
                     <h3 class="historyGames__info-game-duration">${getGameDuration(gameDuration)}</h3>
                 </div>
+                <h3 class="historyGames__champion-name"> ${mainChampionName == "MonkeyKing" ? "Wukong" : mainChampionName} </h3>
                 <img class="historyGames__player-champion-image" alt="Champion player image: ${mainChampionName}" src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${mainChampionName}.png"> 
                 <h3 class="historyGames__stats">${mainStatsKill} / ${mainStatsDeaths} / ${mainStatsAssists}</h3>
+                <h3 class="historyGames__largest-multi-kill" style="display: ${mainLargestMultiKill >= 2 ? "block" : "none"}">${countLargestMultiKill(mainLargestMultiKill)}</h3>
                 <div class="historyGame__spells">
                     <img class="historyGame__spells--primary" alt="Spells image" src="../images/spells/Summoner${getSpellName(mainSpellPrimary)}.png">
                     <img class="historyGame__spells--secondary" alt="Spells image" src="../images/spells/Summoner${getSpellName(mainSpellSecondary)}.png">
                 </div>
                 <div class="historyGame__mainItems mainItems">
                     ${countItems(mainItems)}
-                 </div>
+                </div>
+                <div class="historyGame__mainData mainData">
+                    <h3 class="mainData__champLevel">Level: ${mainChampLevel}</h3>
+                    <h3 class="mainData__minions">${mainTotalMinionsKileld} CS</h3>
+                    <h3 class="mainData__gold">Gold: ${mainGoldSpent} / ${mainGoldEarned} </h3>
+                </div>
+                <i class="historyGame__arrow fas fa-arrow-circle-down" data-singleArrowId="${singleId}"></i>
             </div>
         `;
 
@@ -410,6 +426,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
         historyGames.classList.add('info__historyGames--active');
 
+    }
+
+    countLargestMultiKill = (multiKill) => {
+        if(multiKill == 2){
+            return "Double Kill";
+        } else if (multiKill == 3) {
+            return "Triple Kill";
+        } else if (multiKill == 4) {
+            return "Quadra Kill";
+        } else if (multiKill == 5){
+            return "Penta Kill"
+        }
     }
 
     countItems = (items) => {
@@ -427,8 +455,6 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         return html;
     }
-
-
 
     getSpellName = (idSpell) => {
 
@@ -483,11 +509,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     btn.addEventListener('click', (event) => {
         event.preventDefault();
-
-
         main(inputValueNickname.value);
-
-
         //inputValueNickname.value = "";
     });
+
+
+    mainInfo.addEventListener('click',(event) => {
+        if(event.target.dataset.singlearrowid){
+            const singleId = event.target.dataset.singlearrowid;
+            document.querySelector(`[data-singleId = "${singleId}"]`).classList.toggle('historyGame__single--active');
+        }
+    })
+
 })

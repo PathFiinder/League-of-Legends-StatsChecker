@@ -294,10 +294,12 @@
                 flex-wrap: wrap
                 font-family: 'Lato', sans-serif
             .historyGame__single
-                flex-basis: 120px
+                flex-basis: 140px
                 border: 1px solid black
                 margin: 5px
                 position: relative
+                &--active
+                    flex-basis: 200px
                 &--win
                     border-color: dodgerblue
                     background-color: lightskyblue
@@ -306,7 +308,7 @@
                     background-color: lightsalmon	
                 .historyGame__info
                     position: absolute
-                    top: 20px
+                    top: 30px
                     left: 5px
                     height: 80px
                     width: 50px
@@ -325,12 +327,20 @@
                         font-size: 12px
                         font-weight: normal
                         margin-top: 5px
+                .historyGames__champion-name
+                    font-size: 12px
+                    position: absolute
+                    top: 5px
+                    left: 60px
+                    font-weight: normal
+                    width: 60px
+                    text-align: center
                 .historyGames__player-champion-image
                     height: 50px
                     width: 50px
                     position: absolute
                     top: 24px
-                    left: 70px
+                    left: 65px
                     border-radius: 50%
                     border: 2px solid black
                 .historyGames__stats
@@ -339,6 +349,18 @@
                     top: 79px
                     left: 55px
                     width: 73px
+                .historyGames__largest-multi-kill
+                    font-size: 14px
+                    position: absolute
+                    top: 101px
+                    left: 45px
+                    color: white
+                    border: 1px solid black
+                    height: 24px
+                    background-color: crimson
+                    width: 90px
+                    border-radius: 25px
+                    line-height: 20px
                 .historyGame__spells
                     position: absolute
                     top: 15px
@@ -357,17 +379,38 @@
                     width: 100px
                     height: 70px
                     position: absolute
-                    top: 25px
+                    top: 5px
                     left: 160px
                     display: flex
                     flex-direction: row
                     flex-wrap: wrap
                     overflow: hidden
-                    background-color: red
                     .mainItems__single
                         width: 20px
                         height: 30px
                         margin: 2.5px
+                .historyGame__mainData
+                    width: 100px
+                    height: 50px
+                    overflow: hidden
+                    position: absolute
+                    top: 80px
+                    left: 160px
+                    font-size: 12px
+                    .mainData__champLevel,.mainData__minions,.mainData__gold
+                        font-weight: normal
+                    .mainData__gold
+                        font-size: 10.5px
+                .historyGame__arrow
+                    position: absolute
+                    bottom: 5px
+                    right: 5px
+                    width: 25px
+                    height: 25px
+                    line-height: 25px
+                    font-size: 20px
+                    color: black
+                    cursor: pointer
                         
                     
                     
