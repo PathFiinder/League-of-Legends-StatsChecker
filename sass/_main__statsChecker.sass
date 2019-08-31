@@ -1,32 +1,26 @@
 
-
-
 .main__statsChecker
+    font-family: 'Lato',sans-serif
     .statsChecker__title
         font-size: 24px
         padding-top: 10px
         width: 90%
         margin: 0 auto
-    .statsChecker__form
-        height: 100px
-        overflow: hidden
-        width: 80%
-        margin: 20px auto 10px auto
-        display: flex
-        flex-direction: column
-        .form__label
-            font-size: 14px
-            flex-basis: 55%
-        .form__input
-            flex-grow: 1
-            width: 100%
-            align-self: center
-            padding-left: 10px
-            font-size: 16px
-            border: none
-            border-left: 1px solid black
-            border-bottom: 1px solid black
-            border-right: 1px solid black
+    .statsChecker__insert
+        font-size: 15px
+        width: 100%
+        margin: 20px auto 30px auto
+        font-weight: normal
+    .statsChecker__input
+        height: 30px  
+        width: 90%
+        padding-left: 10px
+        font-size: 16px
+        border: none
+        margin-bottom: 10px
+        border-left: 1px solid black
+        border-bottom: 1px solid black
+        border-right: 1px solid black
     .statsChecker__button
         height: 40px
         width: 100px
@@ -125,7 +119,7 @@
                     width: 70px
                     bottom: -15px
                 .info__summLevel
-                    line-height: 20px
+                    line-height: 15px
                     font-size: 14px
                     @media (min-width: 768px)
                         line-height: 28px
@@ -302,6 +296,8 @@
                     flex-basis: 140px
                 &--active
                     flex-basis: 700px
+                    @include mediaQ(731px)
+                        flex-basis: 790px
                 &--win
                     border-color: dodgerblue
                     background-color: lightskyblue
@@ -559,6 +555,8 @@
                     background-color: pink
                     flex-direction: column
                     overflow: hidden
+                    @include mediaQ(731px)
+                        height: 610px
                     &--active
                         display: flex 
                     .playerStats__team-result
@@ -574,7 +572,7 @@
                             top: 50%
                             left: 5px
                             transform: translateY(-50%)
-                            font-weight: normal
+                            font-weight: normal  
                             &--bold
                                 font-weight: bold
                             &--win
@@ -588,6 +586,14 @@
                             position: absolute
                             top: 10px
                             left: 55px
+                            @include mediaQ(411px)
+                                left: 70px
+                            @include mediaQ(640px)
+                                left: 150px
+                            @include mediaQ(731px)
+                                left: 200px
+                                font-size: 14px
+                                width: 120px
                         .playerStats__specialObj
                             height: 35px
                             width: 100px
@@ -596,6 +602,8 @@
                             right: 5px
                             display: flex
                             flex-direction: row
+                            @include mediaQ(731px)
+                                width: 150px
                             .specialObj__single
                                 flex-basis: 20%
                                 height: 100%
@@ -604,20 +612,232 @@
                                 .specialObj__image
                                     height: 20px
                                     width: 20px
+                                    text-align: center
+                                    @include mediaQ(731px)
+                                        width: 30px
+                                        height: 25px                                            
                                 .specialObj__stats
                                     text-align: center
                                     flex-grow: 1
                                     font-size: 9px
-
                     .playerStats__team
                         flex-basis: 200px
                         margin: 0px 10px
                         width: calc(100% - 20px)
                         border: 2px solid black
+                        display: flex
+                        flex-direction: column
+                        @include mediaQ(731px)
+                            flex-basis: 240px
                         &--win
                             border-color: green
                         &--defeat
                             border-color: red
+                        .team__single
+                            flex-basis: calc(20% - 10px)
+                            margin: 5px 10px
+                            border: 1px solid black
+                            overflow: hidden
+                            position: relative
+                            .team__champ-image
+                                width: 25px
+                                height: 25px
+                                position: absolute
+                                top: 50%
+                                left: 5px
+                                transform: translateY(-50%)
+                                @include mediaQ(731px)
+                                    width: 30px
+                                    height: 30px
+                                    left: 10px
+                            .team__champ-level
+                                width: 14px
+                                height: 14px
+                                font-size: 7.5px
+                                line-height: 14px
+                                text-align: center
+                                border-radius: 50%
+                                border: 1px solid black
+                                background-color: white
+                                color: black
+                                position: absolute
+                                bottom: 0.5px
+                                left: 0.5px
+                                @include mediaQ(731px)
+                                    height: 16px
+                                    width: 16px
+                                    font-size: 9px
+                                    left: 3px
+                            .team__spells
+                                height: 25px
+                                width: 15px
+                                position: absolute
+                                top: 50%
+                                left: 32px
+                                transform: translateY(-50%)
+                                display: flex
+                                flex-direction: column
+                                @include mediaQ(731px)
+                                    left: 42px
+                                    height: 32px
+                                .team__single-spell
+                                    height: 10px
+                                    width: 100%
+                                    margin: 1.25px 0px
+                                    @include mediaQ(731px)
+                                        height: 15px
+                                        margin: 0.5px 0
+                            .team__player-nickname
+                                font-size: 9px
+                                font-weight: normal
+                                position: absolute
+                                top: 50%
+                                left: 50px
+                                transform: translateY(-50%)
+                                width: 50px
+                                white-space: pre
+                                overflow: hidden
+                                @include mediaQ(411px)
+                                    width: 80px
+                                    font-size: 9.5px
+                                @include mediaQ(731px)
+                                    left: 65px
+                                    font-size: 10px
+                                    text-align: start
+                                    width: 100px
+                                @include mediaQ(812px)
+                                    font-size: 12px
+                                @include mediaQ(1024px)
+                                    font-size: 14px
+                            .team__player-stats
+                                font-size: 9.5px
+                                font-weight: normal
+                                position: absolute
+                                top: 50%
+                                right: 73px
+                                transform: translateY(-50%)
+                                @include mediaQ(360px)
+                                    right: 100px
+                                @include mediaQ(411px)
+                                    right: 130px
+                                @include mediaQ(568px)
+                                    right: 290px
+                                @include mediaQ(640px)
+                                    right: 350px
+                                @include mediaQ(731px)
+                                    right: 410px
+                                @include mediaQ(812px)
+                                    right: 460px
+                                    font-size: 12px
+                                @include mediaQ(1024px)
+                                    right: 630px
+                                    font-size: 14px
+                                @include mediaQ(1336px)
+                                    right: 750px
+                            .team__player-dmg
+                                display: none
+                                @include mediaQ(568px)
+                                    display: block
+                                    font-size: 9px
+                                    font-weight: normal
+                                    position: absolute
+                                    top: 50%
+                                    right: 225px
+                                    transform: translateY(-50%)
+                                @include mediaQ(640px)
+                                    right: 280px
+                                @include mediaQ(731px)
+                                    right: 330px
+                                    font-size: 11px
+                                @include mediaQ(812px)
+                                    right: 380px
+                                    font-size: 12px
+                                @include mediaQ(1024px)
+                                    right: 500px
+                                    font-size: 14px
+                                &--bold
+                                    font-weight: bold
+                            .team__player-cs
+                                display: none
+                                @include mediaQ(568px)
+                                    display: block
+                                    font-size: 9px
+                                    font-weight: normal
+                                    position: absolute
+                                    top: 50%
+                                    right: 190px
+                                    transform: translateY(-50%)
+                                @include mediaQ(640px)
+                                    right: 245px
+                                @include mediaQ(731px)
+                                    right: 280px
+                                    font-size: 11px
+                                @include mediaQ(812px)
+                                    right: 330px
+                                    font-size: 12px
+                                @include mediaQ(1024px)
+                                    right: 430px
+                                    font-size: 14px
+                                &--bold
+                                    font-weight: bold
+                            .team__player-gold
+                                display: none
+                                @include mediaQ(640px)
+                                    display: block
+                                    font-size: 8px
+                                    font-weight: normal
+                                    position: absolute
+                                    top: 50%
+                                    right: 160px
+                                    width: 77px
+                                    transform: translateY(-50%)
+                                    text-align: end
+                                @include mediaQ(731px)
+                                    right: 170px
+                                    width: 100px
+                                    font-size: 10px
+                                @include mediaQ(812px)
+                                    right: 200px
+                                    font-size: 12px
+                                    width: 120px
+                                @include mediaQ(1024px)
+                                    right: 260px
+                                    font-size: 14px
+                                    width: 150px
+                                &--bold
+                                    font-size: 9px
+                                    font-weight: bold     
+                                    @include mediaQ(731px)
+                                        font-size: 11px  
+                                    @include mediaQ(1024px)
+                                        font-size: 14px                             
+                            .team__player-items
+                                height: 15px
+                                width: 68px
+                                position: absolute
+                                top: 50%
+                                right: 2px
+                                transform: translateY(-50%)
+                                display: flex
+                                flex-direction: row
+                                @include mediaQ(360px)
+                                    width: 90px
+                                    height: 18px
+                                @include mediaQ(411px)
+                                    width: 110px
+                                @include mediaQ(568px)
+                                    width: 150px
+                                    height: 22px
+                                .team__single-item
+                                    height: 100%
+                                    width: 9.7px
+                                    @include mediaQ(360px)
+                                        width: 12.8px
+                                    @include mediaQ(411px)
+                                        width: 15.7px
+                                    @include mediaQ(568px)
+                                        width: 21.4px
+                            
                     
                     
 

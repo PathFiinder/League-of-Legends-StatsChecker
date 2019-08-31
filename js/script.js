@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    const apiKey = 'RGAPI-6994d40e-e81a-4889-aa72-fc3991731aa2';
+    const apiKey = 'RGAPI-1bd8db43-02a0-4582-bbac-d7243b6b7452';
 
-    const btn = document.querySelector('.statsChecker__button');
+    const btnSearch = document.querySelector('.statsChecker__button');
     const mainInfo = document.querySelector('.statsChecker__info');
-    const inputValueNickname = document.querySelector('.form__input');
+    const inputValueNickname = document.querySelector('.statsChecker__input');
     const infoAccStats = document.querySelector('.info__accStats');
     const infoMasteryStats = document.querySelector('.info__masteryStats');
     const historyGames = document.querySelector('.info__historyGames');
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
         id: 30
     }]
     const championsNameById = [];
-    const historyGamesInfo = [];
+    let historyGamesInfo = [];
     const draftIdQueue = 400;
     const rankedSoloDuoIdQueue = 420;
     const blindDraftIdQueue = 430;
@@ -68,6 +68,13 @@ document.addEventListener('DOMContentLoaded', function () {
     main = (nickname) => {
         if (nickname != null) {
 
+
+
+
+
+            historyGames.innerHTML = " ";
+            historyGamesInfo = [];
+
             fetch(`https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nickname}?api_key=${apiKey}`)
                 .then((data) => {
                     if (data.status == 200) {
@@ -78,17 +85,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                 .then((json) => {
 
-
-
-                    /*console.log(mainInfo)
-                    if (mainInfo != null) {
-                        var child = mainInfo.lastElementChild;
-                        while (child) {
-                            mainInfo.removeChild(child);
-                            child = mainInfo.lastElementChild;
-                        }
-                    }
-                    console.log(mainInfo)*/
 
 
                     if (json != null) {
@@ -431,7 +427,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <img class="historyGame__spells--secondary" alt="Spells image" src="https://pathfiinder.github.io/Rito-API/images/spells/Summoner${getSpellName(mainSpellSecondary)}.png">
                 </div>
                 <div class="historyGame__mainItems mainItems">
-                    ${countItems(mainItems)}
+                    ${countItemsMain(mainItems)}
                 </div>
                 <div class="historyGame__mainData mainData">
                     <h3 class="mainData__champLevel">Level: ${mainChampLevel}</h3>
@@ -497,9 +493,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         item6: elementIn.stats.item6,
                         kills: elementIn.stats.kills,
                         largestMultiKill: elementIn.stats.largestMultiKill,
-                        magicDamageDealtToChampions: elementIn.stats.magicDamageDealtToChampions,
-                        physicalDamageDealtToChampions: elementIn.stats.physicalDamageDealtToChampions,
-                        trueDamageDealtToChampions: elementIn.stats.trueDamageDealtToChampions,
                         totalDamageDealtToChampions: elementIn.stats.totalDamageDealtToChampions,
                         totalMinionsKilled: elementIn.stats.totalMinionsKilled,
                         win: elementIn.stats.win
@@ -576,64 +569,125 @@ document.addEventListener('DOMContentLoaded', function () {
                 <h3 class="playerStats__stats">${teamOneKills} / ${teamOneDeaths} / ${teamOneAssist}</h3>
                 <div class="playerStats__specialObj specialObj">
                     <div class="specialObj__single">
-                        <img class="specialObj__image" alt="Tower image" src="../images/specialObj/towers.png">
+                        <img class="specialObj__image" alt="Tower image" src="https://pathfiinder.github.io/Rito-API/images/specialObj/towers.png">
                         <h3 class="specialObj__stats">${teamStats[0].towerKills}</h3>
                     </div>
                      <div class="specialObj__single">
-                        <img class="specialObj__image" alt="Inhibitors image" src="../images/specialObj/inhibitors.png">
+                        <img class="specialObj__image" alt="Inhibitors image" src="https://pathfiinder.github.io/Rito-API/images/specialObj/inhibitors.png">
                         <h3 class="specialObj__stats">${teamStats[0].inhibitorKills}</h3>
                     </div>
                     <div class="specialObj__single">
-                        <img class="specialObj__image" alt="Baron image" src="../images/specialObj/baron.png">
+                        <img class="specialObj__image" alt="Baron image" src="https://pathfiinder.github.io/Rito-API/images/specialObj/baron.png">
                         <h3 class="specialObj__stats">${teamStats[0].baronKills}</h3>
                     </div>
                     <div class="specialObj__single">
-                        <img class="specialObj__image" alt="Dragon image" src="../images/specialObj/dragons.png">
+                        <img class="specialObj__image" alt="Dragon image" src="https://pathfiinder.github.io/Rito-API/images/specialObj/dragons.png">
                         <h3 class="specialObj__stats">${teamStats[0].dragonKills}</h3>
                     </div>
                     <div class="specialObj__single">
-                        <img class="specialObj__image" alt="Herald image" src="../images/specialObj/herald.png">
+                        <img class="specialObj__image" alt="Herald image" src="https://pathfiinder.github.io/Rito-API/images/specialObj/herald.png">
                         <h3 class="specialObj__stats">${teamStats[0].riftHeraldKills}</h3>
                     </div>
                 </div>
             </div>
             <div class="playerStats__team ${teamStats[0].win == "Win" ? "playerStats__team--win" : "playerStats__team--defeat"}" data-team="100">
-
+                ${getPlayerListAllInfo(playerList,100)}
             </div>
             <div class="playerStats__team-result">
                 <h3 class="playerStats__result">Team: ${(teamStats[1].teamId + "").slice(0,1)} <span class="playerStats__result--bold ${teamStats[1].win == "Win" ? "playerStats__result--win" : "playerStats__result--defeat"}">${teamStats[1].win == "Win" ? "Win" : "Defeat"}</span></h3>
                 <h3 class="playerStats__stats">${teamTwoKills} / ${teamTwoDeaths} / ${teamTwoAssist}</h3>
                 <div class="playerStats__specialObj specialObj">
                     <div class="specialObj__single">
-                        <img class="specialObj__image" alt="Tower image" src="../images/specialObj/towers.png">
+                        <img class="specialObj__image" alt="Tower image" src="https://pathfiinder.github.io/Rito-API/images/specialObj/towers.png">
                         <h3 class="specialObj__stats">${teamStats[1].towerKills}</h3>
                     </div>
-                    <div class="specialObj__single">
-                        <img class="specialObj__image" alt="Inhibitors image" src="../images/specialObj/inhibitors.png">
+                     <div class="specialObj__single">
+                        <img class="specialObj__image" alt="Inhibitors image" src="https://pathfiinder.github.io/Rito-API/images/specialObj/inhibitors.png">
                         <h3 class="specialObj__stats">${teamStats[1].inhibitorKills}</h3>
                     </div>
                     <div class="specialObj__single">
-                        <img class="specialObj__image" alt="Baron image" src="../images/specialObj/baron.png">
+                        <img class="specialObj__image" alt="Baron image" src="https://pathfiinder.github.io/Rito-API/images/specialObj/baron.png">
                         <h3 class="specialObj__stats">${teamStats[1].baronKills}</h3>
                     </div>
                     <div class="specialObj__single">
-                        <img class="specialObj__image" alt="Dragon image" src="../images/specialObj/dragons.png">
+                        <img class="specialObj__image" alt="Dragon image" src="https://pathfiinder.github.io/Rito-API/images/specialObj/dragons.png">
                         <h3 class="specialObj__stats">${teamStats[1].dragonKills}</h3>
                     </div>
                     <div class="specialObj__single">
-                        <img class="specialObj__image" alt="Herald image" src="../images/specialObj/herald.png">
+                        <img class="specialObj__image" alt="Herald image" src="https://pathfiinder.github.io/Rito-API/images/specialObj/herald.png">
                         <h3 class="specialObj__stats">${teamStats[1].riftHeraldKills}</h3>
                     </div>
                 </div>
             </div>
-            <div class="playerStats__team ${teamStats[1].win == "Win" ? "playerStats__team--win" : "playerStats__team--defeat"}" data-team="200">
-                
+            <div class="playerStats__team ${teamStats[1].win == "Win" ? "playerStats__team--win" : "playerStats__team--defeat team"}" data-team="200">
+            ${getPlayerListAllInfo(playerList,200)}
             </div>
         `
+    }
+
+    getPlayerListAllInfo = (playerList, idTeam) => {
+
+        let innerItem = ""
+        let champName = "";
 
 
+        singlePlayerItems = (items) => {
+            let innerItemsSet = "";
+
+            items.forEach(element => {
+                if (element != 0) {
+                    innerItemsSet += `
+                    <img class="team__single-item" alt="Item image" src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/item/${element}.png">
+                `
+                }
+            })
+            return innerItemsSet;
+        }
+
+
+
+        singlePlayer = (nick, idChamp, champLlvl, spell1, spell2, kills, deaths, assists, multi, dmg, minions, gEarned, gSpent, items) => {
+
+            championsNameById.forEach(element => {
+                if (element.key == idChamp) {
+                    champName = element.name;
+                }
+            });
+
+
+            return `
+            <div class="team__single">
+                <img class="team__champ-image" alt="Champion image" src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${champName}.png">
+                <h3 class="team__champ-level">${champLlvl}</h3>
+                <div class="team__spells">
+                    <img class="team__single-spell" alt="Spell image" src="https://pathfiinder.github.io/Rito-API/images/spells/Summoner${getSpellName(spell1)}.png">
+                    <img class="team__single-spell" alt="Spell image" src="https://pathfiinder.github.io/Rito-API/images/spells/Summoner${getSpellName(spell2)}.png">
+                </div>
+                <h3 class="team__player-nickname">${nick}</h3>
+                <h3 class="team__player-stats">${kills} / ${deaths} / ${assists}</h3>
+                <h3 class="team__player-dmg"><span class="team__player-dmg--bold">Dmg:</span> ${dmg}</h3>
+                <h3 class="team__player-cs"><span class="team__player-cs--bold">CS:</span> ${minions} </h3>
+                <h3 class="team__player-gold"><span class="team__player-gold--bold">Gold: </span>${gEarned} / ${gSpent}</h3>
+                <div class="team__player-items">
+                ${singlePlayerItems(items)}
+                </div>
+            </div>
+            `
+        };
+
+
+        playerList.forEach((element) => {
+            let Items = [];
+            if (element[1].teamId == idTeam) {
+                Items.push(element[1].item0, element[1].item1, element[1].item2, element[1].item3, element[1].item4, element[1].item5, element[1].item6);
+                innerItem += singlePlayer(element[0].playerNick, element[1].championId, element[1].champLevel, element[1].spell1Id, element[1].spell2Id, element[1].kills, element[1].deaths, element[1].assists, element[1].largestMultiKill, element[1].totalDamageDealtToChampions, element[1].totalMinionsKilled, element[1].goldEarned, element[1].goldSpent, Items);
+            }
+        });
+
+        return innerItem;
 
     }
+
 
     getPlayersListShort = (playerList, idTeam) => {
         let playerListShort = "";
@@ -664,7 +718,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    countItems = (items) => {
+    countItemsMain = (items) => {
         let html = ``
         items.forEach((element, index) => {
             let order = index;
@@ -731,11 +785,18 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    btn.addEventListener('click', (event) => {
+    btnSearch.addEventListener('click', (event) => {
         event.preventDefault();
         main(inputValueNickname.value);
         //inputValueNickname.value = "";
     });
+
+    inputValueNickname.addEventListener("keyup", (event) => {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            btnSearch.click();
+        }
+    })
 
 
     mainInfo.addEventListener('click', (event) => {
