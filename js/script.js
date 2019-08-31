@@ -221,15 +221,35 @@ document.addEventListener('DOMContentLoaded', function () {
                 return data.json();
             })
             .then((json) => {
+
+                /* [].forEach.call(Object.values(json.data), (ele, index) => {
+                     fetch(`http://ddragon.leagueoflegends.com/cdn/9.17.1/data/en_US/champion/${ele.id}.json`)
+                         .then(data => data.json())
+                         .then(json => {
+                             const name = "json.data." + ele.id;
+                             if (eval(name)) {
+                                 championsNameById.push({
+                                     name: eval(name).id,
+                                     key: parseInt(eval(name).key, 10),
+                                     skins: eval(name).skins,
+                                     stats: eval(name).stats
+                                 })
+
+                             }
+                         })
+                         .catch(error => {}) //console.log(error))*/
                 [].forEach.call(Object.values(json.data), (ele, index) => {
                     championsNameById.push({
                         name: ele.id,
                         key: parseInt(ele.key, 10),
                     })
                 });
+
             })
-            .catch((error) => console.log(error))
+            .catch((error) => console.log(error));
     }
+
+    //getChampions();
 
     getMastery = (id) => {
         fetch(`https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${id}?api_key=${apiKey}`)
@@ -407,8 +427,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 <h3 class="historyGames__stats">${mainStatsKill} / ${mainStatsDeaths} / ${mainStatsAssists}</h3>
                 <h3 class="historyGames__largest-multi-kill" style="display: ${mainLargestMultiKill >= 2 ? "block" : "none"}">${countLargestMultiKill(mainLargestMultiKill)}</h3>
                 <div class="historyGame__spells">
-                    <img class="historyGame__spells--primary" alt="Spells image" src="../images/spells/Summoner${getSpellName(mainSpellPrimary)}.png">
-                    <img class="historyGame__spells--secondary" alt="Spells image" src="../images/spells/Summoner${getSpellName(mainSpellSecondary)}.png">
+                    <img class="historyGame__spells--primary" alt="Spells image" src="https://pathfiinder.github.io/Rito-API/images/spells/Summoner${getSpellName(mainSpellPrimary)}.png">
+                    <img class="historyGame__spells--secondary" alt="Spells image" src="https://pathfiinder.github.io/Rito-API/images/spells/Summoner${getSpellName(mainSpellSecondary)}.png">
                 </div>
                 <div class="historyGame__mainItems mainItems">
                     ${countItems(mainItems)}
@@ -421,6 +441,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="historyGame__players-list playersList">
                 </div>
                 <i class="historyGame__arrow fas fa-arrow-circle-down" data-singleArrowId="${singleId}"></i>
+                <div class="historyGame__players-stats playersStats">
+                </div>
             </div>
         `;
 
@@ -430,6 +452,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     getHistoryGamePlayersList = (json, singleId) => {
         const playerList = [];
+        const teamStats = [];
 
         [].forEach.call(json.participantIdentities, (element) => {
             playerList.push({
@@ -439,7 +462,6 @@ document.addEventListener('DOMContentLoaded', function () {
             })
         });
 
-        //console.log(playerList)
 
 
         previousData = (index) => {
@@ -484,7 +506,58 @@ document.addEventListener('DOMContentLoaded', function () {
                     }]
                 }
             })
-        })
+        });
+
+        [].forEach.call(json.teams, (element) => {
+            teamStats.push({
+                teamId: element.teamId,
+                baronKills: element.baronKills,
+                dragonKills: element.dragonKills,
+                inhibitorKills: element.inhibitorKills,
+                riftHeraldKills: element.riftHeraldKills,
+                towerKills: element.towerKills,
+                win: element.win
+            })
+        });
+
+        const teamOneStats = [];
+        const teamTwoStats = [];
+        let teamOneKills = 0;
+        let teamOneDeaths = 0;
+        let teamOneAssist = 0;
+        let teamTwoKills = 0;
+        let teamTwoDeaths = 0;
+        let teamTwoAssist = 0;
+
+        playerList.forEach((element) => {
+            if (element[1].teamId == 100) {
+                teamOneStats.push({
+                    kills: element[1].kills,
+                    deaths: element[1].deaths,
+                    assists: element[1].assists
+                })
+            } else if (element[1].teamId == 200) {
+                teamTwoStats.push({
+                    kills: element[1].kills,
+                    deaths: element[1].deaths,
+                    assists: element[1].assists
+                })
+            }
+        });
+
+        teamOneStats.forEach(element => {
+            teamOneKills += element.kills;
+            teamOneDeaths += element.deaths;
+            teamOneAssist += element.assists;
+        });
+
+
+        teamTwoStats.forEach(element => {
+            teamTwoKills += element.kills;
+            teamTwoDeaths += element.deaths;
+            teamTwoAssist += element.assists;
+        });
+
 
         document.querySelector(`[data-singleId ="${singleId}"] .historyGame__players-list`).innerHTML = `
             <div class="playersList__team" data-team=100>
@@ -496,7 +569,69 @@ document.addEventListener('DOMContentLoaded', function () {
         `
 
 
-        //console.log(playerList)
+
+        document.querySelector(`[data-singleId ="${singleId}"] .historyGame__players-stats`).innerHTML = `
+            <div class="playerStats__team-result">
+                <h3 class="playerStats__result">Team: ${(teamStats[0].teamId + "").slice(0,1)} <span class="playerStats__result--bold ${teamStats[0].win == "Win" ? "playerStats__result--win" : "playerStats__result--defeat"}">${teamStats[0].win == "Win" ? "Win" : "Defeat"}</span></h3>
+                <h3 class="playerStats__stats">${teamOneKills} / ${teamOneDeaths} / ${teamOneAssist}</h3>
+                <div class="playerStats__specialObj specialObj">
+                    <div class="specialObj__single">
+                        <img class="specialObj__image" alt="Tower image" src="../images/specialObj/towers.png">
+                        <h3 class="specialObj__stats">${teamStats[0].towerKills}</h3>
+                    </div>
+                     <div class="specialObj__single">
+                        <img class="specialObj__image" alt="Inhibitors image" src="../images/specialObj/inhibitors.png">
+                        <h3 class="specialObj__stats">${teamStats[0].inhibitorKills}</h3>
+                    </div>
+                    <div class="specialObj__single">
+                        <img class="specialObj__image" alt="Baron image" src="../images/specialObj/baron.png">
+                        <h3 class="specialObj__stats">${teamStats[0].baronKills}</h3>
+                    </div>
+                    <div class="specialObj__single">
+                        <img class="specialObj__image" alt="Dragon image" src="../images/specialObj/dragons.png">
+                        <h3 class="specialObj__stats">${teamStats[0].dragonKills}</h3>
+                    </div>
+                    <div class="specialObj__single">
+                        <img class="specialObj__image" alt="Herald image" src="../images/specialObj/herald.png">
+                        <h3 class="specialObj__stats">${teamStats[0].riftHeraldKills}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="playerStats__team ${teamStats[0].win == "Win" ? "playerStats__team--win" : "playerStats__team--defeat"}" data-team="100">
+
+            </div>
+            <div class="playerStats__team-result">
+                <h3 class="playerStats__result">Team: ${(teamStats[1].teamId + "").slice(0,1)} <span class="playerStats__result--bold ${teamStats[1].win == "Win" ? "playerStats__result--win" : "playerStats__result--defeat"}">${teamStats[1].win == "Win" ? "Win" : "Defeat"}</span></h3>
+                <h3 class="playerStats__stats">${teamTwoKills} / ${teamTwoDeaths} / ${teamTwoAssist}</h3>
+                <div class="playerStats__specialObj specialObj">
+                    <div class="specialObj__single">
+                        <img class="specialObj__image" alt="Tower image" src="../images/specialObj/towers.png">
+                        <h3 class="specialObj__stats">${teamStats[1].towerKills}</h3>
+                    </div>
+                    <div class="specialObj__single">
+                        <img class="specialObj__image" alt="Inhibitors image" src="../images/specialObj/inhibitors.png">
+                        <h3 class="specialObj__stats">${teamStats[1].inhibitorKills}</h3>
+                    </div>
+                    <div class="specialObj__single">
+                        <img class="specialObj__image" alt="Baron image" src="../images/specialObj/baron.png">
+                        <h3 class="specialObj__stats">${teamStats[1].baronKills}</h3>
+                    </div>
+                    <div class="specialObj__single">
+                        <img class="specialObj__image" alt="Dragon image" src="../images/specialObj/dragons.png">
+                        <h3 class="specialObj__stats">${teamStats[1].dragonKills}</h3>
+                    </div>
+                    <div class="specialObj__single">
+                        <img class="specialObj__image" alt="Herald image" src="../images/specialObj/herald.png">
+                        <h3 class="specialObj__stats">${teamStats[1].riftHeraldKills}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="playerStats__team ${teamStats[1].win == "Win" ? "playerStats__team--win" : "playerStats__team--defeat"}" data-team="200">
+                
+            </div>
+        `
+
+
 
     }
 
@@ -557,7 +692,6 @@ document.addEventListener('DOMContentLoaded', function () {
         return spellName;
     }
 
-
     getGameDuration = (nrOfSecond) => {
         const pad = function (num, size) {
             return ('000' + num).slice(size * -1);
@@ -575,7 +709,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     }
 
-
     checkGameType = (queueId) => {
         if (queueId == draftIdQueue) {
             return "Draft Pick";
@@ -592,7 +725,9 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (queueId == ttfIdQueue) {
             return "Teamfight Tacticts";
         } else if (queueId == botsIdQueue) {
-            return "Bots"
+            return "Bots";
+        } else {
+            return "Other game";
         }
     }
 
@@ -612,13 +747,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.querySelector(`[data-singleId = "${singleId}"]`).classList.add('historyGame__single--active');
                 document.querySelector(`[data-singleArrowId = "${singleId}"]`).classList.remove('fa-arrow-circle-down');
                 document.querySelector(`[data-singleArrowId = "${singleId}"]`).classList.add('fa-arrow-circle-up');
+                document.querySelector(`[data-singleId ="${singleId}"] .historyGame__players-stats`).classList.add('historyGame__players-stats--active');
             } else if (document.querySelector(`[data-singleArrowId = "${singleId}"]`).classList.contains('fa-arrow-circle-up')) {
                 document.querySelector(`[data-singleId = "${singleId}"]`).classList.remove('historyGame__single--active');
                 document.querySelector(`[data-singleId = "${singleId}"]`).classList.add('historyGame__single--normal');
                 document.querySelector(`[data-singleArrowId = "${singleId}"]`).classList.remove('fa-arrow-circle-up');
                 document.querySelector(`[data-singleArrowId = "${singleId}"]`).classList.add('fa-arrow-circle-down');
+                document.querySelector(`[data-singleId ="${singleId}"] .historyGame__players-stats`).classList.remove('historyGame__players-stats--active');
             }
         }
     })
+
 
 })

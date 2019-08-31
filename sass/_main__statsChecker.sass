@@ -301,7 +301,7 @@
                 &--normal
                     flex-basis: 140px
                 &--active
-                    flex-basis: 350px
+                    flex-basis: 700px
                 &--win
                     border-color: dodgerblue
                     background-color: lightskyblue
@@ -548,7 +548,76 @@
                         height: 30px
                         width: 30px
                         font-size: 24px
-                        
+                .historyGame__players-stats
+                    display: none
+                    position: absolute
+                    top: 140px
+                    left: 10px
+                    width: calc(100% - 20px)
+                    height: 530px
+                    border: 1px solid black
+                    background-color: pink
+                    flex-direction: column
+                    overflow: hidden
+                    &--active
+                        display: flex 
+                    .playerStats__team-result
+                        flex-basis: 40px
+                        margin: 10px
+                        width: calc(100% - 20px)
+                        overflow: hidden
+                        position: relative
+                        .playerStats__result
+                            font-size: 12px
+                            width: 45px
+                            position: absolute
+                            top: 50%
+                            left: 5px
+                            transform: translateY(-50%)
+                            font-weight: normal
+                            &--bold
+                                font-weight: bold
+                            &--win
+                                color: green
+                            &--defeat
+                                color: red
+                        .playerStats__stats
+                            width: 80px
+                            height: 20px
+                            font-size: 11px
+                            position: absolute
+                            top: 10px
+                            left: 55px
+                        .playerStats__specialObj
+                            height: 35px
+                            width: 100px
+                            position: absolute
+                            top: 2.5px
+                            right: 5px
+                            display: flex
+                            flex-direction: row
+                            .specialObj__single
+                                flex-basis: 20%
+                                height: 100%
+                                display: flex
+                                flex-direction: column
+                                .specialObj__image
+                                    height: 20px
+                                    width: 20px
+                                .specialObj__stats
+                                    text-align: center
+                                    flex-grow: 1
+                                    font-size: 9px
+
+                    .playerStats__team
+                        flex-basis: 200px
+                        margin: 0px 10px
+                        width: calc(100% - 20px)
+                        border: 2px solid black
+                        &--win
+                            border-color: green
+                        &--defeat
+                            border-color: red
                     
                     
 
