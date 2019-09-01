@@ -1110,6 +1110,7 @@ body {
   position: absolute;
   top: 10px;
   left: 55px;
+  line-height: 20px;
 }
 
 @media (min-width: 411px) {
@@ -1126,10 +1127,75 @@ body {
 
 @media (min-width: 731px) {
   .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-stats .playerStats__team-result .playerStats__stats {
-    left: 200px;
+    left: 170px;
     font-size: 14px;
     width: 120px;
   }
+}
+
+.main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-stats .playerStats__team-result .playerStats__bans {
+  display: none;
+  height: 25px;
+  width: 180px;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  right: 125px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+@media (min-width: 568px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-stats .playerStats__team-result .playerStats__bans {
+    display: block;
+  }
+}
+
+@media (min-width: 731px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-stats .playerStats__team-result .playerStats__bans {
+    right: 170px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-stats .playerStats__team-result .playerStats__bans {
+    right: 250px;
+  }
+}
+
+.main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-stats .playerStats__team-result .playerStats__bans--active {
+  display: none;
+}
+
+@media (min-width: 568px) {
+  .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-stats .playerStats__team-result .playerStats__bans--active {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+}
+
+.main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-stats .playerStats__team-result .playerStats__bans--disable {
+  display: none;
+}
+
+.main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-stats .playerStats__team-result .playerStats__bans .playerStats__bans-title {
+  font-weight: bold;
+  font-size: 16px;
+  -ms-flex-preferred-size: 55px;
+      flex-basis: 55px;
+  line-height: 25px;
+}
+
+.main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-stats .playerStats__team-result .playerStats__bans .playerStats__bans-single {
+  width: 25px;
+  height: 25px;
+  margin: 0 1px;
+  border: 0.5px solid red;
 }
 
 .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-stats .playerStats__team-result .playerStats__specialObj {

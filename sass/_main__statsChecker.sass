@@ -586,14 +586,47 @@
                             position: absolute
                             top: 10px
                             left: 55px
+                            line-height: 20px
                             @include mediaQ(411px)
                                 left: 70px
                             @include mediaQ(640px)
                                 left: 150px
                             @include mediaQ(731px)
-                                left: 200px
+                                left: 170px
                                 font-size: 14px
                                 width: 120px
+                        .playerStats__bans
+                            display: none
+                            height: 25px
+                            width: 180px
+                            overflow: hidden
+                            position: absolute
+                            top: 50%
+                            right: 125px
+                            transform: translateY(-50%)
+                            @include mediaQ(568px)
+                                display: block
+                            @include mediaQ(731px)
+                                right: 170px
+                            @include mediaQ(1024px)
+                                right: 250px
+                            &--active
+                                display: none
+                                @include mediaQ(568px)
+                                    display: flex
+                                    flex-direction: row
+                            &--disable
+                                display: none
+                            .playerStats__bans-title
+                                font-weight: bold
+                                font-size: 16px
+                                flex-basis: 55px
+                                line-height: 25px
+                            .playerStats__bans-single
+                                width: 25px
+                                height: 25px
+                                margin: 0 1px
+                                border: 0.5px solid red
                         .playerStats__specialObj
                             height: 35px
                             width: 100px

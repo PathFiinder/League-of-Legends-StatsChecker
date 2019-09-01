@@ -440,6 +440,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 playerIcon: element.player.profileIcon
             })
         });
+    
 
 
 
@@ -492,9 +493,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 inhibitorKills: element.inhibitorKills,
                 riftHeraldKills: element.riftHeraldKills,
                 towerKills: element.towerKills,
-                win: element.win
+                win: element.win,
+                bans: element.bans
             })
         });
+
 
         const teamOneStats = [];
         const teamTwoStats = [];
@@ -550,6 +553,10 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="playerStats__team-result">
                 <h3 class="playerStats__result">Team: ${(teamStats[0].teamId + "").slice(0,1)} <span class="playerStats__result--bold ${teamStats[0].win == "Win" ? "playerStats__result--win" : "playerStats__result--defeat"}">${teamStats[0].win == "Win" ? "Win" : "Defeat"}</span></h3>
                 <h3 class="playerStats__stats">${teamOneKills} / ${teamOneDeaths} / ${teamOneAssist}</h3>
+                <div class="playerStats__bans ${teamStats[0].bans != null ? "playerStats__bans--active" : "playerStats__bans--disable"}">
+                    <h3 class="playerStats__bans-title">Bans: </h3>
+                    ${getTeamBans(teamStats,100)}
+                </div>
                 <div class="playerStats__specialObj specialObj">
                     <div class="specialObj__single">
                         <img class="specialObj__image" alt="Tower image" src="images/specialObj/towers.png">
@@ -579,6 +586,10 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="playerStats__team-result">
                 <h3 class="playerStats__result">Team: ${(teamStats[1].teamId + "").slice(0,1)} <span class="playerStats__result--bold ${teamStats[1].win == "Win" ? "playerStats__result--win" : "playerStats__result--defeat"}">${teamStats[1].win == "Win" ? "Win" : "Defeat"}</span></h3>
                 <h3 class="playerStats__stats">${teamTwoKills} / ${teamTwoDeaths} / ${teamTwoAssist}</h3>
+                <div class="playerStats__bans ${teamStats[1].bans != null ? "playerStats__bans--active" : "playerStats__bans--disable"}">
+                <h3 class="playerStats__bans-title">Bans: </h3>
+                    ${getTeamBans(teamStats,200)}
+                </div>
                 <div class="playerStats__specialObj specialObj">
                     <div class="specialObj__single">
                         <img class="specialObj__image" alt="Tower image" src="images/specialObj/towers.png">
@@ -608,6 +619,28 @@ document.addEventListener('DOMContentLoaded', function () {
         `
     }
 
+    getTeamBans = (teamStats,teamId) => {
+        let innerBans = ""
+        teamStats.forEach(elementOut => {
+            if(elementOut.teamId == teamId){
+                [].forEach.call(elementOut.bans, (elementIn) => {
+                    let champName = "";
+         
+                    championsNameById.forEach(ele => {
+                        if(ele.key == elementIn.championId){
+                            champName = ele.name;
+                        }
+                    })
+
+                    innerBans += ` 
+                    <img class="playerStats__bans-single" alt="Banned champ image" src="images/champions/${champName}.png">
+                    `
+                })
+            }
+        })
+        return innerBans;
+    }
+
     getPlayerListAllInfo = (playerList, idTeam) => {
 
         let innerItem = ""
@@ -629,7 +662,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-        singlePlayer = (nick, idChamp, champLlvl, spell1, spell2, kills, deaths, assists, multi, dmg, minions, gEarned, gSpent, items) => {
+        singlePlayer = (nick, idChamp, champLlvl, spell1, spell2, kills, deaths, assists, dmg, minions, gEarned, gSpent, items) => {
 
             championsNameById.forEach(element => {
                 if (element.key == idChamp) {
@@ -663,7 +696,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let Items = [];
             if (element[1].teamId == idTeam) {
                 Items.push(element[1].item0, element[1].item1, element[1].item2, element[1].item3, element[1].item4, element[1].item5, element[1].item6);
-                innerItem += singlePlayer(element[0].playerNick, element[1].championId, element[1].champLevel, element[1].spell1Id, element[1].spell2Id, element[1].kills, element[1].deaths, element[1].assists, element[1].largestMultiKill, element[1].totalDamageDealtToChampions, element[1].totalMinionsKilled, element[1].goldEarned, element[1].goldSpent, Items);
+                innerItem += singlePlayer(element[0].playerNick, element[1].championId, element[1].champLevel, element[1].spell1Id, element[1].spell2Id, element[1].kills, element[1].deaths, element[1].assists, element[1].totalDamageDealtToChampions, element[1].totalMinionsKilled, element[1].goldEarned, element[1].goldSpent, Items);
             }
         });
 
