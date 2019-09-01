@@ -849,7 +849,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     itemsInfo.push({
                         name: element.name,
                         description: element.description,
-                        from: element.from,
                         image: element.image.full,
                         priceGold: element.gold.total,
                         sellGold: element.gold.sell,
@@ -857,6 +856,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     })
 
                 })
+
+                itemsInfo.sort((a, b) => {
+                    if (a.priceGold > b.priceGold) {
+                        return 1;
+                    } else {
+                        return -1;
+                    }
+                })
+
                 createItemList(itemsInfo);
 
             })

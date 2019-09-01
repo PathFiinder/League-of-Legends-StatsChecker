@@ -2114,38 +2114,6 @@
         "Effect2Amount": "0.25"
       }
     },
-    "2052": {
-      "name": "Poro-Snax",
-      "description": "This savory blend of free-range, grass-fed Avarosan game hens and organic, non-ZMO Freljordian herbs contains the essential nutrients necessary to keep your Poro purring with pleasure.<br><br><i>All proceeds will be donated towards fighting Noxian animal cruelty.</i>",
-      "colloq": ";",
-      "plaintext": "",
-      "stacks": 2,
-      "consumed": true,
-      "inStore": false,
-      "image": {
-        "full": "2052.png",
-        "sprite": "item0.png",
-        "group": "item",
-        "x": 0,
-        "y": 240,
-        "w": 48,
-        "h": 48
-      },
-      "gold": {
-        "base": 0,
-        "purchasable": false,
-        "total": 0,
-        "sell": 0
-      },
-      "tags": [],
-      "maps": {
-        "10": true,
-        "11": true,
-        "12": true,
-        "22": false
-      },
-      "stats": {}
-    },
     "2053": {
       "name": "Raptor Cloak",
       "description": "<stats>+30 Armor<br>+125% Base Health Regen </stats><br><br><unique>UNIQUE Passive - Point Runner:</unique> Builds up to +20% Movement Speed over 2 seconds while near turrets, fallen turrets and Void Gates.",
@@ -2285,48 +2253,6 @@
         "Effect13Amount": "180",
         "Effect14Amount": "10",
         "Effect15Amount": "45"
-      }
-    },
-    "2062": {
-      "name": "Pilfered Potion of Rouge",
-      "description": "<consumable>Click to Consume:</consumable> Grants 10 (+1/Level) Adaptive Force for 45 seconds. ",
-      "colloq": ";",
-      "plaintext": "Consume to gain a short window of power.",
-      "stacks": 5,
-      "consumed": true,
-      "inStore": false,
-      "hideFromAll": true,
-      "image": {
-        "full": "2062.png",
-        "sprite": "item0.png",
-        "group": "item",
-        "x": 0,
-        "y": 288,
-        "w": 48,
-        "h": 48
-      },
-      "gold": {
-        "base": 80,
-        "purchasable": false,
-        "total": 80,
-        "sell": 32
-      },
-      "tags": [
-        "Consumable",
-        "Jungle",
-        "Lane"
-      ],
-      "maps": {
-        "10": true,
-        "11": true,
-        "12": true,
-        "22": false
-      },
-      "stats": {},
-      "effect": {
-        "Effect1Amount": "10",
-        "Effect2Amount": "1",
-        "Effect3Amount": "45"
       }
     },
     "2065": {
@@ -6994,58 +6920,6 @@
       },
       "depth": 3
     },
-    "3148": {
-      "name": "Space Hextech Gunblade",
-      "description": "<stats>+40 Attack Damage<br>+80 Ability Power</stats><br><br><unique>UNIQUE Passive:</unique> Heal for 4% of damage dealt. This is 33% as effective for Area of Effect damage.<br><active>UNIQUE Active - Lightning Bolt:</active> Deals <scaleLevel>175 - 253</scaleLevel> (+30% of Ability Power) magic damage and slows the target champion's Movement Speed by 40% for 2 seconds (40 second cooldown, shared with other <font color='#9999FF'><a href='itembolt'>Hextech</a></font> items).",
-      "colloq": ";",
-      "plaintext": "Increases Attack Damage and Ability Power, activate to slow a target",
-      "from": [
-        "3162",
-        "3145"
-      ],
-      "image": {
-        "full": "3148.png",
-        "sprite": "item1.png",
-        "group": "item",
-        "x": 96,
-        "y": 336,
-        "w": 48,
-        "h": 48
-      },
-      "gold": {
-        "base": 750,
-        "purchasable": true,
-        "total": 3400,
-        "sell": 2380
-      },
-      "tags": [
-        "Active",
-        "Damage",
-        "LifeSteal",
-        "Slow",
-        "SpellDamage",
-        "SpellVamp"
-      ],
-      "maps": {
-        "10": false,
-        "11": false,
-        "12": false,
-        "22": false
-      },
-      "stats": {
-        "FlatPhysicalDamageMod": 40,
-        "FlatMagicDamageMod": 80
-      },
-      "effect": {
-        "Effect1Amount": "0.04",
-        "Effect2Amount": "40",
-        "Effect3Amount": "175",
-        "Effect4Amount": "253",
-        "Effect5Amount": "0.4",
-        "Effect6Amount": "2"
-      },
-      "depth": 4
-    },
     "3149": {
       "name": "Space Blade of the Ruined King",
       "description": "<stats>+40 Attack Damage<br>+25% Attack Speed<br>+3% Life Steal</stats><br><br><unique>UNIQUE Passive:</unique> Basic attacks deal 8% of the target's current Health as bonus physical damage on hit.<br><active>UNIQUE Active:</active> Deals 100 magic damage to target champion and steals 25% of their Movement Speed for 3 seconds (90 second cooldown).<br><br><rules>Minimum bonus physical damage dealt is 15.<br>Maximum bonus physical damage dealt to monsters and minions is 60.<br>User's Life Steal is applied to bonus physical damage dealt.</rules>",
@@ -7509,62 +7383,6 @@
       },
       "depth": 3
     },
-    "3163": {
-      "name": "Space Maw of Malmortius",
-      "description": "<stats>+50 Attack Damage<br>+50 Magic Resist<br>+10% Cooldown Reduction</stats><br><br><unique>UNIQUE Passive - Lifeline:</unique> Upon taking magic damage that would reduce Health below 30%, grants a shield that absorbs up to 350 magic damage within 5 seconds (90 second cooldown).<br><unlockedPassive>Lifegrip:</unlockedPassive> When <i>Lifeline</i> triggers, gain +20 Attack Damage, +2.5% Spell Vamp and +2.5% Life Steal until out of combat.",
-      "colloq": ";",
-      "plaintext": "Grants bonus Attack Damage when Health is low",
-      "stacks": 0,
-      "from": [
-        "3155",
-        "3133"
-      ],
-      "image": {
-        "full": "3163.png",
-        "sprite": "item1.png",
-        "group": "item",
-        "x": 144,
-        "y": 384,
-        "w": 48,
-        "h": 48
-      },
-      "gold": {
-        "base": 850,
-        "purchasable": true,
-        "total": 3250,
-        "sell": 2275
-      },
-      "tags": [
-        "SpellBlock",
-        "Damage",
-        "LifeSteal",
-        "CooldownReduction",
-        "SpellVamp"
-      ],
-      "maps": {
-        "10": false,
-        "11": false,
-        "12": false,
-        "22": false
-      },
-      "stats": {
-        "FlatPhysicalDamageMod": 50,
-        "FlatSpellBlockMod": 50
-      },
-      "effect": {
-        "Effect1Amount": "0",
-        "Effect2Amount": "35",
-        "Effect3Amount": "0.3",
-        "Effect4Amount": "350",
-        "Effect5Amount": "5",
-        "Effect6Amount": "90",
-        "Effect7Amount": "20",
-        "Effect8Amount": "0",
-        "Effect9Amount": "0.025",
-        "Effect10Amount": "0.025"
-      },
-      "depth": 3
-    },
     "3165": {
       "name": "Morellonomicon",
       "description": "<stats>+70 Ability Power<br>+300 Health</stats><br><br><unique>UNIQUE Passive - Touch of Death:</unique> +15 <a href='FlatMagicPen'>Magic Penetration</a><br><unique>UNIQUE Passive - Cursed Strike:</unique> Magic damage dealt to champions inflicts them with <a href='GrievousWounds'>Grievous Wounds</a> for 3 seconds.",
@@ -7616,50 +7434,6 @@
         "Effect9Amount": "20"
       },
       "depth": 3
-    },
-    "3172": {
-      "name": "Zephyr",
-      "description": "<stats>+50 Attack Damage<br>+40% Attack Speed<br>+10% Movement Speed</stats><br><br><unique>UNIQUE Passive - Tenacity:</unique> Reduces the duration of stuns, slows, taunts, fears, silences, blinds, polymorphs, and immobilizes by 35%.",
-      "colloq": ";",
-      "plaintext": "Mobility and Tenacity",
-      "from": [
-        "1038",
-        "1042",
-        "1042"
-      ],
-      "image": {
-        "full": "3172.png",
-        "sprite": "item1.png",
-        "group": "item",
-        "x": 288,
-        "y": 384,
-        "w": 48,
-        "h": 48
-      },
-      "gold": {
-        "base": 900,
-        "purchasable": true,
-        "total": 2800,
-        "sell": 1960
-      },
-      "tags": [
-        "Damage",
-        "AttackSpeed",
-        "NonbootsMovement",
-        "Tenacity"
-      ],
-      "maps": {
-        "10": false,
-        "11": false,
-        "12": false,
-        "22": false
-      },
-      "stats": {
-        "FlatPhysicalDamageMod": 50,
-        "PercentMovementSpeedMod": 0.1,
-        "PercentAttackSpeedMod": 0.4
-      },
-      "depth": 2
     },
     "3173": {
       "name": "Space Boots of Lucidity",
@@ -8097,44 +7871,6 @@
       },
       "depth": 4
     },
-    "3200": {
-      "name": "Prototype Hex Core",
-      "description": "<stats>+1 Ability Power per level<br>+10 Mana per level</stats><br><br><unique>UNIQUE Passive - Progress:</unique> This item can be upgraded three times to enhance Viktor's basic abilities.",
-      "colloq": ";viktor",
-      "plaintext": "Increases Ability Power and can be upgraded to improve Viktor's abilities",
-      "inStore": false,
-      "requiredChampion": "Viktor",
-      "into": [
-        "3196"
-      ],
-      "image": {
-        "full": "3200.png",
-        "sprite": "item2.png",
-        "group": "item",
-        "x": 48,
-        "y": 0,
-        "w": 48,
-        "h": 48
-      },
-      "gold": {
-        "base": 0,
-        "purchasable": false,
-        "total": 0,
-        "sell": 0
-      },
-      "tags": [],
-      "maps": {
-        "10": true,
-        "11": true,
-        "12": true,
-        "22": false
-      },
-      "stats": {},
-      "effect": {
-        "Effect1Amount": "1",
-        "Effect2Amount": "10"
-      }
-    },
     "3211": {
       "name": "Spectre's Cowl",
       "description": "<stats>+250 Health<br>+25 Magic Resist</stats><br><br><unique>UNIQUE Passive:</unique> Grants 150% Base Health Regen for up to 10 seconds after taking damage from an enemy champion.",
@@ -8238,57 +7974,6 @@
         "Effect11Amount": "0.2",
         "Effect12Amount": "2",
         "Effect13Amount": "120"
-      },
-      "depth": 3
-    },
-    "3230": {
-      "name": "Space Ravenous Hydra",
-      "description": "<stats>+80 Attack Damage<br>+100% Base Health Regen <br>+3% Life Steal</stats><br><br><passive>Passive:</passive> 50% of total Life Steal applies to damage dealt by this item.<br><unique>UNIQUE Passive - Cleave:</unique> Basic attacks deal 20% to 60% of total Attack Damage as bonus physical damage to enemies near the target on hit (enemies closest to the target take the most damage).<br><active>UNIQUE Active - Crescent:</active> Deals 60% to 100% of total Attack Damage as physical damage to nearby enemy units (closest enemies take the most damage) (10 second cooldown).",
-      "colloq": ";",
-      "plaintext": "Melee attacks hit nearby enemies, dealing damage and restoring Health",
-      "from": [
-        "3077",
-        "1059",
-        "1037"
-      ],
-      "image": {
-        "full": "3230.png",
-        "sprite": "item2.png",
-        "group": "item",
-        "x": 192,
-        "y": 0,
-        "w": 48,
-        "h": 48
-      },
-      "gold": {
-        "base": 400,
-        "purchasable": true,
-        "total": 3500,
-        "sell": 2450
-      },
-      "tags": [
-        "Active",
-        "Damage",
-        "HealthRegen",
-        "LifeSteal",
-        "OnHit"
-      ],
-      "maps": {
-        "10": false,
-        "11": false,
-        "12": false,
-        "22": false
-      },
-      "stats": {
-        "FlatPhysicalDamageMod": 80,
-        "PercentLifeStealMod": 0.03
-      },
-      "effect": {
-        "Effect1Amount": "0.2",
-        "Effect2Amount": "0.6",
-        "Effect3Amount": "0.6",
-        "Effect4Amount": "1",
-        "Effect5Amount": "10"
       },
       "depth": 3
     },
@@ -8642,73 +8327,6 @@
         "Effect18Amount": "10"
       },
       "depth": 3
-    },
-    "3311": {
-      "name": "Timeworn Frostfang",
-      "description": "<stats>+20 Ability Power<br>+2 Gold per 10 seconds<br><mana>+50% Base Mana Regen </mana><br>+10% Cooldown Reduction</stats><br><br><unique>UNIQUE Passive - Tribute:</unique> Damaging spells and attacks against champions or buildings deal 18 additional magic damage per unique spell cast. If there is a nearby ally Champion, it also grants <gold>22</gold> Gold. This can occur up to 3 times every 30 seconds. Before quest completion, killing minions and non-epic monsters slows Tribute and gold generation.<hr><passive>QUEST:</passive> Earn 750 gold using this item.<br><passive>REWARD:</passive> <font color='#CFBF84'>Tribute</font> is upgraded into <font color='#CFBF84'><a href='frostqueenslinequestreward'>Queen's Tribute</a></font>.<br><br><groupLimit>Limited to 1 Gold Income or Jungle item.</groupLimit>",
-      "colloq": ";",
-      "plaintext": "Grants gold when you damage an enemy",
-      "from": [
-        "3310",
-        "1004"
-      ],
-      "into": [
-        "3312"
-      ],
-      "image": {
-        "full": "3311.png",
-        "sprite": "item2.png",
-        "group": "item",
-        "x": 336,
-        "y": 48,
-        "w": 48,
-        "h": 48
-      },
-      "gold": {
-        "base": 325,
-        "purchasable": true,
-        "total": 850,
-        "sell": 340
-      },
-      "tags": [
-        "SpellDamage",
-        "ManaRegen",
-        "Active",
-        "GoldPer",
-        "CooldownReduction"
-      ],
-      "maps": {
-        "10": true,
-        "11": false,
-        "12": false,
-        "22": false
-      },
-      "stats": {
-        "FlatMagicDamageMod": 20
-      },
-      "effect": {
-        "Effect1Amount": "18",
-        "Effect2Amount": "22",
-        "Effect3Amount": "6",
-        "Effect4Amount": "3",
-        "Effect5Amount": "30",
-        "Effect6Amount": "2",
-        "Effect7Amount": "0",
-        "Effect8Amount": "0",
-        "Effect9Amount": "5",
-        "Effect10Amount": "1",
-        "Effect11Amount": "0",
-        "Effect12Amount": "0",
-        "Effect13Amount": "0",
-        "Effect14Amount": "0",
-        "Effect15Amount": "0",
-        "Effect16Amount": "0",
-        "Effect17Amount": "750",
-        "Effect18Amount": "0.5",
-        "Effect19Amount": "1",
-        "Effect20Amount": "10"
-      },
-      "depth": 2
     },
     "3312": {
       "name": "Timeworn Frost Queen's Claim",
@@ -9218,52 +8836,6 @@
       },
       "depth": 4
     },
-    "3385": {
-      "name": "Wooglet's Witchcrown",
-      "description": "<stats><font color='#FFFFFF'>+155 Ability Power</font><br>+45 Armor  </stats><br><br><unique>UNIQUE Passive:</unique> Increases Ability Power by 25%<br><active>UNIQUE Active:</active> Champion becomes invulnerable and untargetable for 2.5 seconds, but is unable to move, attack, cast spells, or use items during this time (120 second cooldown).",
-      "colloq": ";hat;Ornn;Forge",
-      "plaintext": "Massively increases Ability Power and can be activated to enter stasis",
-      "from": [
-        "3090"
-      ],
-      "requiredAlly": "Ornn",
-      "image": {
-        "full": "3385.png",
-        "sprite": "item2.png",
-        "group": "item",
-        "x": 192,
-        "y": 144,
-        "w": 48,
-        "h": 48
-      },
-      "gold": {
-        "base": 0,
-        "purchasable": true,
-        "total": 3400,
-        "sell": 2380
-      },
-      "tags": [
-        "Active",
-        "Armor",
-        "SpellDamage"
-      ],
-      "maps": {
-        "10": true,
-        "11": false,
-        "12": false,
-        "22": false
-      },
-      "stats": {
-        "FlatMagicDamageMod": 155,
-        "FlatArmorMod": 45
-      },
-      "effect": {
-        "Effect1Amount": "25",
-        "Effect2Amount": "2.5",
-        "Effect3Amount": "120"
-      },
-      "depth": 4
-    },
     "3386": {
       "name": "Zhonya's Paradox",
       "description": "<stats><font color='#FFFFFF'>+100 Ability Power</font><br><font color='#FFFFFF'>+60 Armor</font><br>+10% Cooldown Reduction</stats><br><br><active>UNIQUE Active - Stasis:</active> Champion becomes invulnerable and untargetable for 2.5 seconds, but is unable to move, attack, cast spells, or use items during this time (120 second cooldown).",
@@ -9511,41 +9083,6 @@
         "Effect9Amount": "-0.1"
       },
       "depth": 4
-    },
-    "3400": {
-      "name": "'Your Cut'",
-      "description": "<spellPassive>Click to Consume:</spellPassive> Gain <gold>Gold</gold>!",
-      "colloq": "",
-      "plaintext": "",
-      "consumed": true,
-      "inStore": false,
-      "hideFromAll": true,
-      "image": {
-        "full": "3400.png",
-        "sprite": "item2.png",
-        "group": "item",
-        "x": 0,
-        "y": 192,
-        "w": 48,
-        "h": 48
-      },
-      "gold": {
-        "base": 0,
-        "purchasable": false,
-        "total": 0,
-        "sell": 0
-      },
-      "tags": [
-        "Consumable",
-        "GoldPer"
-      ],
-      "maps": {
-        "10": true,
-        "11": true,
-        "12": true,
-        "22": false
-      },
-      "stats": {}
     },
     "3401": {
       "name": "Remnant of the Aspect",
