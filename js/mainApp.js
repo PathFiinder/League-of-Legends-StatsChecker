@@ -841,13 +841,11 @@ document.addEventListener('DOMContentLoaded', function () {
     //Items Functions
 
     getItemsDetails = () => {
-        fetch('http://ddragon.leagueoflegends.com/cdn/9.17.1/data/en_US/item.json')
+        fetch('https://pathfiinder.github.io/Rito-API/json/item.json')
             .then(data => data.json())
             .then(json => {
 
                 [].forEach.call(Object.values(json.data), (element) => {
-                    const itemId = parseInt((element.image.full).slice(0, 4), 10);
-
                     itemsInfo.push({
                         name: element.name,
                         description: element.description,
@@ -932,7 +930,7 @@ document.addEventListener('DOMContentLoaded', function () {
             mainChampions.classList.remove('main__champions--active');
         }
         if (itemsInfo.length == 0) {
-            //getItemsDetails();
+            getItemsDetails();
         }
     });
 
