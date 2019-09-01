@@ -16,15 +16,16 @@
 <body>
     <main class="main">
         <div class="main__buttons">
-            <button class="button main__buttons--stats main__buttons--active">Stats Checker</button>
-            <button class="button main__buttons--champions">Champions</button>
-            <button class="button main__buttons--items">Items</button>
+            <button class="main__button main__buttons--stats main__buttons--active">Stats Checker</button>
+            <button class="main__button main__buttons--champions">Champions</button>
+            <button class="main__button main__buttons--items">Items</button>
         </div>
-        <article class="main__statsChecker statsChecker">
-            <h1 class="statsChecker__title">League of Legends stats checker website</h2>
+        <article class="main__statsChecker statsChecker main__statsChecker--active">
+            <h1 class="statsChecker__title">League of Legends stats checker (only EUNE)</h2>
             <h2 class="statsChecker__insert">Insert nickname of player: (example TheWanh3da)</h2>
             <input type="text" class="statsChecker__input" value="">
-            <button class="statsChecker__button">Search</button>
+            <button class="button statsChecker__button">Search</button>
+            <h2 class="statsChecker__errors"></h2>
             <section class="statsChecker__info info">
                 <div class="info__accStats">
                 </div>
@@ -33,10 +34,20 @@
                 <div class="info__historyGames historyGame"></div>
             </section>
         </article>
-        <article class="main__champions champions"></article>
-        <article class="main__items items"></article>
+        <article class="main__champions champions ">
+            Champions
+        </article>
+        <article class="main__items items">
+            <h2 class="items__title">League of Legends items</h2>
+            <h2 class="items__insert">Insert name of item: (example Black Cleaver)</h2>
+            <input type="text" class="items__input" value="Black Clierver">
+            <h2 class="items__errors"></h2>
+            <section class="items__list items">
+                
+            </section>
+        </article>
     </main>
-    <script src="js/script.js"></script>
+    <script src="js/mainApp.js"></script>
 </body>
 
 </html>

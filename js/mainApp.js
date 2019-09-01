@@ -1,7 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    const apiKey = 'RGAPI-1bd8db43-02a0-4582-bbac-d7243b6b7452';
+    const apiKey = 'RGAPI-57b7b0b4-4ce9-4244-9ea1-2bfdba56fd46';
 
+    const statsCheckerButton = document.querySelector('.main__buttons--stats');
+    const championsButton = document.querySelector('.main__buttons--champions');
+    const itemsButton = document.querySelector('.main__buttons--items');
+    const mainStatsChecker = document.querySelector('.main__statsChecker');
+    const mainChampions = document.querySelector('.main__champions');
+    const mainItems = document.querySelector('.main__items')
+
+    const itemsList = document.querySelector('.items__list');
+    const statsCheckerError = document.querySelector('.statsChecker__errors');
     const btnSearch = document.querySelector('.statsChecker__button');
     const mainInfo = document.querySelector('.statsChecker__info');
     const inputValueNickname = document.querySelector('.statsChecker__input');
@@ -50,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
         id: 30
     }]
     const championsNameById = [];
+    const itemsInfo = [];
     let historyGamesInfo = [];
     const draftIdQueue = 400;
     const rankedSoloDuoIdQueue = 420;
@@ -63,22 +73,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
+    //StatsChecker Functions
 
     main = (nickname) => {
         if (nickname != null) {
 
-
-
-
-
             historyGames.innerHTML = " ";
             historyGamesInfo = [];
+            mainInfo.classList.remove('statsChecker__info--active');
 
-            fetch(`https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nickname}?api_key=${apiKey}`)
+
+            fetch( `https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nickname}?api_key=${apiKey}`)
                 .then((data) => {
                     if (data.status == 200) {
+                        statsCheckerError.textContent = "";
+                        statsCheckerError.classList.remove('statsChecker__errors--active');
                         return data.json();
+                    } else if (data.status == 404) {
+                        statsCheckerError.innerHTML = "Invalid nickname"
+                        statsCheckerError.classList.add('statsChecker__errors--active');
                     } else {
                         console.log(data.status)
                     }
@@ -103,14 +116,14 @@ document.addEventListener('DOMContentLoaded', function () {
                         getHistoryGames(json.accountId)
                     }
                 })
-                .catch(err => console.log("Error:" + err))
-        } else {
-            console.log("Insert nickname")
+                .catch(err => {
+                    console.log(err)
+                })
         }
     }
 
     getRank = (id) => {
-        fetch(`https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${apiKey}`)
+        fetch( `https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${apiKey}`)
             .then((data) => {
                 if (data.status == 200) {
                     return data.json();
@@ -196,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     const challengerColorBorder = '#CBD111';
 
                     infoAccStats.style.borderColor = eval(SoloDuoRankedTier.toLowerCase() + 'ColorBorder');
-                    
+
                 }
             })
             .catch(err => console.log("error     " + err))
@@ -239,7 +252,7 @@ document.addEventListener('DOMContentLoaded', function () {
     //getChampions();
 
     getMastery = (id) => {
-        fetch(`https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${id}?api_key=${apiKey}`)
+        fetch( `https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${id}?api_key=${apiKey}`)
             .then((data) => {
                 return data.json()
             })
@@ -295,7 +308,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     getHistoryGames = (id) => {
-        fetch(`https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/match/v4/matchlists/by-account/${id}?api_key=${apiKey}`)
+        fetch( `https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/match/v4/matchlists/by-account/${id}?api_key=${apiKey}`)
             .then((data) => {
                 return data.json();
             })
@@ -323,7 +336,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     getSingleGameHistory = (matchID, singleId) => {
-        fetch(`https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/match/v4/matches/${matchID}?api_key=${apiKey}`)
+        fetch( `https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/match/v4/matches/${matchID}?api_key=${apiKey}`)
             .then((data) => {
                 return data.json()
             })
@@ -440,7 +453,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 playerIcon: element.player.profileIcon
             })
         });
-    
+
 
 
 
@@ -548,13 +561,12 @@ document.addEventListener('DOMContentLoaded', function () {
         `
 
 
-
         document.querySelector(`[data-singleId ="${singleId}"] .historyGame__players-stats`).innerHTML = `
             <div class="playerStats__team-result">
                 <h3 class="playerStats__result">Team: ${(teamStats[0].teamId + "").slice(0,1)} <span class="playerStats__result--bold ${teamStats[0].win == "Win" ? "playerStats__result--win" : "playerStats__result--defeat"}">${teamStats[0].win == "Win" ? "Win" : "Defeat"}</span></h3>
                 <h3 class="playerStats__stats">${teamOneKills} / ${teamOneDeaths} / ${teamOneAssist}</h3>
-                <div class="playerStats__bans ${teamStats[0].bans != null ? "playerStats__bans--active" : "playerStats__bans--disable"}">
-                    <h3 class="playerStats__bans-title">Bans: </h3>
+                <div class="playerStats__bans ${teamStats[0].bans.length != 0 ? "playerStats__bans--active" : "playerStats__bans--disable"}">
+                    <h3 class="playerStats__bans-title"> ${teamStats[0].bans.length != 0 ? "Bans:" : "" }</h3>
                     ${getTeamBans(teamStats,100)}
                 </div>
                 <div class="playerStats__specialObj specialObj">
@@ -586,8 +598,8 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="playerStats__team-result">
                 <h3 class="playerStats__result">Team: ${(teamStats[1].teamId + "").slice(0,1)} <span class="playerStats__result--bold ${teamStats[1].win == "Win" ? "playerStats__result--win" : "playerStats__result--defeat"}">${teamStats[1].win == "Win" ? "Win" : "Defeat"}</span></h3>
                 <h3 class="playerStats__stats">${teamTwoKills} / ${teamTwoDeaths} / ${teamTwoAssist}</h3>
-                <div class="playerStats__bans ${teamStats[1].bans != null ? "playerStats__bans--active" : "playerStats__bans--disable"}">
-                <h3 class="playerStats__bans-title">Bans: </h3>
+                <div class="playerStats__bans ${teamStats[1].bans.length != 0 ? "playerStats__bans--active" : "playerStats__bans--disable"}">
+                <h3 class="playerStats__bans-title"> ${teamStats[1].bans.length != 0 ? "Bans:" : "" }</h3>
                     ${getTeamBans(teamStats,200)}
                 </div>
                 <div class="playerStats__specialObj specialObj">
@@ -619,15 +631,15 @@ document.addEventListener('DOMContentLoaded', function () {
         `
     }
 
-    getTeamBans = (teamStats,teamId) => {
+    getTeamBans = (teamStats, teamId) => {
         let innerBans = ""
         teamStats.forEach(elementOut => {
-            if(elementOut.teamId == teamId){
+            if (elementOut.teamId == teamId) {
                 [].forEach.call(elementOut.bans, (elementIn) => {
                     let champName = "";
-         
+
                     championsNameById.forEach(ele => {
-                        if(ele.key == elementIn.championId){
+                        if (ele.key == elementIn.championId) {
                             champName = ele.name;
                         }
                     })
@@ -751,14 +763,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     getSpellName = (idSpell) => {
+        let spellName = "";
 
-        let spellName = ""
-        spellsIdWithName.forEach((element) => {
-            if (element.id == idSpell) {
-                spellName = element.name
-            }
-        })
+        if (idSpell == 0) {
+            spellName = "0"
+        } else {
 
+            spellsIdWithName.forEach((element) => {
+                if (element.id == idSpell) {
+                    spellName = element.name
+                }
+            })
+
+        }
         return spellName;
     }
 
@@ -800,6 +817,125 @@ document.addEventListener('DOMContentLoaded', function () {
             return "Other game";
         }
     }
+
+
+
+
+
+    //Champions Functions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //Items Functions
+
+    getItemsDetails = () => {
+        fetch('http://ddragon.leagueoflegends.com/cdn/9.17.1/data/en_US/item.json')
+            .then(data => data.json())
+            .then(json => {
+
+                [].forEach.call(Object.values(json.data), (element) => {
+                    const itemId = parseInt((element.image.full).slice(0, 4), 10);
+
+                    itemsInfo.push({
+                        name: element.name,
+                        description: element.description,
+                        from: element.from,
+                        image: element.image.full,
+                        priceGold: element.gold.total,
+                        sellGold: element.gold.sell,
+                        tags: element.tags
+                    })
+
+                })
+                createItemList(itemsInfo);
+
+            })
+            .catch(error => console.log(error))
+    }
+
+    createItemList = (itemList) => {
+        itemList.forEach(element => {
+            itemsList.innerHTML += createSingleItem(element);
+        })
+    }
+
+    createSingleItem = (item) => {
+        let innerSingleItem = "";
+
+        innerSingleItem = `
+            <div class="items__single" data-itemId=${((item.image).slice(0,4))}>
+                <img class="items__image" alt="Item image" src="images/items/${item.image}">
+                <h3 class="items__price"><span class="items__price--bold">Price: </span>${item.priceGold}</h3>
+                <h3 class="items__sell"><span class="items__sell--bold">Sale for:  </span>${item.sellGold}</h3>
+            </div>
+        `
+
+        return innerSingleItem;
+    }
+
+
+
+
+    //Events
+
+    statsCheckerButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        if (!statsCheckerButton.classList.contains('main__buttons--active')) {
+            statsCheckerButton.classList.add('main__buttons--active');
+            if (!mainStatsChecker.classList.contains('main__statsChecker--active')) {
+                mainStatsChecker.classList.add('main__statsChecker--active');
+            }
+            championsButton.classList.remove('main__buttons--active');
+            itemsButton.classList.remove('main__buttons--active')
+            mainChampions.classList.remove('main__champions--active');
+            mainItems.classList.remove('main__items--active');
+        }
+    });
+
+    championsButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        if (!championsButton.classList.contains('main__buttons--active')) {
+            championsButton.classList.add('main__buttons--active');
+            if (!mainChampions.classList.contains('main__champions--active')) {
+                mainChampions.classList.add('main__champions--active');
+            }
+            statsCheckerButton.classList.remove('main__buttons--active');
+            itemsButton.classList.remove('main__buttons--active')
+            mainStatsChecker.classList.remove('main__statsChecker--active');
+            mainItems.classList.remove('main__items--active');
+        }
+    });
+
+
+    itemsButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        if (!itemsButton.classList.contains('main__buttons--active')) {
+            itemsButton.classList.add('main__buttons--active');
+            if (!mainItems.classList.contains('main__items--active')) {
+                mainItems.classList.add('main__items--active');
+            }
+            statsCheckerButton.classList.remove('main__buttons--active');
+            championsButton.classList.remove('main__buttons--active')
+            mainStatsChecker.classList.remove('main__statsChecker--active');
+            mainChampions.classList.remove('main__champions--active');
+        }
+        if (itemsInfo.length == 0) {
+            //getItemsDetails();
+        }
+    });
+
 
     btnSearch.addEventListener('click', (event) => {
         event.preventDefault();

@@ -32,7 +32,7 @@ body {
           flex-direction: row;
 }
 
-.main__buttons .button {
+.main__buttons .main__button {
   -ms-flex-preferred-size: 33.33%;
       flex-basis: 33.33%;
   border: 1px solid black;
@@ -50,8 +50,61 @@ body {
   color: white;
 }
 
+.button {
+  height: 40px;
+  width: 100px;
+  position: relative;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  font-size: 22px;
+  margin-top: 10px;
+  color: black;
+}
+
+.button::after, .button::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 20%;
+  height: 20%;
+  border: 2px solid;
+  -webkit-transition: all 0.6s ease;
+  transition: all 0.6s ease;
+  border-radius: 2px;
+}
+
+.button::after {
+  bottom: 0;
+  right: 0;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: black;
+  border-right-color: black;
+}
+
+.button::before {
+  top: 0;
+  left: 0;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+  border-top-color: black;
+  border-left-color: black;
+}
+
+.button:hover:after, .button:hover:before {
+  width: 100%;
+  height: 100%;
+}
+
 .main__statsChecker {
   font-family: 'Lato',sans-serif;
+  display: none;
+}
+
+.main__statsChecker--active {
+  display: block;
 }
 
 .main__statsChecker .statsChecker__title {
@@ -80,52 +133,16 @@ body {
   border-right: 1px solid black;
 }
 
-.main__statsChecker .statsChecker__button {
-  height: 40px;
-  width: 100px;
-  position: relative;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  outline: none;
-  font-size: 22px;
-  margin-top: 10px;
-  color: black;
+.main__statsChecker .statsChecker__errors {
+  display: none;
 }
 
-.main__statsChecker .statsChecker__button::after, .main__statsChecker .statsChecker__button::before {
-  content: '';
+.main__statsChecker .statsChecker__errors--active {
   display: block;
-  position: absolute;
-  width: 20%;
-  height: 20%;
-  border: 2px solid;
-  -webkit-transition: all 0.6s ease;
-  transition: all 0.6s ease;
-  border-radius: 2px;
-}
-
-.main__statsChecker .statsChecker__button::after {
-  bottom: 0;
-  right: 0;
-  border-top-color: transparent;
-  border-left-color: transparent;
-  border-bottom-color: black;
-  border-right-color: black;
-}
-
-.main__statsChecker .statsChecker__button::before {
-  top: 0;
-  left: 0;
-  border-bottom-color: transparent;
-  border-right-color: transparent;
-  border-top-color: black;
-  border-left-color: black;
-}
-
-.main__statsChecker .statsChecker__button:hover:after, .main__statsChecker .statsChecker__button:hover:before {
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  font-size: 14px;
+  margin: 20px auto;
+  font-weight: bold;
 }
 
 .main__statsChecker .statsChecker__info {
@@ -893,6 +910,7 @@ body {
 @media (min-width: 1024px) {
   .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__mainData .mainData__gold {
     font-size: 13px;
+    margin-top: 8px;
   }
 }
 
@@ -1686,5 +1704,125 @@ body {
   .main__statsChecker .statsChecker__info .info__historyGames .historyGame__single .historyGame__players-stats .playerStats__team .team__single .team__player-items .team__single-item {
     width: 21.4px;
   }
+}
+
+.main__champions {
+  display: none;
+  font-family: 'Lato',sans-serif;
+}
+
+.main__champions--active {
+  display: block;
+}
+
+.main__items {
+  display: none;
+  font-family: 'Lato',sans-serif;
+}
+
+.main__items--active {
+  display: block;
+}
+
+.main__items .items__title {
+  font-size: 24px;
+  padding-top: 10px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.main__items .items__insert {
+  font-size: 15px;
+  width: 100%;
+  margin: 20px auto 30px auto;
+  font-weight: normal;
+}
+
+.main__items .items__input {
+  height: 30px;
+  width: calc(100% - 20px);
+  padding-left: 10px;
+  font-size: 16px;
+  border: none;
+  margin: 10px 10px 10px 10px;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.main__items .items__button {
+  font-size: 22px;
+  height: 50px;
+  width: 135px;
+}
+
+.main__items .items__errors {
+  display: none;
+}
+
+.main__items .items__errors--active {
+  display: block;
+  width: 90%;
+  font-size: 14px;
+  margin: 20px auto;
+  font-weight: bold;
+}
+
+.main__items .items__list {
+  width: 95%;
+  min-height: 100px;
+  margin: 10px auto 10px auto;
+  border: 1px solid black;
+  background-color: pink;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.main__items .items__list .items__single {
+  -ms-flex-preferred-size: calc(33.3% - 4px);
+      flex-basis: calc(33.3% - 4px);
+  height: 100px;
+  border: 1px solid black;
+  margin: 2px;
+  position: relative;
+}
+
+.main__items .items__list .items__single .items__image {
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.main__items .items__list .items__single .items__price {
+  font-size: 9px;
+  font-weight: normal;
+  position: absolute;
+  top: 5px;
+  left: 40px;
+}
+
+.main__items .items__list .items__single .items__price--bold {
+  font-weight: bold;
+}
+
+.main__items .items__list .items__single .items__sell {
+  font-size: 9px;
+  font-weight: normal;
+  position: absolute;
+  top: 15px;
+  left: 40px;
+}
+
+.main__items .items__list .items__single .items__sell--bold {
+  font-weight: bold;
 }
 /*# sourceMappingURL=style.css.map */
