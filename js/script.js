@@ -164,21 +164,21 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.querySelector('.info__rankedStats').innerHTML = `
                             <div class="ranked__single-item" data-ranked="solo/duo">
                                 <h2 class="ranked__title">Ranked Solo/Duo</h2>
-                                <img class="ranked__tier-image" alt="Tier ${SoloDuoRankedTier} image" src="https://pathfiinder.github.io/Rito-API/images/emblems/Emblem_${SoloDuoRankedTier}.png">
+                                <img class="ranked__tier-image" alt="Tier ${SoloDuoRankedTier} image" src="images/emblems/Emblem_${SoloDuoRankedTier}.png">
                                 <h3 class="ranked__tier"> ${SoloDuoRankedTier} ${SoloDuoRankedDiv}</h3>
                                 <h3 class="ranked__stats"><span class="ranked__stats--bold">${SoloDuoRankedPoinst} LP</span> / ${SoloDuoRankedWins}W  / ${SoloDuoRankedLosses}L</h3>
                                 <h3 class="ranked__win-ratio"> Win ratio:  ${(SoloDuoRankedWins != 0)?((SoloDuoRankedWins/(SoloDuoRankedWins + SoloDuoRankedLosses)) * 100).toFixed(0) : 0}%</h3>
                             </div>
                             <div class="ranked__single-item" data-ranked="flex">
                                 <h2 class="ranked__title">Ranked Flex 5x5 </h2>
-                                <img class="ranked__tier-image" alt="Tier ${flexRankedTier} image" src="https://pathfiinder.github.io/Rito-API/images/emblems/Emblem_${flexRankedTier}.png">
+                                <img class="ranked__tier-image" alt="Tier ${flexRankedTier} image" src="images/emblems/Emblem_${flexRankedTier}.png">
                                 <h3 class="ranked__tier"> ${flexRankedTier} ${flexRankedDiv}</h3>
                                 <h3 class="ranked__stats"><span class="ranked__stats--bold">${flexRankedPoinst} LP</span> / ${flexRankedWins}W  / ${flexRankedLosses}L</h3>
                                 <h3 class="ranked__win-ratio"> Win ratio:  ${(flexRankedWins != 0)?((flexRankedWins/(flexRankedWins + flexRankedLosses)) * 100).toFixed(0) : 0}%</h3>
                             </div>
                             <div class="ranked__single-item" data-ranked="ttf">
                                 <h2 class="ranked__title">Ranked TTF</h2>
-                                <img class="ranked__tier-image" alt="Tier ${ttfRankedTier} image" src="https://pathfiinder.github.io/Rito-API/images/emblems/Emblem_${ttfRankedTier}.png">
+                                <img class="ranked__tier-image" alt="Tier ${ttfRankedTier} image" src="images/emblems/Emblem_${ttfRankedTier}.png">
                                 <h3 class="ranked__tier"> ${ttfRankedTier} ${ttfRankedDiv}</h3>
                                 <h3 class="ranked__stats"><span class="ranked__stats--bold">${ttfRankedPoinst} LP</span> / ${ttfRankedWins}W  / ${ttfRankedLosses}L</h3>
                                 <h3 class="ranked__win-ratio"> Win ratio:  ${(ttfRankedWins != 0)?((ttfRankedWins/(ttfRankedWins + ttfRankedLosses)) * 100).toFixed(0) : 0}%</h3>
@@ -195,17 +195,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     const grandmasterColorBorder = '#7A0707';
                     const challengerColorBorder = '#CBD111';
 
-
-
                     infoAccStats.style.borderColor = eval(SoloDuoRankedTier.toLowerCase() + 'ColorBorder');
-
-
-
-
-
-                    /*[].forEach.call(json.matches, (ele) => {
-                        console.log(ele.queue)
-                    })*/
+                    
                 }
             })
             .catch(err => console.log("error     " + err))
@@ -276,27 +267,25 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
 
 
-
-
                 infoMasteryStats.innerHTML = `
                     <div class="mastery__single">
-                        <img class="mastery__champion-image" alt="Champion image" src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${firstMainChampionName}.png">
-                        <img class="mastery__level-image" alt="Mastery level  image" src="https://pathfiinder.github.io/Rito-API/images/mastery/lvl${firstMainChampion.championLevel}.png">
+                        <img class="mastery__champion-image" alt="Champion image" src="images/champions/${firstMainChampionName}.png">
+                        <img class="mastery__level-image" alt="Mastery level  image" src="images/mastery/lvl${firstMainChampion.championLevel}.png">
                         <h3 class="mastery__points">${firstMainChampion.championPoints} <span class="mastery__points--normal">pts</span></h3>
                     </div>
                     <div class="mastery__single">
-                        <img class="mastery__champion-image" alt="Champion image" src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${secondMainChampionName}.png">
-                        <img class="mastery__level-image" alt="Mastery level  image" src="https://pathfiinder.github.io/Rito-API/images/mastery/lvl${secondMainChampion.championLevel}.png">
+                        <img class="mastery__champion-image" alt="Champion image" src="images/champions/${secondMainChampionName}.png">
+                        <img class="mastery__level-image" alt="Mastery level  image" src="images/mastery/lvl${secondMainChampion.championLevel}.png">
                         <h3 class="mastery__points">${secondMainChampion.championPoints} <span class="mastery__points--normal">pts</span></h3>
                     </div>
                     <div class="mastery__single">
-                        <img class="mastery__champion-image" alt="Champion image" src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${thirdMainChampionName}.png">
-                        <img class="mastery__level-image" alt="Mastery level  image" src="https://pathfiinder.github.io/Rito-API/images/mastery/lvl${thirdMainChampion.championLevel}.png">
+                        <img class="mastery__champion-image" alt="Champion image" src="images/champions/${thirdMainChampionName}.png">
+                        <img class="mastery__level-image" alt="Mastery level  image" src="images/mastery/lvl${thirdMainChampion.championLevel}.png">
                         <h3 class="mastery__points">${thirdMainChampion.championPoints} <span class="mastery__points--normal">pts</span></h3>
                     </div>
                     <div class="mastery__single mastery__single--last">
-                        <img class="mastery__champion-image" alt="Champion image" src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${fourthMainChampionName}.png">
-                        <img class="mastery__level-image" alt="Mastery level  image" src="https://pathfiinder.github.io/Rito-API/images/mastery/lvl${fourthMainChampion.championLevel}.png">
+                        <img class="mastery__champion-image" alt="Champion image" src="images/champions/${fourthMainChampionName}.png">
+                        <img class="mastery__level-image" alt="Mastery level  image" src="images/mastery/lvl${fourthMainChampion.championLevel}.png">
                         <h3 class="mastery__points">${fourthMainChampion.championPoints} <span class="mastery__points--normal">pts</span></h3>
                     </div>
                 `
@@ -328,8 +317,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 historyGamesInfo.forEach((element, index) => {
                     getSingleGameHistory(element.gameId, index)
                 });
-                //getSingleGameHistory(historyGamesInfo[0].gameId)
-
 
             })
             .catch((error) => console.log(error))
@@ -341,11 +328,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 return data.json()
             })
             .then((json) => {
-                //console.log(json);
                 getMainPlayerStatsSingleGameHistory(json, singleId);
-
-
-
             })
     }
 
@@ -419,12 +402,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     <h3 class="historyGames__info-game-duration">${getGameDuration(gameDuration)}</h3>
                 </div>
                 <h3 class="historyGames__champion-name"> ${mainChampionName == "MonkeyKing" ? "Wukong" : mainChampionName} </h3>
-                <img class="historyGames__player-champion-image" alt="Champion player image: ${mainChampionName}" src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${mainChampionName}.png"> 
+                <img class="historyGames__player-champion-image" alt="Champion player image: ${mainChampionName}" src="images/champions/${mainChampionName}.png"> 
                 <h3 class="historyGames__stats">${mainStatsKill} / ${mainStatsDeaths} / ${mainStatsAssists}</h3>
                 <h3 class="historyGames__largest-multi-kill" style="display: ${mainLargestMultiKill >= 2 ? "block" : "none"}">${countLargestMultiKill(mainLargestMultiKill)}</h3>
                 <div class="historyGame__spells">
-                    <img class="historyGame__spells--primary" alt="Spells image" src="https://pathfiinder.github.io/Rito-API/images/spells/Summoner${getSpellName(mainSpellPrimary)}.png">
-                    <img class="historyGame__spells--secondary" alt="Spells image" src="https://pathfiinder.github.io/Rito-API/images/spells/Summoner${getSpellName(mainSpellSecondary)}.png">
+                    <img class="historyGame__spells--primary" alt="Spells image" src="images/spells/Summoner${getSpellName(mainSpellPrimary)}.png">
+                    <img class="historyGame__spells--secondary" alt="Spells image" src="images/spells/Summoner${getSpellName(mainSpellSecondary)}.png">
                 </div>
                 <div class="historyGame__mainItems mainItems">
                     ${countItemsMain(mainItems)}
@@ -569,23 +552,23 @@ document.addEventListener('DOMContentLoaded', function () {
                 <h3 class="playerStats__stats">${teamOneKills} / ${teamOneDeaths} / ${teamOneAssist}</h3>
                 <div class="playerStats__specialObj specialObj">
                     <div class="specialObj__single">
-                        <img class="specialObj__image" alt="Tower image" src="https://pathfiinder.github.io/Rito-API/images/specialObj/towers.png">
+                        <img class="specialObj__image" alt="Tower image" src="images/specialObj/towers.png">
                         <h3 class="specialObj__stats">${teamStats[0].towerKills}</h3>
                     </div>
                      <div class="specialObj__single">
-                        <img class="specialObj__image" alt="Inhibitors image" src="https://pathfiinder.github.io/Rito-API/images/specialObj/inhibitors.png">
+                        <img class="specialObj__image" alt="Inhibitors image" src="images/specialObj/inhibitors.png">
                         <h3 class="specialObj__stats">${teamStats[0].inhibitorKills}</h3>
                     </div>
                     <div class="specialObj__single">
-                        <img class="specialObj__image" alt="Baron image" src="https://pathfiinder.github.io/Rito-API/images/specialObj/baron.png">
+                        <img class="specialObj__image" alt="Baron image" src="images/specialObj/baron.png">
                         <h3 class="specialObj__stats">${teamStats[0].baronKills}</h3>
                     </div>
                     <div class="specialObj__single">
-                        <img class="specialObj__image" alt="Dragon image" src="https://pathfiinder.github.io/Rito-API/images/specialObj/dragons.png">
+                        <img class="specialObj__image" alt="Dragon image" src="images/specialObj/dragons.png">
                         <h3 class="specialObj__stats">${teamStats[0].dragonKills}</h3>
                     </div>
                     <div class="specialObj__single">
-                        <img class="specialObj__image" alt="Herald image" src="https://pathfiinder.github.io/Rito-API/images/specialObj/herald.png">
+                        <img class="specialObj__image" alt="Herald image" src="images/specialObj/herald.png">
                         <h3 class="specialObj__stats">${teamStats[0].riftHeraldKills}</h3>
                     </div>
                 </div>
@@ -598,23 +581,23 @@ document.addEventListener('DOMContentLoaded', function () {
                 <h3 class="playerStats__stats">${teamTwoKills} / ${teamTwoDeaths} / ${teamTwoAssist}</h3>
                 <div class="playerStats__specialObj specialObj">
                     <div class="specialObj__single">
-                        <img class="specialObj__image" alt="Tower image" src="https://pathfiinder.github.io/Rito-API/images/specialObj/towers.png">
+                        <img class="specialObj__image" alt="Tower image" src="images/specialObj/towers.png">
                         <h3 class="specialObj__stats">${teamStats[1].towerKills}</h3>
                     </div>
                      <div class="specialObj__single">
-                        <img class="specialObj__image" alt="Inhibitors image" src="https://pathfiinder.github.io/Rito-API/images/specialObj/inhibitors.png">
+                        <img class="specialObj__image" alt="Inhibitors image" src="images/specialObj/inhibitors.png">
                         <h3 class="specialObj__stats">${teamStats[1].inhibitorKills}</h3>
                     </div>
                     <div class="specialObj__single">
-                        <img class="specialObj__image" alt="Baron image" src="https://pathfiinder.github.io/Rito-API/images/specialObj/baron.png">
+                        <img class="specialObj__image" alt="Baron image" src="images/specialObj/baron.png">
                         <h3 class="specialObj__stats">${teamStats[1].baronKills}</h3>
                     </div>
                     <div class="specialObj__single">
-                        <img class="specialObj__image" alt="Dragon image" src="https://pathfiinder.github.io/Rito-API/images/specialObj/dragons.png">
+                        <img class="specialObj__image" alt="Dragon image" src="images/specialObj/dragons.png">
                         <h3 class="specialObj__stats">${teamStats[1].dragonKills}</h3>
                     </div>
                     <div class="specialObj__single">
-                        <img class="specialObj__image" alt="Herald image" src="https://pathfiinder.github.io/Rito-API/images/specialObj/herald.png">
+                        <img class="specialObj__image" alt="Herald image" src="images/specialObj/herald.png">
                         <h3 class="specialObj__stats">${teamStats[1].riftHeraldKills}</h3>
                     </div>
                 </div>
@@ -637,7 +620,7 @@ document.addEventListener('DOMContentLoaded', function () {
             items.forEach(element => {
                 if (element != 0) {
                     innerItemsSet += `
-                    <img class="team__single-item" alt="Item image" src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/item/${element}.png">
+                    <img class="team__single-item" alt="Item image" src="images/items/${element}.png">
                 `
                 }
             })
@@ -657,11 +640,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
             return `
             <div class="team__single">
-                <img class="team__champ-image" alt="Champion image" src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/champion/${champName}.png">
+                <img class="team__champ-image" alt="Champion image" src="images/champions/${champName}.png">
                 <h3 class="team__champ-level">${champLlvl}</h3>
                 <div class="team__spells">
-                    <img class="team__single-spell" alt="Spell image" src="https://pathfiinder.github.io/Rito-API/images/spells/Summoner${getSpellName(spell1)}.png">
-                    <img class="team__single-spell" alt="Spell image" src="https://pathfiinder.github.io/Rito-API/images/spells/Summoner${getSpellName(spell2)}.png">
+                    <img class="team__single-spell" alt="Spell image" src="images/spells/Summoner${getSpellName(spell1)}.png">
+                    <img class="team__single-spell" alt="Spell image" src="images/spells/Summoner${getSpellName(spell2)}.png">
                 </div>
                 <h3 class="team__player-nickname">${nick}</h3>
                 <h3 class="team__player-stats">${kills} / ${deaths} / ${assists}</h3>
@@ -726,9 +709,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 order++;
             }
             if (element.name == "item6") {
-                html += `<img class="mainItems__single mainItems__single--item6" style="order: 3" alt="Item ${element.id} image" src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/item/${element.id}.png">`;
+                html += `<img class="mainItems__single mainItems__single--item6" style="order: 3" alt="Item ${element.id} image" src="images/items/${element.id}.png">`;
             } else {
-                html += `<img class="mainItems__single" style="order: ${order == 3 ? order++ : order}" alt="Item ${element.id} image" src="http://ddragon.leagueoflegends.com/cdn/9.17.1/img/item/${element.id}.png">`;
+                html += `<img class="mainItems__single" style="order: ${order == 3 ? order++ : order}" alt="Item ${element.id} image" src="images/items/${element.id}.png">`;
             }
         })
         return html;
@@ -788,7 +771,6 @@ document.addEventListener('DOMContentLoaded', function () {
     btnSearch.addEventListener('click', (event) => {
         event.preventDefault();
         main(inputValueNickname.value);
-        //inputValueNickname.value = "";
     });
 
     inputValueNickname.addEventListener("keyup", (event) => {
