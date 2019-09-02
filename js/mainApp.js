@@ -879,6 +879,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
     createSingleItem = (item) => {
         let innerSingleItem = "";
+        //console.log(item.description)
+
+
+        function getMatches(string, regex, index) {
+            index || (index = 1);
+            var matches = [];
+            var match;
+            while (match = regex.exec(string)) {
+                matches.push(match[index]);
+            }
+            return matches;
+        }
+
+
+        let statsString = item.description;
+        let Regex = /(<\s*stats[^>]*>)(.+)(<\s*\/\s*stats>)/g;
+        const matches = getMatches(statsString, Regex, 2);
+
+
+
+        console.log(JSON.stringify(matches).split('<br>'));
+        const regexToStats = /^"\[\\"(.+[^"])|^"(.+\w)/g;
+
+
+
+
 
         innerSingleItem = `
             <div class="items__single" data-itemId=${((item.image).slice(0,4))}>
