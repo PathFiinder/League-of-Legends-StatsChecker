@@ -849,7 +849,7 @@ document.addEventListener('DOMContentLoaded', function () {
     //Items Functions
 
     getItemsDetails = () => {
-        fetch('https://pathfiinder.github.io/Rito-API/json/item.json')
+        fetch('https://pathfiinder.github.io/Riot-API/json/item.json')
             .then(data => data.json())
             .then(json => {
 
