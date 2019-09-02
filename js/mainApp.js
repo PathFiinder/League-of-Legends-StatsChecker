@@ -894,16 +894,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         let statsString = item.description;
-        let Regex = /(<\s*stats[^>]*>)(.+)(<\s*\/\s*stats>)/g;
-        const matches = getMatches(statsString, Regex, 2);
+        let regexStats = /(<\s*stats[^>]*>)(.+)(<\s*\/\s*stats>)/g;
+        const matches = getMatches(statsString, regexStats, 2);
 
+        let singleStatsString = JSON.stringify(matches).split('<br>');
+        const regexToSingleStats = /[^\\"[](.+[+\w])/g;
+        const singleStats = getMatches(singleStatsString, regexToSingleStats, 0)
 
+        const stats = ("" + singleStats[0]).split(',');
 
-        console.log(JSON.stringify(matches).split('<br>'));
-        const regexToStats = /^"\[\\"(.+[^"])|^"(.+\w)/g;
+        singleStat = () => {
+            let innerStat = "";
 
+            stats.forEach(element => {
+                innerStat += `
+                <li class="items__single-stat">${element}</li>
+                `
+            });
 
-
+            return innerStat;
+        } 
 
 
         innerSingleItem = `
@@ -911,6 +921,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 <img class="items__image" alt="Item image" src="images/items/${item.image}">
                 <h3 class="items__price"><span class="items__price--bold">Price: </span>${item.priceGold}</h3>
                 <h3 class="items__sell"><span class="items__sell--bold">Sale for:  </span>${item.sellGold}</h3>
+                <h3 class="items__name">${item.name}</h3>
+                <h3 class="items__stats-title ${stats[0] != "undefined" ? "items__stats-title--active" : ""}">${stats[0] != "undefined" ? "Stats: " : ""}</h3>
+                <ul class="items__stats-list ${stats[0] != "undefined" ? "items__stats-list--active" : ""}">
+                    ${singleStat()}
+                </ul>
             </div>
         `
 

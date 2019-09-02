@@ -1261,52 +1261,6 @@
         "FlatMagicDamageMod": 60
       }
     },
-    "1059": {
-      "name": "Space Vampiric Scepter",
-      "description": "<stats>+15 Attack Damage<br>+2.5% Life Steal</stats>",
-      "colloq": ";",
-      "plaintext": "Basic attacks restore Health",
-      "from": [
-        "1036"
-      ],
-      "into": [
-        "3231",
-        "3230",
-        "3080",
-        "3162",
-        "3813"
-      ],
-      "image": {
-        "full": "1059.png",
-        "sprite": "item0.png",
-        "group": "item",
-        "x": 288,
-        "y": 96,
-        "w": 48,
-        "h": 48
-      },
-      "gold": {
-        "base": 550,
-        "purchasable": true,
-        "total": 900,
-        "sell": 630
-      },
-      "tags": [
-        "Damage",
-        "LifeSteal"
-      ],
-      "maps": {
-        "10": false,
-        "11": false,
-        "12": false,
-        "22": false
-      },
-      "stats": {
-        "FlatPhysicalDamageMod": 15,
-        "PercentLifeStealMod": 0.025
-      },
-      "depth": 2
-    },
     "1082": {
       "name": "The Dark Seal",
       "description": "<stats>+10 Ability Power<br>+25% Increased Healing from Potions<br>+100 Mana</stats><br><br><unique>UNIQUE Passive - Dread:</unique> Grants +3 Ability Power per Glory.  <br><unique>UNIQUE Passive - Do or Die:</unique> Grants 2 Glory for a champion kill or 1 Glory for an assist, up to 10 Glory total. Lose 4 Glory on death.",
@@ -2532,7 +2486,7 @@
     },
     "3001": {
       "name": "Abyssal Mask",
-      "description": "<stats>+350 Health<br><mana>+300 Mana</mana><br>+55 Magic Resist<br>+10% Cooldown Reduction</stats><br><br><unique>UNIQUE Passive - Eternity:</unique> 15% of damage taken from champions is gained as Mana. Spending Mana restores 20% of the cost as Health, up to 25 per spell cast.<br><aura>UNIQUE Aura:</aura> Nearby enemy champions take 15% more magic damage.",
+      "description": "<stats>+350 Health<br>+300 Mana<br>+55 Magic Resist<br>+10% Cooldown Reduction</stats><br><br><unique>UNIQUE Passive - Eternity:</unique> 15% of damage taken from champions is gained as Mana. Spending Mana restores 20% of the cost as Health, up to 25 per spell cast.<br><aura>UNIQUE Aura:</aura> Nearby enemy champions take 15% more magic damage.",
       "colloq": ";",
       "plaintext": "Nearby enemies take more magic damage",
       "from": [
@@ -2835,7 +2789,7 @@
     },
     "3020": {
       "name": "Sorcerer's Shoes",
-      "description": "<groupLimit>Limited to 1 pair of boots.</groupLimit><br><br><stats>+18 Magic Penetration<br>+45 Movement Speed</a></stats><br><br><unique>UNIQUE Passive - Enhanced Movement:</unique> +45 Movement Speed",
+      "description": "<groupLimit>Limited to 1 pair of boots.</groupLimit><br><br><stats>+18 Magic Penetration<br>+45 Movement Speed</stats><br><br><unique>UNIQUE Passive - Enhanced Movement:</unique> +45 Movement Speed",
       "colloq": ";",
       "plaintext": "Enhances Movement Speed and magic damage",
       "from": [
@@ -4608,52 +4562,6 @@
       },
       "depth": 3
     },
-    "3080": {
-      "name": "Space Bloodthirster",
-      "description": "<stats>+65 Attack Damage</stats><br><br><unique>UNIQUE Passive:</unique> +5% Life Steal<br><unique>UNIQUE Passive:</unique> Your basic attacks can now overheal you. Excess life is stored as a shield that can block 50-350 damage, based on champion level.<br><br>This shield decays slowly if you haven't dealt or taken damage in the last 25 seconds.",
-      "colloq": ";bt",
-      "plaintext": "Grants Attack Damage, Life Steal and Life Steal now overheals",
-      "from": [
-        "1038",
-        "1036",
-        "1059"
-      ],
-      "image": {
-        "full": "3080.png",
-        "sprite": "item1.png",
-        "group": "item",
-        "x": 48,
-        "y": 96,
-        "w": 48,
-        "h": 48
-      },
-      "gold": {
-        "base": 750,
-        "purchasable": true,
-        "total": 3300,
-        "sell": 2310
-      },
-      "tags": [
-        "Damage",
-        "LifeSteal"
-      ],
-      "maps": {
-        "10": false,
-        "11": false,
-        "12": false,
-        "22": false
-      },
-      "stats": {
-        "FlatPhysicalDamageMod": 65
-      },
-      "effect": {
-        "Effect1Amount": "50",
-        "Effect2Amount": "350",
-        "Effect3Amount": "25",
-        "Effect4Amount": "0.05"
-      },
-      "depth": 3
-    },
     "3082": {
       "name": "Warden's Mail",
       "description": "<stats>+40 Armor</stats><br><br><unique>UNIQUE Passive - Cold Steel:</unique> When hit by basic attacks, reduces the attacker's Attack Speed by 15% for 1 seconds.",
@@ -6037,58 +5945,6 @@
         "Effect8Amount": "25"
       },
       "depth": 2
-    },
-    "3118": {
-      "name": "Space Knight's Vow",
-      "description": "<stats>+250 Health<br>+40 Armor<br>+10% Cooldown Reduction</stats><br><br><active>UNIQUE Active:</active> Designate an allied champion as your <a href='KnightsVowPartner'>Partner</a> (90 second cooldown).<br><passive>UNIQUE Passive:</passive> If your <a href='KnightsVowPartner'>Partner</a> is nearby, gain +20 additional Armor and +15% Movement Speed towards them.<br><passive>UNIQUE Passive:</passive> If your <a href='KnightsVowPartner'>Partner</a> is nearby, heal for 3% of the damage your <a href='KnightsVowPartner'>Partner</a> deals to champions and redirect 12% of the damage your <a href='KnightsVowPartner'>Partner</a> takes from champions to you as <font color='#FFFFFF'>true</font> damage (healing and damage redirection are reduced by 50% if you are ranged).<br><br><rules>(Champions can only be linked by one Knight's Vow at a time.)</rules>",
-      "colloq": ";",
-      "plaintext": "Partner with an ally to protect each other",
-      "from": [
-        "3067",
-        "1031"
-      ],
-      "image": {
-        "full": "3118.png",
-        "sprite": "item1.png",
-        "group": "item",
-        "x": 144,
-        "y": 240,
-        "w": 48,
-        "h": 48
-      },
-      "gold": {
-        "base": 600,
-        "purchasable": true,
-        "total": 2200,
-        "sell": 1540
-      },
-      "tags": [
-        "Health",
-        "Armor",
-        "Aura",
-        "CooldownReduction",
-        "NonbootsMovement"
-      ],
-      "maps": {
-        "10": false,
-        "11": false,
-        "12": false,
-        "22": false
-      },
-      "stats": {
-        "FlatHPPoolMod": 250,
-        "FlatArmorMod": 40
-      },
-      "effect": {
-        "Effect1Amount": "20",
-        "Effect2Amount": "0.15",
-        "Effect3Amount": "0.03",
-        "Effect4Amount": "0.12",
-        "Effect5Amount": "90",
-        "Effect6Amount": "0.5",
-        "Effect7Amount": "1000"
-      },
-      "depth": 3
     },
     "3123": {
       "name": "Executioner's Calling",
@@ -8146,65 +8002,6 @@
         "Effect18Amount": "10"
       }
     },
-    "3305": {
-      "name": "Timeworn Nomad's Medallion",
-      "description": "<stats>+10 Movement Speed<br>+50% Base Health Regen <br>+10% Cooldown Reduction<br>+2 Gold per 10 seconds</stats><br><br><unique>UNIQUE Passive - Favor:</unique> Enemy minions killed by your allies sometimes drop coins that grant <scaleMana>6%</scaleMana> missing mana (minimum 10). If there is an allied Champion nearby, sometimes the coins grant <gold>50</gold> gold instead. Cannon minions always drop coins.<hr><passive>QUEST:</passive> Earn 750 gold using this item.<br><passive>REWARD:</passive> <font color='#CFBF84'>Favor</font> is upgraded to <font color='#CFBF84'><a href='coinlinequestreward'>Emperor's Favor</a></font> and allied champions moving toward you gain 8% movement speed.<br><br><groupLimit>Limited to 1 Gold Income or Jungle item.</groupLimit><br><br><rules><font color='#447777'>''The medallion shines with the glory of a thousand voices when exposed to the sun.'' - Historian Shurelya, 22 June, 24 CLE</font></rules>",
-      "colloq": ";",
-      "plaintext": "Grants gold and mana when nearby minions die that you didn't kill",
-      "from": [
-        "1006",
-        "3304"
-      ],
-      "into": [
-        "3306"
-      ],
-      "image": {
-        "full": "3305.png",
-        "sprite": "item2.png",
-        "group": "item",
-        "x": 48,
-        "y": 48,
-        "w": 48,
-        "h": 48
-      },
-      "gold": {
-        "base": 300,
-        "purchasable": true,
-        "total": 850,
-        "sell": 340
-      },
-      "tags": [
-        "HealthRegen",
-        "ManaRegen",
-        "Active",
-        "GoldPer",
-        "CooldownReduction"
-      ],
-      "maps": {
-        "10": true,
-        "11": false,
-        "12": false,
-        "22": false
-      },
-      "stats": {},
-      "effect": {
-        "Effect1Amount": "2",
-        "Effect2Amount": "15",
-        "Effect3Amount": "50",
-        "Effect4Amount": "10",
-        "Effect5Amount": "0",
-        "Effect6Amount": "0",
-        "Effect7Amount": "0",
-        "Effect8Amount": "0",
-        "Effect9Amount": "0",
-        "Effect10Amount": "750",
-        "Effect11Amount": "50",
-        "Effect12Amount": "0.06",
-        "Effect13Amount": "10",
-        "Effect14Amount": "10"
-      },
-      "depth": 2
-    },
     "3306": {
       "name": "Timeworn Talisman of Ascension",
       "description": "<stats>+10 Movement Speed<br>+45 Armor<br>+175% Base Health Regen <br>+10% Cooldown Reduction<br>+2 Gold per 10 seconds</stats><br><br><unique>UNIQUE Passive - Point Runner:</unique> Builds up to +20% Movement Speed over 2 seconds while near turrets, fallen turrets and Void Gates.<br><unique>UNIQUE Passive - Favor:</unique> Enemy minions killed by your allies sometimes drop coins that grant <scaleMana>6%</scaleMana> missing mana (minimum 10). If there is an allied Champion nearby, sometimes the coins grant <gold>50</gold> gold instead. Cannon minions always drop coins.<br><active>UNIQUE Active:</active> Grants nearby allies +@Effect5Amount*100@% Movement Speed for @Effect6Amount@ seconds (60 second cooldown).<hr><passive>QUEST:</passive> Earn 750 gold using this item.<br><passive>REWARD:</passive> <font color='#CFBF84'>Favor</font> is upgraded to <font color='#CFBF84'><a href='coinlinequestreward'>Emperor's Favor</a></font> and allied champions moving toward you gain 8% movement speed.<br><br><groupLimit>Limited to 1 Gold Income or Jungle item.</groupLimit><br><br><rules><font color='#447777'>''Praise the sun.'' - Historian Shurelya, 22 September, 25 CLE</font></rules>",
@@ -8568,7 +8365,7 @@
     },
     "3379": {
       "name": "Infernal Mask",
-      "description": "<stats>+750 Health<br>+300 Mana<br>>+100 Magic Resist<br>+10% Cooldown Reduction</stats><br><br><unique>UNIQUE Passive - Eternity:</unique> 15% of damage taken from champions is gained as Mana. Spending Mana restores 20% of the cost as Health, up to 25 per spell cast.<br><aura>UNIQUE Aura:</aura> Nearby enemy champions take 15% more magic damage.",
+      "description": "<stats>+750 Health<br>+300 Mana<br>+100 Magic Resist<br>+10% Cooldown Reduction</stats><br><br><unique>UNIQUE Passive - Eternity:</unique> 15% of damage taken from champions is gained as Mana. Spending Mana restores 20% of the cost as Health, up to 25 per spell cast.<br><aura>UNIQUE Aura:</aura> Nearby enemy champions take 15% more magic damage.",
       "colloq": ";Ornn;forge;Masterwork",
       "plaintext": "Nearby enemies take more magic damage",
       "from": [
@@ -9684,7 +9481,7 @@
     },
     "3802": {
       "name": "Lost Chapter",
-      "description": "<stats>+40 Ability Power<br><mana>+300 Mana</mana></stats><br><br><unique>UNIQUE Passive - Haste:</unique> +10% Cooldown Reduction<br><unique>UNIQUE Passive:</unique> Upon levelling up, restores 20% of your maximum Mana over 3 seconds.",
+      "description": "<stats>+40 Ability Power<br>+300 Mana</stats><br><br><unique>UNIQUE Passive - Haste:</unique> +10% Cooldown Reduction<br><unique>UNIQUE Passive:</unique> Upon levelling up, restores 20% of your maximum Mana over 3 seconds.",
       "colloq": ";",
       "plaintext": "Restores Mana upon levelling up.",
       "from": [
