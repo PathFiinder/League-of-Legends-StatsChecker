@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    const apiKey = 'RGAPI-57b7b0b4-4ce9-4244-9ea1-2bfdba56fd46';
+    const apiKey = 'RGAPI-15e87828-5598-48ad-b90b-789dee390ba4';
 
     const statsCheckerButton = document.querySelector('.main__buttons--stats');
     const championsButton = document.querySelector('.main__buttons--champions');
@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const mainItems = document.querySelector('.main__items')
 
     const itemsList = document.querySelector('.items__list');
+    const itemsInput = document.querySelector('.items__input');
+    const championsList = document.querySelector('.champions__list');
     const statsCheckerError = document.querySelector('.statsChecker__errors');
     const btnSearch = document.querySelector('.statsChecker__button');
     const mainInfo = document.querySelector('.statsChecker__info');
@@ -59,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
         id: 30
     }]
     const championsNameById = [];
-    const itemsInfo = [];
+    let itemsInfo = [];
     let historyGamesInfo = [];
     const draftIdQueue = 400;
     const rankedSoloDuoIdQueue = 420;
@@ -111,7 +113,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         infoAccStats.classList.add('info__accStats--active');
 
                         getRank(json.id);
-                        getChampions();
                         getMastery(json.id);
                         getHistoryGames(json.accountId)
                     }
@@ -222,34 +223,30 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then((json) => {
 
-                /* [].forEach.call(Object.values(json.data), (ele, index) => {
-                     fetch(`http://ddragon.leagueoflegends.com/cdn/9.17.1/data/en_US/champion/${ele.id}.json`)
-                         .then(data => data.json())
-                         .then(json => {
-                             const name = "json.data." + ele.id;
-                             if (eval(name)) {
-                                 championsNameById.push({
-                                     name: eval(name).id,
-                                     key: parseInt(eval(name).key, 10),
-                                     skins: eval(name).skins,
-                                     stats: eval(name).stats
-                                 })
 
-                             }
-                         })
-                         .catch(error => {}) //console.log(error))*/
                 [].forEach.call(Object.values(json.data), (ele, index) => {
                     championsNameById.push({
                         name: ele.id,
                         key: parseInt(ele.key, 10),
+                        title: ele.title,
+                        hp: ele.stats.hp,
+                        mana: ele.stats.mp,
+                        movespeed: ele.stats.movespeed,
+                        armor: ele.stats.armor,
+                        attackRange: ele.stats.attackrange,
+                        critic: ele.stats.crit,
+                        dmg: ele.stats.attackdamage,
+                        attackSpeed: ele.stats.attackspeed,
+                        magicResistance: ele.stats.spellblock
                     })
                 });
 
             })
             .catch((error) => console.log(error));
+
     }
 
-    //getChampions();
+    getChampions();
 
     getMastery = (id) => {
         fetch( `https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${id}?api_key=${apiKey}`)
@@ -308,7 +305,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     getHistoryGames = (id) => {
-        fetch( `https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/match/v4/matchlists/by-account/${id}?api_key=${apiKey}`)
+        fetch(`https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/match/v4/matchlists/by-account/${id}?api_key=${apiKey}`)
             .then((data) => {
                 return data.json();
             })
@@ -453,9 +450,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 playerIcon: element.player.profileIcon
             })
         });
-
-
-
 
         previousData = (index) => {
             const temp = [];
@@ -818,25 +812,39 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-
-
-
-
     //Champions Functions
 
+    createChampionsList = (championList) => {
+        championsNameById.forEach(element => {
+            championList.innerHTML += createSingleChampion(element);
 
+        })
+    }
 
+    createSingleChampion = (champion) => {
+        let innerChamp = "";
+        innerChamp = `
+            <div class="champion__single">
+                <h3 class="champion__name">${champion.name}</h3>
+                <h3 class="champion__title">${(champion.title).charAt(0).toUpperCase() + (champion.title).slice(1)}</h3>
+                <img class="champion__image" alt="Champion ${champion.name} image" src="images/champions/${champion.name}.png">
+                <h3 class="champion__stats-title">Stats: </h3>
+                <ul class="champion__stats-list">
+                    <li class="champion__single-stat"><span class="champion__single-stat--underline">Health: </span>${champion.hp}</li>
+                    <li class="champion__single-stat"><span class="champion__single-stat--underline">Mana: </span>${champion.mana}</li>
+                    <li class="champion__single-stat"><span class="champion__single-stat--underline">Movespeed: </span>${champion.movespeed}</li>
+                    <li class="champion__single-stat"><span class="champion__single-stat--underline">Armor: </span>${champion.armor}</li>
+                    <li class="champion__single-stat"><span class="champion__single-stat--underline">Attack range: </span>${champion.attackRange}</li>
+                    <li class="champion__single-stat"><span class="champion__single-stat--underline">Critical strike: </span>${champion.critic}</li>
+                    <li class="champion__single-stat"><span class="champion__single-stat--underline">Attacking dmg: </span>${champion.dmg}</li>
+                    <li class="champion__single-stat"><span class="champion__single-stat--underline">Attack speed: </span>${champion.attackSpeed}</li>
+                    <li class="champion__single-stat"><span class="champion__single-stat--underline">Magic resistance: </span>${champion.magicResistance}</li>
+                </ul>
+            </div>
+        `
 
-
-
-
-
-
-
-
-
-
-
+        return innerChamp;
+    };
 
     //Items Functions
 
@@ -879,9 +887,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     createSingleItem = (item) => {
         let innerSingleItem = "";
-        //console.log(item.description)
-
-
+ 
         function getMatches(string, regex, index) {
             index || (index = 1);
             var matches = [];
@@ -913,7 +919,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             return innerStat;
-        } 
+        }
 
 
         innerSingleItem = `
@@ -932,7 +938,26 @@ document.addEventListener('DOMContentLoaded', function () {
         return innerSingleItem;
     }
 
+    searchItemByName = (itemName) => {
+        itemsInfo.forEach(element => {
+            if ((element.name).toLowerCase().includes(itemName.toLowerCase())) {
+                itemsList.innerHTML += createSingleItem(element);
+            }
+        });
 
+    }
+
+    itemsInput.addEventListener('input', (event) => {
+        if (event.target.value != "") {
+            while (itemsList.firstChild) {
+                itemsList.removeChild(itemsList.firstChild);
+            }
+            searchItemByName(event.target.value)
+        } else if (event.target.value == "") {
+            itemsInfo = [];
+            getItemsDetails();
+        }
+    });
 
 
     //Events
@@ -962,6 +987,13 @@ document.addEventListener('DOMContentLoaded', function () {
             itemsButton.classList.remove('main__buttons--active')
             mainStatsChecker.classList.remove('main__statsChecker--active');
             mainItems.classList.remove('main__items--active');
+
+            if (championsNameById.length != 0) {
+                if (championsList.innerHTML == "") {
+                    createChampionsList(championsList);
+                }
+
+            }
         }
     });
 

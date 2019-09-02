@@ -20,7 +20,6 @@ body {
 }
 
 .main__buttons {
-  background-color: red;
   height: 40px;
   width: 100%;
   display: -webkit-box;
@@ -1713,6 +1712,137 @@ body {
 
 .main__champions--active {
   display: block;
+}
+
+.main__champions .champions__title {
+  font-size: 24px;
+  padding-top: 10px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.main__champions .champions__list {
+  margin: 20px auto 0 auto;
+  width: 98%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.main__champions .champions__list .champion__single {
+  -ms-flex-preferred-size: calc(50% - 10px);
+      flex-basis: calc(50% - 10px);
+  margin: 5px;
+  height: 300px;
+  border: 1px solid black;
+  overflow: hidden;
+  position: relative;
+}
+
+@media (min-width: 568px) {
+  .main__champions .champions__list .champion__single {
+    -ms-flex-preferred-size: calc(33.33% - 10px);
+        flex-basis: calc(33.33% - 10px);
+  }
+}
+
+@media (min-width: 768px) {
+  .main__champions .champions__list .champion__single {
+    -ms-flex-preferred-size: calc(25% - 10px);
+        flex-basis: calc(25% - 10px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .main__champions .champions__list .champion__single {
+    -ms-flex-preferred-size: calc(20% - 10px);
+        flex-basis: calc(20% - 10px);
+  }
+}
+
+.main__champions .champions__list .champion__single .champion__name {
+  font-size: 16px;
+  font-weight: bold;
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  width: 100%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.main__champions .champions__list .champion__single .champion__title {
+  font-size: 12px;
+  font-weight: normal;
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  width: 100%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.main__champions .champions__list .champion__single .champion__image {
+  height: 80px;
+  width: 80px;
+  position: absolute;
+  top: 45px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.main__champions .champions__list .champion__single .champion__stats-title {
+  font-size: 12px;
+  position: absolute;
+  top: 135px;
+  left: 5px;
+}
+
+.main__champions .champions__list .champion__single .champion__stats-list {
+  width: calc(100% - 10px);
+  height: 140px;
+  margin: 2px 5px;
+  overflow: hidden;
+  position: absolute;
+  top: 150px;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.main__champions .champions__list .champion__single .champion__stats-list .champion__single-stat {
+  list-style: none;
+  font-size: 9px;
+  text-align: start;
+  font-weight: normal;
+  margin: 2px;
+  -ms-flex-preferred-size: calc(50% - 4px);
+      flex-basis: calc(50% - 4px);
+  height: calc(28px - 4px);
+}
+
+@media (min-width: 1024px) {
+  .main__champions .champions__list .champion__single .champion__stats-list .champion__single-stat {
+    font-size: 10px;
+  }
+}
+
+.main__champions .champions__list .champion__single .champion__stats-list .champion__single-stat--underline {
+  text-decoration: underline;
 }
 
 .main__items {

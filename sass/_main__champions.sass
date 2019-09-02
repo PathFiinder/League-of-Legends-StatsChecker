@@ -3,3 +3,78 @@
     font-family: 'Lato',sans-serif
     &--active
         display: block
+    .champions__title
+        font-size: 24px
+        padding-top: 10px
+        width: 90%
+        margin: 0 auto
+    .champions__list
+        margin: 20px auto 0 auto 
+        width: 98%
+        display: flex
+        flex-direction: row
+        flex-wrap: wrap
+        .champion__single
+            flex-basis: calc(50% - 10px)
+            margin: 5px
+            height: 300px
+            border: 1px solid black
+            overflow: hidden
+            position: relative
+            @include mediaQ(568px)
+                flex-basis: calc(33.33% - 10px)
+            @include mediaQ(768px)
+                flex-basis: calc(25% - 10px)
+            @include mediaQ(1024px)
+                flex-basis: calc(20% - 10px)
+            .champion__name
+                font-size: 16px
+                font-weight: bold
+                position: absolute
+                top: 5px
+                left: 50%
+                width: 100%
+                transform: translateX(-50%)
+            .champion__title
+                font-size: 12px
+                font-weight: normal
+                position: absolute
+                top: 25px
+                left: 50%
+                width: 100%
+                transform: translateX(-50%)
+            .champion__image
+                height: 80px
+                width: 80px
+                position: absolute
+                top: 45px
+                left: 50%
+                transform: translateX(-50%)
+            .champion__stats-title
+                font-size: 12px
+                position: absolute
+                top: 135px
+                left: 5px
+            .champion__stats-list
+                width: calc(100% - 10px)
+                height: 140px
+                margin: 2px 5px 
+                overflow: hidden
+                position: absolute
+                top: 150px
+                left: 0
+                display: flex
+                flex-direction: row
+                flex-wrap: wrap
+                .champion__single-stat
+                    list-style: none
+                    font-size: 9px
+                    text-align: start
+                    font-weight: normal
+                    margin: 2px
+                    flex-basis: calc(50% - 4px)
+                    height: calc(28px - 4px)
+                    @include mediaQ(1024px)
+                        font-size: 10px
+                    &--underline
+                        text-decoration: underline
