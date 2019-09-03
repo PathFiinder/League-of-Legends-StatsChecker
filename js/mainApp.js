@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    const apiKey = 'RGAPI-15e87828-5598-48ad-b90b-789dee390ba4';
+    const apiKey = 'RGAPI-86126eed-da55-4ae6-98c6-610c1066748c';
 
     const statsCheckerButton = document.querySelector('.main__buttons--stats');
     const championsButton = document.querySelector('.main__buttons--champions');
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
             mainInfo.classList.remove('statsChecker__info--active');
 
 
-            fetch( `https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nickname}?api_key=${apiKey}`)
+            fetch(`https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nickname}?api_key=${apiKey}`)
                 .then((data) => {
                     if (data.status == 200) {
                         statsCheckerError.textContent = "";
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     getRank = (id) => {
-        fetch( `https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${apiKey}`)
+        fetch(`https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${apiKey}`)
             .then((data) => {
                 if (data.status == 200) {
                     return data.json();
@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function () {
     getChampions();
 
     getMastery = (id) => {
-        fetch( `https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${id}?api_key=${apiKey}`)
+        fetch(`https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${id}?api_key=${apiKey}`)
             .then((data) => {
                 return data.json()
             })
@@ -333,7 +333,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     getSingleGameHistory = (matchID, singleId) => {
-        fetch( `https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/match/v4/matches/${matchID}?api_key=${apiKey}`)
+        fetch(`https://cors-anywhere.herokuapp.com/https://eun1.api.riotgames.com/lol/match/v4/matches/${matchID}?api_key=${apiKey}`)
             .then((data) => {
                 return data.json()
             })
@@ -689,7 +689,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <h3 class="team__player-stats">${kills} / ${deaths} / ${assists}</h3>
                 <h3 class="team__player-dmg"><span class="team__player-dmg--bold">Dmg:</span> ${dmg}</h3>
                 <h3 class="team__player-cs"><span class="team__player-cs--bold">CS:</span> ${minions} </h3>
-                <h3 class="team__player-gold"><span class="team__player-gold--bold">Gold: </span>${gEarned} / ${gSpent}</h3>
+                <h3 class="team__player-gold"><span class="team__player-gold--bold">Gold: </span>${gSpent} / ${gEarned}</h3>
                 <div class="team__player-items">
                 ${singlePlayerItems(items)}
                 </div>
@@ -887,7 +887,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     createSingleItem = (item) => {
         let innerSingleItem = "";
- 
+
         function getMatches(string, regex, index) {
             index || (index = 1);
             var matches = [];
