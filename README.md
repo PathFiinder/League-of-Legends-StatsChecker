@@ -12,4 +12,3 @@ Tech Work used:
 
 
 
-Live: https://pathfiinder.github.io/Riot-API/
