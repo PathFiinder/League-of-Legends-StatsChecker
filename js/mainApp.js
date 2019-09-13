@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    const apiKey = 'RGAPI-1b4e1e57-ab07-4c5c-8921-5c46691b2534';
+    const apiKey = 'RGAPI-e0ab4a84-486b-4975-a291-1abe4ea2626c';
 
     const statsCheckerButton = document.querySelector('.main__buttons--stats');
     const championsButton = document.querySelector('.main__buttons--champions');
