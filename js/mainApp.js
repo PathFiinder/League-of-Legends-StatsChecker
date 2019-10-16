@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     if (json != null) {
                         infoAccStats.innerHTML = `
-                                <img src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/profileicon/${json.profileIconId}.png" alt="Profil Icon" class="info__profilIcon">
+                                <img src="https://ddragon.leagueoflegends.com/cdn/9.20.1/img/profileicon/${json.profileIconId}.png" alt="Profil Icon" class="info__profilIcon">
                                 <h2 class="info__nickname">${json.name}</h2>
                                 <div class="info__level-container">
                                     <h3 class="info__summLevel">${json.summonerLevel}</h3>
@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     getChampions = () => {
-        fetch('https://ddragon.leagueoflegends.com/cdn/9.17.1/data/en_US/champion.json')
+        fetch('https://ddragon.leagueoflegends.com/cdn/9.20.1/data/en_US/champion.json')
             .then((data) => {
                 return data.json();
             })
@@ -717,7 +717,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (element[1].teamId == idTeam) {
                 playerListShort += `
                 <div class="playerList__single">
-                    <img class="playerList__iconImage" alt="Icon image" src="https://ddragon.leagueoflegends.com/cdn/9.17.1/img/profileicon/${element[0].playerIcon}.png">
+                    <img class="playerList__iconImage" alt="Icon image" src="https://ddragon.leagueoflegends.com/cdn/9.20.1/img/profileicon/${element[0].playerIcon}.png">
                     <h3 class="playerList__nickName">${element[0].playerNick}</h3>
                 </div>
                 `
