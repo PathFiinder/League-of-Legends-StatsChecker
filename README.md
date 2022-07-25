@@ -11,5 +11,3 @@ Tech Work used:
 - JavaScript
 - RioT API (https://developer.riotgames.com/)
 - RioT API Libraries - Data Dragon (https://riot-api-libraries.readthedocs.io/en/latest/ddragon.html)
-
-Live: https://pathfiinder.github.io/League-of-Legends-StatsChecker/
